@@ -1,0 +1,32 @@
+Cupcake features
+Cupcake
+- Cost price
+- Calorie
+- Pickup date
+- Cupcake visual html builder
+
+Analytics
+- Sale date
+- Sales amount analytics to "predict" item need on daily basis
+- Profit
+
+Dashboard
+- Orders
+- POS
+- Settings
+
+Order
+- Customer note
+- Status
+- Edit(If status is not "finalized" or "processing")
+- Cancel(If status is not "finalized" or "processing")
+
+Website
+- Basket
+	- Clear
+	- Add/remove(amount)
+- Profile
+- Contact page
+- Google map
+- Google analytics
+- Image
