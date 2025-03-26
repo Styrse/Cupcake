@@ -36,9 +36,23 @@ footer {
 
 .top-bar {
     width: 100%;
-    height: 5vh;
+    height: 7.5vh;
     background-color: mediumpurple;
     display: flex;
+    justify-content: right;
+    gap: 10px;
+}
+
+.top-nav {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-right: 10px;
+    cursor: pointer;
+}
+
+.top-bar img{
+    height: 4vh;
 }
 
 .product-container {
@@ -58,13 +72,13 @@ footer {
 }
 
 .product-menu:hover {
-    width: 20vw;
+    width: fit-content;
     height: 100%;
     background-color: mediumpurple;
 }
 
 .product-menu:hover .menu-expanded {
-    font-size: 2.5vh;
+    font-size: 1.125rem;
     width: 100%;
     gap: 15px;
     padding: 10px;
@@ -119,7 +133,10 @@ footer {
     display: grid;
 }
 
-.google-map iframe {
+.footer-containers {
+}
+
+#google-map iframe {
     width: 100%;
     height: 250px;
     border: 0;

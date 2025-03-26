@@ -16,16 +16,21 @@
 
 <main>
     <div class="top-bar">
-        Profile
-        login
-        Basket
+        <div class="top-nav">
+            <img src="/src/main/resources/img/icons/profile.png">
+            <p th:text="|${email}|"></p>
+        </div>
+
+        <div class="top-nav">
+            <img src="/src/main/resources/img/icons/shopping-basket.png">
+        </div>
     </div>
     <div class="product-container">
         <div class="product-menu">
             <div class="menu-collapsed">
-                <img src="/src/main/resources/img/icons/cupcake.png" href="#cupcake">
-                <img src="/src/main/resources/img/icons/drink.png" href="#drinks">
-                <img src="/src/main/resources/img/icons/gift-card.png" href="#misc">
+                <img src="/src/main/resources/img/icons/cupcake.png">
+                <img src="/src/main/resources/img/icons/drink.png">
+                <img src="/src/main/resources/img/icons/gift-card.png">
             </div>
 
             <div class="menu-expanded">
@@ -63,11 +68,15 @@
 </main>
 
 <footer>
-    <div class="contact">
+    <div class="footer-containers" id="contact">
         <h2>Contact</h2>
     </div>
 
-    <div class="google-map">
+    <div class="footer-containers" id="trustpilot">
+        <h2>Trustpilot</h2>
+    </div>
+
+    <div class="footer-containers" id="google-map">
         <iframe src="https://maps.google.com/maps?width=100%25&amp;height=250&amp;hl=en&amp;q=Firskovsvej%2018+(Olsker%20Cupcake)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
     </div>
 </footer>
