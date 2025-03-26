@@ -6,4 +6,6 @@ import java.util.List;
 
 public class Shop {
     private List<Item> items;
+
+
 }

@@ -17,22 +17,28 @@
 <main>
     <div class="top-bar">
         Profile
-        Basket
         login
+        Basket
     </div>
     <div class="product-container">
         <div class="product-menu">
-            <a href="#Cupcake">Cupcake</a>
-            <a href="#Drinks">Drinks</a>
-            <a href="#Gift%20card">Gift card</a>
+            <div class="menu-collapsed">
+                <img src="/src/main/resources/img/icons/cupcake.png" href="#cupcake">
+                <img src="/src/main/resources/img/icons/drink.png" href="#drinks">
+                <img src="/src/main/resources/img/icons/gift-card.png" href="#gift-card">
+            </div>
+
+            <div class="menu-expanded">
+
+            </div>
         </div>
 
         <div class="product-display">
-            <h2 class="product-menu-title">Cupcake</h2>
+            <h2 class="product-menu-title" id="cupcake">Cupcake</h2>
 
-            <h2 class="product-menu-title">Drinks</h2>
+            <h2 class="product-menu-title" id="drinks">Drinks</h2>
 
-            <h2 class="product-menu-title">Gift card</h2>
+            <h2 class="product-menu-title" id="gift-card">Gift card</h2>
         </div>
     </div>
 </main>

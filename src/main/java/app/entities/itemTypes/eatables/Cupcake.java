@@ -21,4 +21,12 @@ public class Cupcake extends Eatable {
     public CupcakeTop getCupcakeTop() {
         return cupcakeTop;
     }
+
+    @Override
+    public String toString() {
+        return "Cupcake{" +
+                "cupcakeBottom=" + cupcakeBottom +
+                ", cupcakeTop=" + cupcakeTop +
+                '}';
+    }
 }

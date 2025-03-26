@@ -40,4 +40,16 @@ public class CupcakeTop {
     public String getDescription() {
         return description;
     }
+
+    @Override
+    public String toString() {
+        return "CupcakeTop{" +
+                "flavour='" + flavour + '\'' +
+                ", costPrice=" + costPrice +
+                ", salesPrice=" + salesPrice +
+                ", glutenFree=" + glutenFree +
+                ", calories=" + calories +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

@@ -11,6 +11,7 @@ public class Customer extends User {
     private Date birthday;
     private Basket basket;
     private List<Order> orders;
+    private Float Balance;
 
     public Customer(String firstname, String lastname, String email, String password, List<Order> orders) {
         super(firstname, lastname, email, password);
@@ -35,4 +36,9 @@ public class Customer extends User {
     public List<Order> getOrders() {
         return orders;
     }
+
+
+    public float getBalance(){ return Balance;
+    }
 }
+
