@@ -58,6 +58,20 @@ footer {
     background-color: rebeccapurple;
 }
 
+.product-menu:hover .menu-expanded {
+    width: 3.5vw;
+    gap: 15px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    border: 10px;
+}
+
+.product-menu:hover .menu-collapsed {
+    display: none;
+}
+
 .menu-collapsed {
     width: 3.5vw;
     gap: 15px;
@@ -69,7 +83,20 @@ footer {
 }
 
 .menu-expanded {
+    display: none;
+}
 
+.menu {
+    width: 3.5vw;
+    gap: 15px;
+    display: flex;
+    justify-content: space-evenly;
+    border: 10px;
+    cursor: pointer;
+}
+
+.menu img{
+    width: 3.5vw;
 }
 
 .product-display {

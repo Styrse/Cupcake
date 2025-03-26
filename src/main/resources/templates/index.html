@@ -25,20 +25,39 @@
             <div class="menu-collapsed">
                 <img src="/src/main/resources/img/icons/cupcake.png" href="#cupcake">
                 <img src="/src/main/resources/img/icons/drink.png" href="#drinks">
-                <img src="/src/main/resources/img/icons/gift-card.png" href="#gift-card">
+                <img src="/src/main/resources/img/icons/gift-card.png" href="#misc">
             </div>
 
             <div class="menu-expanded">
+                <div id="menu-cupcake" class="menu">
+                    <img src="/src/main/resources/img/icons/cupcake.png" href="cupcake">
+                    <a>Cupcake</a>
+                </div>
 
+                <div id="menu-drinks" class="menu">
+                    <img src="/src/main/resources/img/icons/drink.png" href="drinks">
+                    <a>Drinks</a>
+                </div>
+
+                <div id="menu-misc" class="menu">
+                    <img src="/src/main/resources/img/icons/gift-card.png" href="misc">
+                    <a>Miscellaneous</a>
+                </div>
             </div>
         </div>
 
         <div class="product-display">
-            <h2 class="product-menu-title" id="cupcake">Cupcake</h2>
+            <div id="cupcake">
+                <h2 class="product-menu-title">Cupcake</h2>
+            </div>
 
-            <h2 class="product-menu-title" id="drinks">Drinks</h2>
+            <div id="drinks">
+                <h2 class="product-menu-title">Drinks</h2>
+            </div>
 
-            <h2 class="product-menu-title" id="gift-card">Gift card</h2>
+            <div id="misc">
+                <h2 class="product-menu-title">Gift card</h2>
+            </div>
         </div>
     </div>
 </main>
@@ -52,6 +71,8 @@
         <iframe src="https://maps.google.com/maps?width=100%25&amp;height=250&amp;hl=en&amp;q=Firskovsvej%2018+(Olsker%20Cupcake)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
     </div>
 </footer>
+
+<script src="/src/main/resources/public/js/scripts.js"></script>
 
 </body>
 </html>
