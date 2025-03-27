@@ -57,18 +57,19 @@
                 <form class="cupcake-builder">
                     <div class="cupcake-choice">
                         <h3>Pick cupcake bottom</h3>
-                        <div class="products">
-                            <div class="product-info">
-                                <p class="flavour-info">Chocolate</p>
-                                <p class="sub-info">Price: 5</p>
-                                <p class="sub-info">More info</p>
-                            </div>
+                            <div class="products" th:each="cupcake : ${cupcakeList}">
+                                <div class="product-info">
+                                    <p class="flavour-info" th:text="${cupcake.flavor}"></p>
+                                    <p class="sub-info">Price: <span th:text="${cupcake.price}"></span></p>
+                                    <p class="sub-info">More info</p>
+                                </div>
 
-                            <div class="product-img">
-                                <img src="/src/main/resources/img/icons/chocolate.png">
+                                <div class="product-img">
+                                    <img th:src="@{${cupcake.imagePath}}" alt="Cupcake Image">
+                                </div>
                             </div>
                         </div>
-                    </div>
+
 
                     <div class="cupcake-choice">
                         <h3>Pick cupcake top</h3>

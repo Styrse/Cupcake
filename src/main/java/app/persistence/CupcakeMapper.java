@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.util.*;
 
 public class CupcakeMapper {
-    private static List<CupcakeBottom> getCupcakeBottoms(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<CupcakeBottom> getCupcakeBottoms(ConnectionPool connectionPool) throws DatabaseException {
         List<CupcakeBottom> bottoms = new ArrayList<>();
 
         String sqlBottom = "SELECT * from \"Cupcake_bottom\"";
@@ -46,7 +46,7 @@ public class CupcakeMapper {
         return bottoms;
     }
 
-    private static List<CupcakeTop> getCupcakeTops(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<CupcakeTop> getCupcakeTops(ConnectionPool connectionPool) throws DatabaseException {
         List<CupcakeTop> tops = new ArrayList<>();
 
         String sqlTop = "SELECT * from \"Cupcake_top\"";

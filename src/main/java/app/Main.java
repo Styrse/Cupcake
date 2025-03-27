@@ -2,11 +2,14 @@ package app;
 
 import app.config.SessionConfig;
 import app.config.ThymeleafConfig;
+import app.controllers.CupcakeHandler;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
+import app.persistence.CupcakeMapper;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 
+import java.util.Map;
 import java.util.logging.Logger;
 
 import static app.persistence.CupcakeMapper.*;
@@ -40,5 +43,6 @@ public class Main {
 
         // Frontpage
         app.get("/", ctx -> ctx.render("index.html"));
+        app.get("/index", CupcakeHandler::showCupcakes);
     }
 }
