@@ -7,7 +7,7 @@ import java.sql.Date;
 import java.util.List;
 
 public class Customer extends User {
-    private String customerID;
+    private int customerID;
     private Date birthday;
     private Basket basket;
     private List<Order> orders;
@@ -21,7 +21,7 @@ public class Customer extends User {
         super(firstname, email, password);
     }
 
-    public String getCustomerID() {
+    public int getCustomerID() {
         return customerID;
     }
 

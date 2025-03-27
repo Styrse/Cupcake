@@ -5,8 +5,6 @@ import app.entities.userRoles.User;
 import app.exceptions.DatabaseException;
 
 import java.sql.*;
-import java.time.LocalDateTime;
-import java.util.List;
 
 public class FindUser {
     public static User findUser(ConnectionPool connectionPool, String email, String password) throws DatabaseException {
@@ -20,12 +18,7 @@ public class FindUser {
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()){
-                    int orderID = rs.getInt("order_id");
-                    LocalDateTime orderDate = rs.getDate("order_date");
-                    LocalDateTime pickupDate = rs.getDate("pickup_date");
-                    int customerID = rs.getInt("customer_id");
-                    String status = rs.getString("status");
-                    List<Item> items =
+                    int
                 }
 
 
@@ -36,4 +29,6 @@ public class FindUser {
         }
         return user;
     }
+
+    private static Item getItem
 }
