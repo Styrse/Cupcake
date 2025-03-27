@@ -68,7 +68,6 @@ footer {
     flex-direction: column;
     border: 10px;
     background-color: mediumpurple;
-    transition: .25s ease-in-out;
 }
 
 .product-menu:hover {
@@ -186,7 +185,7 @@ footer {
     margin: 7.5px;
     background: sandybrown;
     border-radius: 25px;
-    justify-content: space-evenly;
+    justify-content: space-around;
 }
 
 .product-img {

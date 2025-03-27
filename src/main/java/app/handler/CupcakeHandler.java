@@ -1,4 +1,4 @@
-package app.controllers;
+package app.handler;
 
 import app.Main;
 import app.exceptions.DatabaseException;
