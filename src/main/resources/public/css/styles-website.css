@@ -57,7 +57,7 @@ footer {
 
 .product-container {
     display: flex;
-    height: fit-content;
+    height: 100%;
     flex-grow: 1;
 }
 
@@ -73,7 +73,6 @@ footer {
 
 .product-menu:hover {
     width: fit-content;
-    height: 100%;
     background-color: mediumpurple;
 }
 
@@ -182,15 +181,20 @@ footer {
 
 .products {
     display: flex;
-    width: 100%;
+    width: 95%;
+    padding: 5px;
     background: sandybrown;
     border-radius: 25px;
-    padding: 5px;
     justify-content: space-evenly;
 }
 
-.product-img img {
+.product-img {
     height: 40px;
+    place-self: center;
+}
+
+.product-img img {
+    height: 100%;
 }
 
 .product-info {
@@ -214,5 +218,8 @@ footer {
 }
 
 .cupcake-choice {
-    padding: 7.5px;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
