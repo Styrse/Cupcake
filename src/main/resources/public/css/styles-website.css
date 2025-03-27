@@ -1,6 +1,6 @@
 * {
-    font-family: "Comic Sans MS";
-    font-weight: bold;
+    font-family: "Arial";
+    font-weight: lighter;
 }
 
 body {
@@ -15,7 +15,7 @@ header {
 }
 
 main {
-    height: 50vh;
+    height: fit-content;
     display: flex;
     flex-direction: column;
 }
@@ -47,6 +47,7 @@ footer {
     display: flex;
     align-items: center;
     padding: 10px;
+    gap: 10px;
     cursor: pointer;
 }
 
@@ -56,7 +57,7 @@ footer {
 
 .product-container {
     display: flex;
-    height: 100%;
+    height: fit-content;
     flex-grow: 1;
 }
 
@@ -146,6 +147,8 @@ footer {
 }
 
 .cupcake-builder {
+    display: flex;
+    justify-content: space-evenly;
 }
 
 .operator-button {
@@ -175,4 +178,41 @@ footer {
 
 .amount-input {
     height: 40px;
+}
+
+.products {
+    display: flex;
+    width: 100%;
+    background: sandybrown;
+    border-radius: 25px;
+    padding: 5px;
+    justify-content: space-evenly;
+}
+
+.product-img img {
+    height: 40px;
+}
+
+.product-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.flavour-info {
+    margin: 0;
+}
+
+.sub-info {
+    font-size: 12px;
+    margin: 0;
+}
+
+.product-boxes {
+    border-bottom: 3px solid black;
+    margin: 15px;
+    padding: 15px;
+}
+
+.cupcake-choice {
+    padding: 7.5px;
 }

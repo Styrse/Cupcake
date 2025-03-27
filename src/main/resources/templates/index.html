@@ -17,8 +17,8 @@
 <main>
     <div class="top-bar">
         <div class="top-nav">
-            <img src="/src/main/resources/img/icons/profile.png">
             <p th:text="|${email}|"></p>
+            <img src="/src/main/resources/img/icons/profile.png">
         </div>
 
         <div class="top-nav">
@@ -52,37 +52,56 @@
         </div>
 
         <div class="product-display">
-            <div id="cupcake">
+            <div class="product-boxes" id="cupcake">
                 <h2 class="product-menu-title">Cupcake</h2>
                 <form class="cupcake-builder">
-                    <div id="cupcake-bottom">
+                    <div class="cupcake-choice">
                         <h3>Pick cupcake bottom</h3>
+                        <div class="products">
+                            <div class="product-info">
+                                <p class="flavour-info">Chocolate</p>
+                                <p class="sub-info">Price: 5</p>
+                                <p class="sub-info">More info</p>
+                            </div>
+
+                            <div class="product-img">
+                                <img src="/src/main/resources/img/icons/chocolate.png">
+                            </div>
+                        </div>
                     </div>
 
-                    <div id="cupcake-top">
+                    <div class="cupcake-choice">
                         <h3>Pick cupcake top</h3>
                     </div>
 
-                    <div id="cupcake-amount">
-                        <h3>Pick quantity</h3>
+                    <div id="cupcake-display">
+                        <div>
+                            <div id="cupcake-bottom-img" class="cupcake">
+
+                            </div>
+
+                            <div id="cupcake-top-img" class="cupcake">
+
+                            </div>
+                        </div>
                         <div id="amount-box">
                             <button id="cupcake-subtract" class="operator-button"></button>
                             <input type="text" class="amount-input">
                             <button id="cupcake-addition" class="operator-button"></button>
                         </div>
-                    </div>
 
-                    <button type="submit">
-                        Bake
-                    </button>
+                        <button type="submit">
+                            Add to basket
+                        </button>
+                    </div>
                 </form>
             </div>
 
-            <div id="drinks">
+            <div class="product-boxes" id="drinks">
                 <h2 class="product-menu-title">Drinks</h2>
             </div>
 
-            <div id="misc">
+            <div class="product-boxes" id="misc">
                 <h2 class="product-menu-title">Gift card</h2>
             </div>
         </div>

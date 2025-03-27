@@ -5,3 +5,5 @@
     - Add boolean "amEmployee"
     - Add boolean "amAdmin"
     (This is to know which class to use when construction object)
+- Fix expanded menu
+- product-img

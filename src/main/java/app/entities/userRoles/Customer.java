@@ -11,14 +11,23 @@ public class Customer extends User {
     private Date birthday;
     private Basket basket;
     private List<Order> orders;
-    private Float Balance;
+    private float balance;
 
-    public Customer(String firstname, String lastname, String email, String password, List<Order> orders) {
+    public Customer(String firstname, String lastname, String email, String password, int customerID, Date birthday, List<Order> orders, float balance) {
         super(firstname, lastname, email, password);
+        this.customerID = customerID;
+        this.birthday = birthday;
+        this.basket = new Basket();
+        this.orders = orders;
+        this.balance = balance;
     }
 
-    public Customer(String firstname, String email, String password, List<Order> orders) {
+    public Customer(String firstname, String email, String password, int customerID, List<Order> orders, float balance) {
         super(firstname, email, password);
+        this.customerID = customerID;
+        this.basket = new Basket();
+        this.orders = orders;
+        this.balance = balance;
     }
 
     public int getCustomerID() {
@@ -37,8 +46,7 @@ public class Customer extends User {
         return orders;
     }
 
-
-    public float getBalance(){ return Balance;
+    public float getBalance(){ return balance;
     }
 }
 
