@@ -46,8 +46,7 @@ footer {
 .top-nav {
     display: flex;
     align-items: center;
-    gap: 10px;
-    padding-right: 10px;
+    padding: 10px;
     cursor: pointer;
 }
 
@@ -130,7 +129,6 @@ footer {
 
 .product-display {
     width: 100%;
-    display: grid;
 }
 
 .footer-containers {
@@ -145,4 +143,36 @@ footer {
 
 .product-menu-title {
     margin-left: 5px;
+}
+
+.cupcake-builder {
+}
+
+.operator-button {
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+    border-radius: 100%;
+    border: none;
+    font-size: 1.5rem;
+}
+
+#cupcake-subtract {
+    background: red;
+}
+
+#cupcake-subtract::before {
+    content: "-";
+}
+
+#cupcake-addition {
+    background: green;
+}
+
+#cupcake-addition::before {
+    content: "+";
+}
+
+.amount-input {
+    height: 40px;
 }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>Olsker Cupcake</title>
     <link rel="icon" type="image/x-icon" href="/src/main/resources/img/cupcake_logo.png">
-    <link rel="stylesheet" href="/src/main/resources/public/css/styles.css">
+    <link rel="stylesheet" href="/src/main/resources/public/css/styles-website.css">
 </head>
 <body>
 <header>
@@ -54,6 +54,28 @@
         <div class="product-display">
             <div id="cupcake">
                 <h2 class="product-menu-title">Cupcake</h2>
+                <form class="cupcake-builder">
+                    <div id="cupcake-bottom">
+                        <h3>Pick cupcake bottom</h3>
+                    </div>
+
+                    <div id="cupcake-top">
+                        <h3>Pick cupcake top</h3>
+                    </div>
+
+                    <div id="cupcake-amount">
+                        <h3>Pick quantity</h3>
+                        <div id="amount-box">
+                            <button id="cupcake-subtract" class="operator-button"></button>
+                            <input type="text" class="amount-input">
+                            <button id="cupcake-addition" class="operator-button"></button>
+                        </div>
+                    </div>
+
+                    <button type="submit">
+                        Bake
+                    </button>
+                </form>
             </div>
 
             <div id="drinks">

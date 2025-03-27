@@ -9,11 +9,11 @@ public class Order {
     private int orderID;
     private LocalDateTime orderDate;
     private LocalDateTime pickupDate;
-    private String customerID;
+    private int customerID;
     private String status;
     private List<Item> items;
 
-    public Order(int orderID, LocalDateTime orderDate, LocalDateTime pickupDate, String customerID, String status, List<Item> items) {
+    public Order(int orderID, LocalDateTime orderDate, LocalDateTime pickupDate, int customerID, String status, List<Item> items) {
         this.orderID = orderID;
         this.orderDate = orderDate;
         this.pickupDate = pickupDate;
@@ -34,7 +34,7 @@ public class Order {
         return pickupDate;
     }
 
-    public String getCustomerID() {
+    public int getCustomerID() {
         return customerID;
     }
 
