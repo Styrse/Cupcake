@@ -73,6 +73,16 @@
 
                     <div class="cupcake-choice">
                         <h3>Pick cupcake top</h3>
+                        <div class="products" th:each="cupcakeTop : ${cupcakeTopList}">
+                            <div class="product-info">
+                                <p class="flavour-info" th:text="${cupcakeTop.flavor}"></p>
+                                <p class="sub-info">Price: <span th:text="${cupcakeTop.salesPrice}"></span></p>
+                            </div>
+
+                            <div class="product-img">
+                                <img th:src="@{'/img/icons/cupcakeBuilder/' + ${cupcakeTop.path}}" alt="Cupcake Image">
+                            </div>
+                        </div>
                     </div>
 
                     <div id="cupcake-display">

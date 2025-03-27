@@ -3,6 +3,7 @@ package app;
 import app.config.SessionConfig;
 import app.config.ThymeleafConfig;
 import app.entities.itemTypes.eatables.CupcakeBottom;
+import app.entities.itemTypes.eatables.CupcakeTop;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
@@ -48,8 +49,10 @@ public class Main {
 
         app.get("/", ctx -> {
             List<CupcakeBottom> cupcakeBottomList = getCupcakeBottoms(connectionPool);
+            List<CupcakeTop> cupcakeTopList = getCupcakeTops(connectionPool);
 
             ctx.render("index.html", Map.of("cupcakeBottomList", cupcakeBottomList));
+            ctx.render("index.html", Map.of("cupcakeTopList", cupcakeTopList));
         });
     }
 }
