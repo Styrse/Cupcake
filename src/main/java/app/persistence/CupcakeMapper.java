@@ -29,13 +29,15 @@ public class CupcakeMapper {
                     boolean bottom_gluten_free = rs.getBoolean("cupcake_bottom_gluten_free");
                     int bottom_calories = rs.getInt("cupcake_bottom_calories");
                     String bottom_description = rs.getString("cupcake_bottom_description");
+                    String bottom_path = rs.getString("cupcake_bottom_path");
 
                     CupcakeBottom bottom = new CupcakeBottom(bottom_flavour,
                             bottom_cost_price,
                             bottom_sales_price,
                             bottom_gluten_free,
                             bottom_calories,
-                            bottom_description);
+                            bottom_description,
+                            bottom_path);
                     bottoms.add(bottom);
                 }
             }

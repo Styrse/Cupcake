@@ -1,24 +1,26 @@
 package app.entities.itemTypes.eatables;
 
 public class CupcakeBottom {
-    private String flavour;
+    private String flavor;
     private float costPrice;
     private float salesPrice;
     private boolean glutenFree;
     private int calories;
     private String description;
+    private String path;
 
-    public CupcakeBottom(String flavour, float costPrice, float salesPrice, boolean glutenFree, int calories, String description) {
-        this.flavour = flavour;
+    public CupcakeBottom(String flavor, float costPrice, float salesPrice, boolean glutenFree, int calories, String description, String path) {
+        this.flavor = flavor;
         this.costPrice = costPrice;
         this.salesPrice = salesPrice;
         this.glutenFree = glutenFree;
         this.calories = calories;
         this.description = description;
+        this.path = path;
     }
 
-    public String getFlavour() {
-        return flavour;
+    public String getFlavor() {
+        return flavor;
     }
 
     public float getCostPrice() {
@@ -41,10 +43,14 @@ public class CupcakeBottom {
         return description;
     }
 
+    public String getPath() {
+        return path;
+    }
+
     @Override
     public String toString() {
         return "CupcakeBottom{" +
-                "flavour='" + flavour + '\'' +
+                "flavour='" + flavor + '\'' +
                 ", costPrice=" + costPrice +
                 ", salesPrice=" + salesPrice +
                 ", glutenFree=" + glutenFree +

@@ -5,6 +5,7 @@ import app.config.ThymeleafConfig;
 import app.controllers.CupcakeHandler;
 import app.entities.TestCupcake;
 import app.entities.itemTypes.eatables.Cupcake;
+import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.CupcakeMapper;
@@ -49,14 +50,21 @@ public class Main {
         //app.get("/", ctx -> ctx.render("index.html"));
 
 //        CupcakeHandler.routes(app, connectionPool);
+
         app.get("/", ctx -> {
-            List<TestCupcake> cupcakeList = Arrays.asList(
-                    new TestCupcake("Chocolate", 2.5, "chocolate.png"),
-                    new TestCupcake("Vanilla", 2.0, "vanilla.png"),
-                    new TestCupcake("Nutmeg", 2.8, "nutmeg.png")
-            );
+            List<CupcakeBottom> cupcakeList = getCupcakeBottoms(connectionPool);
 
             ctx.render("index.html", Map.of("cupcakeList", cupcakeList));
         });
+
+//        app.get("/", ctx -> {
+//            List<TestCupcake> cupcakeList = Arrays.asList(
+//                    new TestCupcake("Chocolate", 2.5, "chocolate.png"),
+//                    new TestCupcake("Vanilla", 2.0, "vanilla.png"),
+//                    new TestCupcake("Nutmeg", 2.8, "nutmeg.png")
+//            );
+//
+//            ctx.render("index.html", Map.of("cupcakeList", cupcakeList));
+//        });
     }
 }
