@@ -182,7 +182,8 @@ footer {
 .products {
     display: flex;
     width: 95%;
-    padding: 5px;
+    padding: 10px;
+    margin: 7.5px;
     background: sandybrown;
     border-radius: 25px;
     justify-content: space-evenly;

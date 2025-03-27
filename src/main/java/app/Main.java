@@ -3,12 +3,16 @@ package app;
 import app.config.SessionConfig;
 import app.config.ThymeleafConfig;
 import app.controllers.CupcakeHandler;
+import app.entities.TestCupcake;
+import app.entities.itemTypes.eatables.Cupcake;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.CupcakeMapper;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -42,7 +46,17 @@ public class Main {
         }
 
         // Frontpage
-        app.get("/", ctx -> ctx.render("index.html"));
-        app.get("/index", CupcakeHandler::showCupcakes);
+        //app.get("/", ctx -> ctx.render("index.html"));
+
+//        CupcakeHandler.routes(app, connectionPool);
+        app.get("/", ctx -> {
+            List<TestCupcake> cupcakeList = Arrays.asList(
+                    new TestCupcake("Chocolate", 2.5, "chocolate.png"),
+                    new TestCupcake("Vanilla", 2.0, "vanilla.png"),
+                    new TestCupcake("Nutmeg", 2.8, "nutmeg.png")
+            );
+
+            ctx.render("index.html", Map.of("cupcakeList", cupcakeList));
+        });
     }
 }

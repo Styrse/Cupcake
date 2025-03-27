@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Olsker Cupcake</title>
-    <link rel="icon" type="image/x-icon" href="/src/main/resources/img/cupcake_logo.png">
-    <link rel="stylesheet" href="/src/main/resources/public/css/styles-website.css">
+    <link rel="icon" type="image/x-icon" href="/img/cupcake_logo.png">
+    <!--<link rel="stylesheet" href="/src/main/resources/public/css/styles-website.css"> -->
+    <link rel="stylesheet" href="/css/styles-website.css">
 </head>
 <body>
 <header>
     <div class="header-container">
-        <img id="header-img" src="/src/main/resources/img/cupcakelogo.png">
+        <img id="header-img" src="/img/cupcakelogo.png">
     </div>
 </header>
 
@@ -18,34 +19,34 @@
     <div class="top-bar">
         <div class="top-nav">
             <p th:text="|${email}|"></p>
-            <img src="/src/main/resources/img/icons/profile.png">
+            <img src="/img/icons/profile.png">
         </div>
 
         <div class="top-nav">
-            <img src="/src/main/resources/img/icons/shopping-basket.png">
+            <img src="/img/icons/shopping-basket.png">
         </div>
     </div>
     <div class="product-container">
         <div class="product-menu">
             <div class="menu-collapsed">
-                <img src="/src/main/resources/img/icons/cupcake.png">
-                <img src="/src/main/resources/img/icons/drink.png">
-                <img src="/src/main/resources/img/icons/gift-card.png">
+                <img src="/img/icons/cupcake.png">
+                <img src="/img/icons/drink.png">
+                <img src="/img/icons/gift-card.png">
             </div>
 
             <div class="menu-expanded">
                 <div id="menu-cupcake" class="menu">
-                    <img src="/src/main/resources/img/icons/cupcake.png" href="cupcake">
+                    <img src="/img/icons/cupcake.png" href="cupcake">
                     <a>Cupcake</a>
                 </div>
 
                 <div id="menu-drinks" class="menu">
-                    <img src="/src/main/resources/img/icons/drink.png" href="drinks">
+                    <img src="/img/icons/drink.png" href="drinks">
                     <a>Drinks</a>
                 </div>
 
                 <div id="menu-misc" class="menu">
-                    <img src="/src/main/resources/img/icons/gift-card.png" href="misc">
+                    <img src="/img/icons/gift-card.png" href="misc">
                     <a>Miscellaneous</a>
                 </div>
             </div>
@@ -57,19 +58,18 @@
                 <form class="cupcake-builder">
                     <div class="cupcake-choice">
                         <h3>Pick cupcake bottom</h3>
-                            <div class="products" th:each="cupcake : ${cupcakeList}">
-                                <div class="product-info">
-                                    <p class="flavour-info" th:text="${cupcake.flavor}"></p>
-                                    <p class="sub-info">Price: <span th:text="${cupcake.price}"></span></p>
-                                    <p class="sub-info">More info</p>
-                                </div>
+                        <div class="products" th:each="cupcake : ${cupcakeList}">
+                            <div class="product-info">
+                                <p class="flavour-info" th:text="${cupcake.flavor}"></p>
+                                <p class="sub-info">Price: <span th:text="${cupcake.price}"></span></p>
+                                <p class="sub-info">More info</p>
+                            </div>
 
-                                <div class="product-img">
-                                    <img th:src="@{${cupcake.imagePath}}" alt="Cupcake Image">
-                                </div>
+                            <div class="product-img">
+                                <img th:src="@{'/img/icons/cupcakeBuilder/bottom/' + ${cupcake.imagePath}}" alt="Cupcake Image">
                             </div>
                         </div>
-
+                    </div>
 
                     <div class="cupcake-choice">
                         <h3>Pick cupcake top</h3>
@@ -123,7 +123,7 @@
     </div>
 </footer>
 
-<script src="/src/main/resources/public/js/scripts.js"></script>
+<script src="/js/scripts.js"></script>
 
 </body>
 </html>
