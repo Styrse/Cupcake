@@ -7,14 +7,16 @@ public class CupcakeTop {
     private boolean glutenFree;
     private int calories;
     private String description;
+    private String path;
 
-    public CupcakeTop(String flavour, float costPrice, float salesPrice, boolean glutenFree, int calories, String description) {
+    public CupcakeTop(String flavour, float costPrice, float salesPrice, boolean glutenFree, int calories, String description, String path) {
         this.flavour = flavour;
         this.costPrice = costPrice;
         this.salesPrice = salesPrice;
         this.glutenFree = glutenFree;
         this.calories = calories;
         this.description = description;
+        this.path = path;
     }
 
     public String getFlavour() {
@@ -39,6 +41,10 @@ public class CupcakeTop {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getPath() {
+        return path;
     }
 
     @Override

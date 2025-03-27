@@ -65,13 +65,15 @@ public class CupcakeMapper {
                     boolean top_gluten_free = rs.getBoolean("cupcake_top_gluten_free");
                     int top_calories = rs.getInt("cupcake_top_calories");
                     String top_description = rs.getString("cupcake_top_description");
+                    String top_path = rs.getString("cupcake_top_path");
 
                     CupcakeTop top = new CupcakeTop(top_flavour,
                             top_cost_price,
                             top_sales_price,
                             top_gluten_free,
                             top_calories,
-                            top_description);
+                            top_description,
+                            top_path);
                     tops.add(top);
 
                 }
