@@ -47,9 +47,9 @@ public class Main {
 //        CupcakeHandler.routes(app, connectionPool);
 
         app.get("/", ctx -> {
-            List<CupcakeBottom> cupcakeList = getCupcakeBottoms(connectionPool);
+            List<CupcakeBottom> cupcakeBottomList = getCupcakeBottoms(connectionPool);
 
-            ctx.render("index.html", Map.of("cupcakeList", cupcakeList));
+            ctx.render("index.html", Map.of("cupcakeBottomList", cupcakeBottomList));
         });
     }
 }
