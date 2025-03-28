@@ -194,6 +194,7 @@ footer {
 
 .products:hover {
     transform: translateX(25px);
+    transition: .25s ease-in-out;
     cursor: pointer;
 }
 
@@ -209,6 +210,7 @@ footer {
 .product-info {
     display: flex;
     flex-direction: column;
+    place-self: center;
 }
 
 .flavour-info {
