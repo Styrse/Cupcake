@@ -1,61 +1,27 @@
 package app.entities.itemTypes.eatables;
 
-public class CupcakeTop {
+public class CupcakeTop extends Eatable {
+    private int id;
     private String flavor;
-    private float costPrice;
-    private float salesPrice;
-    private boolean glutenFree;
-    private int calories;
-    private String description;
     private String path;
 
-    public CupcakeTop(String flavor, float costPrice, float salesPrice, boolean glutenFree, int calories, String description, String path) {
+    public CupcakeTop(float costPrice, float salesPrice, int calories, String description, boolean glutenFree, int id, String flavor, String path) {
+        super(costPrice, salesPrice, calories, description, glutenFree);
+        this.id = id;
         this.flavor = flavor;
-        this.costPrice = costPrice;
-        this.salesPrice = salesPrice;
-        this.glutenFree = glutenFree;
-        this.calories = calories;
-        this.description = description;
         this.path = path;
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
     public String getFlavor() {
         return flavor;
     }
 
-    public float getCostPrice() {
-        return costPrice;
-    }
-
-    public float getSalesPrice() {
-        return salesPrice;
-    }
-
-    public boolean isGlutenFree() {
-        return glutenFree;
-    }
-
-    public int getCalories() {
-        return calories;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
     public String getPath() {
         return path;
-    }
-
-    @Override
-    public String toString() {
-        return "CupcakeTop{" +
-                "flavour='" + flavor + '\'' +
-                ", costPrice=" + costPrice +
-                ", salesPrice=" + salesPrice +
-                ", glutenFree=" + glutenFree +
-                ", calories=" + calories +
-                ", description='" + description + '\'' +
-                '}';
     }
 }

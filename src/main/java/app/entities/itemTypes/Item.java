@@ -1,6 +1,7 @@
 package app.entities.itemTypes;
 
 public abstract class Item {
+    private int id;
     private float costPrice;
     private float salesPrice;
 
@@ -9,11 +10,15 @@ public abstract class Item {
         this.salesPrice = salesPrice;
     }
 
-    public double getCostPrice() {
+    public int getId() {
+        return id;
+    }
+
+    public float getCostPrice() {
         return costPrice;
     }
 
-    public double getSalesPrice() {
+    public float getSalesPrice() {
         return salesPrice;
     }
 }

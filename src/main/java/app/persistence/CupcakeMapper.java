@@ -15,7 +15,7 @@ public class CupcakeMapper {
     public static List<CupcakeBottom> getCupcakeBottoms(ConnectionPool connectionPool) throws DatabaseException {
         List<CupcakeBottom> bottoms = new ArrayList<>();
 
-        String sqlBottom = "SELECT * from \"Cupcake_bottom\"";
+        String sqlBottom = "SELECT * FROM \"Cupcake_bottom\"";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sqlBottom)) {
@@ -23,7 +23,8 @@ public class CupcakeMapper {
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
-                    String bottom_flavour = rs.getString("cupcake_bottom_flavour");
+                    int bottom_id = rs.getInt("cupcake_bottom_id");
+                    String bottom_flavor = rs.getString("cupcake_bottom_flavor");
                     float bottom_cost_price = rs.getFloat("cupcake_bottom_cost_price");
                     float bottom_sales_price = rs.getFloat("cupcake_bottom_sales_price");
                     boolean bottom_gluten_free = rs.getBoolean("cupcake_bottom_gluten_free");
@@ -31,13 +32,15 @@ public class CupcakeMapper {
                     String bottom_description = rs.getString("cupcake_bottom_description");
                     String bottom_path = rs.getString("cupcake_bottom_path");
 
-                    CupcakeBottom bottom = new CupcakeBottom(bottom_flavour,
+                    CupcakeBottom bottom = new CupcakeBottom(
                             bottom_cost_price,
                             bottom_sales_price,
+                            bottom_calories, bottom_description,
                             bottom_gluten_free,
-                            bottom_calories,
-                            bottom_description,
-                            bottom_path);
+                            bottom_id,
+                            bottom_flavor,
+                            bottom_path
+                    );
                     bottoms.add(bottom);
                 }
             }
@@ -51,7 +54,7 @@ public class CupcakeMapper {
     public static List<CupcakeTop> getCupcakeTops(ConnectionPool connectionPool) throws DatabaseException {
         List<CupcakeTop> tops = new ArrayList<>();
 
-        String sqlTop = "SELECT * from \"Cupcake_top\"";
+        String sqlTop = "SELECT * FROM \"Cupcake_top\"";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sqlTop)) {
@@ -59,7 +62,8 @@ public class CupcakeMapper {
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
-                    String top_flavour = rs.getString("cupcake_top_flavour");
+                    int top_id = rs.getInt("cupcake_top_id");
+                    String top_flavor = rs.getString("cupcake_top_flavor");
                     float top_cost_price = rs.getFloat("cupcake_top_cost_price");
                     float top_sales_price = rs.getFloat("cupcake_top_sales_price");
                     boolean top_gluten_free = rs.getBoolean("cupcake_top_gluten_free");
@@ -67,15 +71,17 @@ public class CupcakeMapper {
                     String top_description = rs.getString("cupcake_top_description");
                     String top_path = rs.getString("cupcake_top_path");
 
-                    CupcakeTop top = new CupcakeTop(top_flavour,
+                    CupcakeTop top = new CupcakeTop(
                             top_cost_price,
                             top_sales_price,
-                            top_gluten_free,
                             top_calories,
                             top_description,
-                            top_path);
+                            top_gluten_free,
+                            top_id,
+                            top_flavor,
+                            top_path
+                    );
                     tops.add(top);
-
                 }
             }
         } catch (SQLException e) {
@@ -94,5 +100,16 @@ public class CupcakeMapper {
                 }
             }
         return cupcakes;
+    }
+
+    public static Cupcake getCupcakeId(int bottomId, int topId){
+        Cupcake cupcake = null;
+
+        String sql = "SELECT cupcake_id " +
+                "FROM \"Cupcake\" " +
+                "WHERE bottom_id=? " +
+                "AND top_id=?";
+
+        return cupcake;
     }
 }

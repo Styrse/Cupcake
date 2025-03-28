@@ -190,10 +190,11 @@ footer {
 
 .products:has(input:checked) {
     background: darkorange;
+    transform: translateX(25px);
 }
 
 .products:hover {
-    transform: perspective(500px) rotateY(22.5deg) translateX(25px) translateZ(12.5px);
+    transform: scale(1.1);
     transition: .25s ease-in-out;
     cursor: pointer;
 }

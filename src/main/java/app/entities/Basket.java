@@ -14,4 +14,12 @@ public class Basket {
     public List<Item> getItems() {
         return items;
     }
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public void removeItem(int itemId){
+        items.removeIf(item -> item.getId() == itemId);
+    }
 }

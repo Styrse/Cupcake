@@ -36,3 +36,8 @@ document.addEventListener("DOMContentLoaded", function() {
     cupcakeBottomRadios.forEach(radio => radio.addEventListener('change', updateTotalPrice));
     cupcakeTopRadios.forEach(radio => radio.addEventListener('change', updateTotalPrice));
 });
+
+
+
+sessionStorage.setItem("cart", JSON.stringify(cart));
+let cart = JSON.parse(sessionStorage.getItem("cart")) || [];

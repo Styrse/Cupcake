@@ -1,6 +1,7 @@
 package app.entities.itemTypes.eatables;
 
 public class Cupcake extends Eatable {
+    private int id;
     private CupcakeBottom cupcakeBottom;
     private CupcakeTop cupcakeTop;
 
@@ -10,6 +11,7 @@ public class Cupcake extends Eatable {
                 cupcakeBottom.getCalories() + cupcakeTop.getCalories(),
                 cupcakeBottom.getDescription() + cupcakeTop.getDescription(),
                 cupcakeBottom.isGlutenFree() && cupcakeTop.isGlutenFree());
+        this.id = id;
         this.cupcakeBottom = cupcakeBottom;
         this.cupcakeTop = cupcakeTop;
     }
