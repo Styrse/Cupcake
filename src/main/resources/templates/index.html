@@ -58,7 +58,9 @@
                 <form class="cupcake-builder">
                     <div class="cupcake-choice">
                         <h3>Pick cupcake bottom</h3>
-                        <div class="products" th:each="cupcakeBottom : ${cupcakeBottomList}">
+                        <label class="products" th:each="cupcakeBottom : ${cupcakeBottomList}">
+                            <input type="radio" name="cupcakeBottom" th:value="${cupcakeBottom.salesPrice}" class="cupcakeBottomRadio" required>
+
                             <div class="product-info">
                                 <p class="flavour-info" th:text="${cupcakeBottom.flavor}"></p>
                                 <p class="sub-info">Price: <span th:text="${cupcakeBottom.salesPrice}"></span></p>
@@ -68,12 +70,14 @@
                             <div class="product-img">
                                 <img th:src="@{'/img/icons/cupcakeBuilder/' + ${cupcakeBottom.path}}" alt="Cupcake Image">
                             </div>
-                        </div>
+                        </label>
                     </div>
 
                     <div class="cupcake-choice">
                         <h3>Pick cupcake top</h3>
-                        <div class="products" th:each="cupcakeTop : ${cupcakeTopList}">
+                        <label class="products" th:each="cupcakeTop : ${cupcakeTopList}">
+                            <input type="radio" name="cupcakeTop" th:value="${cupcakeTop.salesPrice}" class="cupcakeTopRadio" required>
+
                             <div class="product-info">
                                 <p class="flavour-info" th:text="${cupcakeTop.flavor}"></p>
                                 <p class="sub-info">Price: <span th:text="${cupcakeTop.salesPrice}"></span></p>
@@ -82,23 +86,22 @@
                             <div class="product-img">
                                 <img th:src="@{'/img/icons/cupcakeBuilder/' + ${cupcakeTop.path}}" alt="Cupcake Image">
                             </div>
-                        </div>
+                        </label>
                     </div>
 
                     <div id="cupcake-display">
                         <div>
-                            <div id="cupcake-bottom-img" class="cupcake">
-
-                            </div>
-
-                            <div id="cupcake-top-img" class="cupcake">
-
-                            </div>
+                            <div id="cupcake-bottom-img" class="cupcake"></div>
+                            <div id="cupcake-top-img" class="cupcake"></div>
                         </div>
                         <div id="amount-box">
                             <button id="cupcake-subtract" class="operator-button"></button>
                             <input type="text" class="amount-input">
                             <button id="cupcake-addition" class="operator-button"></button>
+                        </div>
+
+                        <div>
+                            <p>Total Price: <span id="totalPrice">0</span> </p>
                         </div>
 
                         <button type="submit">
@@ -107,6 +110,7 @@
                     </div>
                 </form>
             </div>
+
 
             <div class="product-boxes" id="drinks">
                 <h2 class="product-menu-title">Drinks</h2>

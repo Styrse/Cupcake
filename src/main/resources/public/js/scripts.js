@@ -10,3 +10,29 @@ document.querySelectorAll(".menu").forEach(menu => {
         }
     });
 });
+
+document.addEventListener("DOMContentLoaded", function() {
+    const cupcakeBottomRadios = document.querySelectorAll('input[name="cupcakeBottom"]');
+    const cupcakeTopRadios = document.querySelectorAll('input[name="cupcakeTop"]');
+
+    function updateTotalPrice() {
+        let totalPrice = 0;
+
+        cupcakeBottomRadios.forEach(radio => {
+            if (radio.checked) {
+                totalPrice += parseFloat(radio.value);
+            }
+        });
+
+        cupcakeTopRadios.forEach(radio => {
+            if (radio.checked) {
+                totalPrice += parseFloat(radio.value);
+            }
+        });
+
+        document.getElementById('totalPrice').textContent = totalPrice.toFixed(2);
+    }
+
+    cupcakeBottomRadios.forEach(radio => radio.addEventListener('change', updateTotalPrice));
+    cupcakeTopRadios.forEach(radio => radio.addEventListener('change', updateTotalPrice));
+});
