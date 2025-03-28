@@ -193,7 +193,7 @@ footer {
 }
 
 .products:hover {
-    transform: perspective(500px) rotateY(22.5deg) translateX(25px);
+    transform: perspective(500px) rotateY(22.5deg) translateX(25px) translateZ(12.5px);
     transition: .25s ease-in-out;
     cursor: pointer;
 }
