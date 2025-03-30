@@ -9,23 +9,13 @@
 </head>
 <body>
 <header>
-    <div class="header-container">
-        <img id="header-img" src="/img/cupcakelogo.png">
-    </div>
+    <div th:insert="~{header :: header}"></div>
 </header>
 
 
 <main>
-    <div class="top-bar">
-        <div class="top-nav">
-            <p th:text="|${email}|"></p>
-            <img src="/img/icons/profile.png">
-        </div>
+    <div th:insert="~{topbar :: topbar}"></div>
 
-        <div class="top-nav">
-            <img src="/img/icons/shopping-basket.png">
-        </div>
-    </div>
     <div class="product-container">
         <div class="product-menu">
             <div class="menu-collapsed">
@@ -62,9 +52,8 @@
                             <input type="radio" name="cupcakeBottom" th:value="${cupcakeBottom.salesPrice}" class="cupcakeBottomRadio" required>
 
                             <div class="product-info">
-                                <p class="flavour-info" th:text="${cupcakeBottom.flavor}"></p>
+                                <p class="flavor-info" th:text="${cupcakeBottom.flavor}"></p>
                                 <p class="sub-info">Price: <span th:text="${cupcakeBottom.salesPrice}"></span></p>
-                                <p class="sub-info">More info</p>
                             </div>
 
                             <div class="product-img">
@@ -79,7 +68,7 @@
                             <input type="radio" name="cupcakeTop" th:value="${cupcakeTop.salesPrice}" class="cupcakeTopRadio" required>
 
                             <div class="product-info">
-                                <p class="flavour-info" th:text="${cupcakeTop.flavor}"></p>
+                                <p class="flavor-info" th:text="${cupcakeTop.flavor}"></p>
                                 <p class="sub-info">Price: <span th:text="${cupcakeTop.salesPrice}"></span></p>
                             </div>
 
@@ -130,17 +119,7 @@
 </main>
 
 <footer>
-    <div class="footer-containers" id="contact">
-        <h2>Contact</h2>
-    </div>
-
-    <div class="footer-containers" id="trustpilot">
-        <h2>Trustpilot</h2>
-    </div>
-
-    <div class="footer-containers" id="google-map">
-        <iframe src="https://maps.google.com/maps?width=100%25&amp;height=250&amp;hl=en&amp;q=Firskovsvej%2018+(Olsker%20Cupcake)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
-    </div>
+    <div th:insert="~{footer :: footer}"></div>
 </footer>
 
 <script src="/js/scripts.js"></script>

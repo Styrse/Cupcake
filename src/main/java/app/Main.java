@@ -5,6 +5,7 @@ import app.config.ThymeleafConfig;
 import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
 import app.exceptions.DatabaseException;
+import app.handler.CupcakeHandler;
 import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
@@ -36,23 +37,6 @@ public class Main {
             config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine()));
         }).start(7070);
 
-        try {
-            cupcakeBuilder(connectionPool);
-        } catch (DatabaseException e) {
-            throw new RuntimeException(e);
-        }
-
-        // Frontpage
-        //app.get("/", ctx -> ctx.render("index.html"));
-
-//        CupcakeHandler.routes(app, connectionPool);
-
-        app.get("/", ctx -> {
-            List<CupcakeBottom> cupcakeBottomList = getCupcakeBottoms(connectionPool);
-            List<CupcakeTop> cupcakeTopList = getCupcakeTops(connectionPool);
-
-            ctx.render("index.html", Map.of("cupcakeBottomList", cupcakeBottomList));
-            ctx.render("index.html", Map.of("cupcakeTopList", cupcakeTopList));
-        });
+        CupcakeHandler.routes(app, connectionPool);
     }
 }
