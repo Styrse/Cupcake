@@ -15,13 +15,16 @@ import java.util.Date;
 import java.util.List;
 
 public class UserMapper {
-    public static List<User> getUsers(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<User> getUserByEmail(ConnectionPool connectionPool, String inputEmail, String inputPassword) throws DatabaseException {
         List<User> users = new ArrayList<>();
 
-        String sql = "SELECT * FROM \"User\"";
+        String sql = "SELECT * FROM \"User\" WHERE \"user_email\" = ? AND \"user_password\" = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setString(1, inputEmail);
+                ps.setString(2, inputPassword);
 
                 ResultSet rs = ps.executeQuery();
 
