@@ -41,6 +41,9 @@ footer {
     display: flex;
     justify-content: right;
     gap: 10px;
+    position: sticky;
+    top: 0;
+    z-index: +1;
 }
 
 .top-nav {
@@ -214,7 +217,7 @@ footer {
     place-self: center;
 }
 
-.flavour-info {
+.flavor-info {
     margin: 0;
 }
 
