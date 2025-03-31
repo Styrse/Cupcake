@@ -41,3 +41,5 @@ document.addEventListener("DOMContentLoaded", function() {
 
 sessionStorage.setItem("cart", JSON.stringify(cart));
 let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
+
+localStorage.setItem()
