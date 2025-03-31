@@ -20,8 +20,8 @@
         <table>
             <thead>
             <tr>
-                <th>Quantity</th>
                 <th>Item</th>
+                <th>Quantity</th>
                 <th>Item price</th>
                 <th>Price</th>
                 <th>Remove line</th>
@@ -29,8 +29,8 @@
             </thead>
             <tbody>
             <tr th:each="item, iterStat : ${basket}">
-                <td th:text="${item.quantity}"></td>
                 <td th:text="${item.item}"></td>
+                <td th:text="${item.quantity}"></td>
                 <td th:text="${item.itemPrice}"></td>
                 <td th:text="${item.price}"></td>
                 <td>
@@ -46,6 +46,10 @@
             <h3 id="total-price-displayed">Total Price: <span th:text="${totalPrice}"></span></h3>
         </div>
     </div>
+
+    <a th:href="${session.user != null} ? '/process-payment' : '/login'" id="payment-container">
+        <img src="/img/icons/payment.png" id="payment-icon"> Pay
+    </a>
 </main>
 
 <footer>

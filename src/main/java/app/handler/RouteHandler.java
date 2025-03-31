@@ -34,7 +34,9 @@ public class RouteHandler {
 
         BasketHandler.removeFromBasket(app);
 
-
+        app.get("/login", ctx -> {
+            ctx.render("login.html");
+        });
     }
 
     public static void showCupcakes(io.javalin.http.Context ctx) {
