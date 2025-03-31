@@ -1,7 +1,6 @@
 package app.entities.itemTypes.eatables;
 
 public class Cupcake extends Eatable {
-    private String flavor;
     private CupcakeBottom cupcakeBottom;
     private CupcakeTop cupcakeTop;
 
@@ -11,7 +10,6 @@ public class Cupcake extends Eatable {
                 cupcakeBottom.getCalories() + cupcakeTop.getCalories(),
                 cupcakeBottom.getDescription() + cupcakeTop.getDescription(),
                 cupcakeBottom.isGlutenFree() && cupcakeTop.isGlutenFree());
-        this.flavor = cupcakeBottom.getFlavor() + " " + cupcakeTop.getFlavor();
         this.cupcakeBottom = cupcakeBottom;
         this.cupcakeTop = cupcakeTop;
     }
@@ -26,9 +24,6 @@ public class Cupcake extends Eatable {
 
     @Override
     public String toString() {
-        return "Cupcake{" +
-                "cupcakeBottom=" + cupcakeBottom +
-                ", cupcakeTop=" + cupcakeTop +
-                '}';
+        return cupcakeBottom.getFlavor() + " " + cupcakeTop.getFlavor();
     }
 }
