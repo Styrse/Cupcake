@@ -17,11 +17,22 @@
 
   <div>
     <h1>Basket</h1>
-    <label th:each="item : ${basket}">
-      <p class="flavor-info" th:text="${item.quantity}"></p>
-      <p class="flavor-info" th:text="${item.item}"></p>
-      <p class="flavor-info">Price: <span th:text="${item.price}"></span></p>
-    </label>
+    <table>
+      <thead>
+      <tr>
+        <th>Quantity</th>
+        <th>Item</th>
+        <th>Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="item : ${basket}">
+        <td th:text="${item.quantity}"></td>
+        <td th:text="${item.item}"></td>
+        <td th:text="${item.price}"></td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 
 </main>
