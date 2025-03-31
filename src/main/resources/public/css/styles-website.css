@@ -249,10 +249,8 @@ footer {
 
 .profile-container {
     display: flex;
-    flex-direction: row;
     justify-items: center;
     align-items: center;
-    position: relative;
 }
 
 .profile-container:hover .profile-expanded {
