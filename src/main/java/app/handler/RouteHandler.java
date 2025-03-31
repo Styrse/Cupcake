@@ -1,7 +1,6 @@
 package app.handler;
 
 import app.entities.BasketItem;
-import app.entities.itemTypes.eatables.Cupcake;
 import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
 import app.exceptions.DatabaseException;
@@ -9,7 +8,6 @@ import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -23,9 +21,6 @@ public class RouteHandler {
         app.get("/", ctx -> showCupcakes(ctx));
 
         app.get("/basket", ctx -> showBasket(ctx));
-        /*app.get("/basket", ctx -> {
-            ctx.render("basket.html");
-        });*/
 
         app.get("/index", ctx -> {
             ctx.render("index.html");
@@ -34,7 +29,12 @@ public class RouteHandler {
         app.get("/profile", ctx -> {
             ctx.render("profile.html");
         });
-        BasketHandler.handle(app);
+
+        BasketHandler.addToBasket(app);
+
+        BasketHandler.removeFromBasket(app);
+
+
     }
 
     public static void showCupcakes(io.javalin.http.Context ctx) {
@@ -56,6 +56,17 @@ public class RouteHandler {
         Map<String, Object> model = new HashMap<>();
         model.put("basket", BasketHandler.basket);
 
+        List<BasketItem> basket = BasketHandler.basket;
+
+        float totalPrice = 0;
+        for (BasketItem item : basket) {
+            totalPrice += item.getPrice();
+        }
+
+        ctx.attribute("basket", basket);
+        ctx.attribute("totalPrice", totalPrice);
+
         ctx.render("basket.html", model);
+
     }
 }

@@ -1,45 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Olsker Cupcake Basket</title>
-  <link rel="icon" type="image/x-icon" href="/img/cupcake_logo.png">
-  <link rel="stylesheet" href="/css/styles-website.css">
+    <meta charset="UTF-8">
+    <title>Olsker Cupcake Basket</title>
+    <link rel="icon" type="image/x-icon" href="/img/cupcake_logo.png">
+    <link rel="stylesheet" href="/css/styles-website.css">
 </head>
 <body>
 <header>
-  <div th:insert="~{header :: header}"></div>
+    <div th:insert="~{header :: header}"></div>
 </header>
 
 
 <main>
-  <div th:insert="~{topbar :: topbar}"></div>
+    <div th:insert="~{topbar :: topbar}"></div>
 
-  <div>
-    <h1>Basket</h1>
-    <table>
-      <thead>
-      <tr>
-        <th>Quantity</th>
-        <th>Item</th>
-        <th>Item price</th>
-        <th>Price</th>
-      </tr>
-      </thead>
-        <tbody>
-        <tr th:each="item : ${basket}">
-            <td th:text="${item.quantity}"></td>
-            <td th:text="${item.item}"></td>
-            <td th:text="${item.itemPrice}"></td>
-            <td th:text="${item.price}"></td>
-        </tr>
-        </tbody>
-    </table>
-  </div>
+    <div id="basket-table">
+        <h1>Basket</h1>
+        <table>
+            <thead>
+            <tr>
+                <th>Quantity</th>
+                <th>Item</th>
+                <th>Item price</th>
+                <th>Price</th>
+                <th>Remove line</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="item, iterStat : ${basket}">
+                <td th:text="${item.quantity}"></td>
+                <td th:text="${item.item}"></td>
+                <td th:text="${item.itemPrice}"></td>
+                <td th:text="${item.price}"></td>
+                <td>
+                    <form action="/basket/remove" method="post">
+                        <input type="hidden" name="index" th:value="${iterStat.index}">
+                        <button type="submit" class="remove-line-button">Remove</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <div>
+            <h3 id="total-price-displayed">Total Price: <span th:text="${totalPrice}"></span></h3>
+        </div>
+    </div>
 </main>
 
 <footer>
-  <div th:insert="~{footer :: footer}"></div>
+    <div th:insert="~{footer :: footer}"></div>
 </footer>
 
 <script src="/js/scripts.js"></script>

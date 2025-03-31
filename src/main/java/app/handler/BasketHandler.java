@@ -1,7 +1,6 @@
 package app.handler;
 
 import app.entities.BasketItem;
-import app.entities.itemTypes.Item;
 import app.entities.itemTypes.eatables.Cupcake;
 import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
@@ -12,13 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static app.Main.connectionPool;
-import static app.handler.RouteHandler.showCupcakes;
 
 public class BasketHandler {
 
     public static List<BasketItem> basket = new ArrayList<>();
 
-    public static void handle(Javalin app) {
+    public static void addToBasket(Javalin app) {
 
         app.post("/", ctx -> {
 
@@ -60,6 +58,17 @@ public class BasketHandler {
                 ctx.result("Invalid input! Please ensure both selections are valid numbers.");
             }
         });
+    }
 
+    public static void removeFromBasket(Javalin app) {
+        app.post("/basket/remove", ctx -> {
+            int index = Integer.parseInt(ctx.formParam("index"));
+
+            if (index >= 0 && index < basket.size()) {
+                basket.remove(index);
+            }
+
+            ctx.redirect("/basket");
+        });
     }
 }
