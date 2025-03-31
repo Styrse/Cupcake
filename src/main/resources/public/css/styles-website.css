@@ -242,3 +242,19 @@ footer {
     display: none;
 }
 
+.profile-expanded {
+    display: none;
+    gap: 15px;
+}
+
+.profile-container {
+    display: flex;
+    flex-direction: row;
+    justify-items: center;
+    align-items: center;
+    position: relative;
+}
+
+.profile-container:hover .profile-expanded {
+    display: flex;
+}
