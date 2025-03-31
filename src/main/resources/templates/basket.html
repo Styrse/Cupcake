@@ -19,8 +19,8 @@
     <h1>Basket</h1>
     <label th:each="item : ${basket}">
       <p class="flavor-info" th:text="${item.quantity}"></p>
-      <p class="flavor-info" th:text="${item.flavor}"></p>
-      <p class="flavor-info">Price: <span th:text="${item.salesPrice}"></span></p>
+      <p class="flavor-info" th:text="${item.item}"></p>
+      <p class="flavor-info">Price: <span th:text="${item.price}"></span></p>
     </label>
   </div>
 
