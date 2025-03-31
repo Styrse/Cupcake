@@ -2,19 +2,12 @@ package app;
 
 import app.config.SessionConfig;
 import app.config.ThymeleafConfig;
-import app.entities.itemTypes.eatables.CupcakeBottom;
-import app.entities.itemTypes.eatables.CupcakeTop;
-import app.exceptions.DatabaseException;
-import app.handler.CupcakeHandler;
+import app.handler.RouteHandler;
 import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 
-import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
-
-import static app.persistence.CupcakeMapper.*;
 
 public class Main {
     private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
@@ -37,6 +30,6 @@ public class Main {
             config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine()));
         }).start(7070);
 
-        CupcakeHandler.routes(app, connectionPool);
+        RouteHandler.routes(app, connectionPool);
     }
 }
