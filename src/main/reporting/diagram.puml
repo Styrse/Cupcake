@@ -1,0 +1,62 @@
+@startuml
+    abstract class Item {
+        - int id
+        - float costPrice
+        - float salesPrice
+        + int getId()
+        + float getCostPrice()
+        + float getSalesPrice()
+    }
+
+    abstract class Consumable {
+        - int calories
+        - String description
+        - boolean glutenFree
+        + int getCalories()
+        + String getDescription()
+        + boolean isGlutenFree()
+    }
+
+    abstract class Drinkable
+    Consumable <|-- Drinkable
+    Item <|-- Consumable
+
+
+    abstract class Eatable
+    Consumable <|-- Eatable
+
+    class CupcakeTop {
+        - int id
+        - String flavor
+        - String path
+        + int getId()
+        + String getFlavor()
+        + String getPath()
+    }
+
+    class CupcakeBottom {
+        - int id
+        - String flavor
+        - String path
+        + int getId()
+        + String getFlavor()
+        + String getPath()
+    }
+
+    class Cupcake {
+        - String flavor
+        - CupcakeBottom cupcakeBottom
+        - CupcakeTop cupcakeTop
+        + CupcakeBottom getCupcakeBottom()
+        + CupcakeTop getCupcakeTop()
+        + String toString()
+    }
+
+    Eatable <|-- CupcakeTop
+    Eatable <|-- CupcakeBottom
+    Eatable <|-- Cupcake
+    Cupcake --> CupcakeBottom
+    Cupcake --> CupcakeTop
+
+
+@enduml

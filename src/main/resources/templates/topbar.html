@@ -3,6 +3,21 @@
     <p th:text="|${email}|"></p>
     <img src="/img/icons/profile.png">
   </a>
+  
+  <div class="profile-expanded">
+    <a href="/profile">
+      <p th:text="|${email}"></p>
+      <img src="/img/icons/profile.png">
+    </a>
+    
+    <a href="/profile/orders">
+      <img src="/img/icons/orders.png">
+    </a>
+    
+    <a href="/profile/settings">
+      <img src="/img/icons/settings.png">
+    </a>
+  </div>
 
   <a href="/basket" class="top-nav">
     <img src="/img/icons/shopping-basket.png">
