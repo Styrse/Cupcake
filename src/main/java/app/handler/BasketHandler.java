@@ -1,5 +1,6 @@
 package app.handler;
 
+import app.entities.BasketItem;
 import app.entities.itemTypes.Item;
 import app.entities.itemTypes.eatables.Cupcake;
 import app.entities.itemTypes.eatables.CupcakeBottom;
@@ -15,7 +16,7 @@ import static app.handler.RouteHandler.showCupcakes;
 
 public class BasketHandler {
 
-    private static List<Item> basket = new ArrayList<>();
+    public static List<BasketItem> basket = new ArrayList<>();
 
     public static void handle(Javalin app) {
 
@@ -24,7 +25,7 @@ public class BasketHandler {
             //USERS VALG AF BOTTOM OG TOP
             int inputBottomId = Integer.parseInt(ctx.formParam("cupcakeBottom"));
             int inputTopId = Integer.parseInt(ctx.formParam("cupcakeTop"));
-
+            int quantity = Integer.parseInt(ctx.formParam("cupcakeQuantity"));
 
             try {
                 // ALLE BOTTOMS OG TOPS FRA DB
@@ -48,13 +49,11 @@ public class BasketHandler {
                     }
                 }
 
-
                 assert cupcakeBottom != null;
                 assert cupcakeTop != null;
 
-                Item item = new Cupcake(cupcakeBottom, cupcakeTop);
-                basket.add(item);
-                System.out.println("success");
+                basket.add(new BasketItem(quantity, new Cupcake(cupcakeBottom, cupcakeTop)));
+
                 ctx.redirect("/");
 
             } catch (NumberFormatException e) {

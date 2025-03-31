@@ -48,7 +48,7 @@
                     <div class="cupcake-choice">
                         <h3>Pick cupcake bottom</h3>
                         <label class="products" th:each="cupcakeBottom : ${cupcakeBottomList}">
-                            <input type="radio" name="cupcakeBottom" th:value="${cupcakeBottom.id}" class="cupcakeBottomRadio" required>
+                            <input type="radio" name="cupcakeBottom" th:value="${cupcakeBottom.id}" th:attr="data-salesprice=${cupcakeBottom.salesPrice}" class="cupcakeBottomRadio" required>
 
                             <div class="product-info">
                                 <p class="flavor-info" th:text="${cupcakeBottom.flavor}"></p>
@@ -64,7 +64,7 @@
                     <div class="cupcake-choice">
                         <h3>Pick cupcake top</h3>
                         <label class="products" th:each="cupcakeTop : ${cupcakeTopList}">
-                            <input type="radio" name="cupcakeTop" th:value="${cupcakeTop.id}" class="cupcakeTopRadio" required>
+                            <input type="radio" name="cupcakeTop" th:value="${cupcakeTop.id}" th:attr="data-salesprice=${cupcakeTop.salesPrice}" class="cupcakeTopRadio" required>
 
                             <div class="product-info">
                                 <p class="flavor-info" th:text="${cupcakeTop.flavor}"></p>
@@ -87,12 +87,12 @@
                                 <!-- TODO: Top img -->
                             </div>
                         </div>
-                        
-                        <div id="amount-box">
-                            <button id="cupcake-subtract" class="operator-button"></button>
-                            <input type="text" class="amount-input">
-                            <button id="cupcake-addition" class="operator-button"></button>
-                            <!-- TODO: Fix amount box number -->
+
+                        <div id="quantity-box">
+                            <input type="hidden" name="cupcakeQuantity" id="cupcakeQuantity" value="1">
+                            <img src="/img/icons/minus.png" id="cupcake-subtract" class="operator-button"></img>
+                            <p type="text" id="cupcake-quantity" class="quantity-input">1</p>
+                            <img src="/img/icons/plus.png" id="cupcake-addition" class="operator-button"></img>
                         </div>
 
                         <div>

@@ -24,4 +24,8 @@ public class BasketItem {
     public float getPrice() {
         return price;
     }
+
+    public float getItemPrice() {
+        return item.getSalesPrice();
+    }
 }

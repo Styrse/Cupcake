@@ -22,19 +22,20 @@
       <tr>
         <th>Quantity</th>
         <th>Item</th>
+        <th>Item price</th>
         <th>Price</th>
       </tr>
       </thead>
-      <tbody>
-      <tr th:each="item : ${basket}">
-        <td th:text="${item.quantity}"></td>
-        <td th:text="${item.item}"></td>
-        <td th:text="${item.price}"></td>
-      </tr>
-      </tbody>
+        <tbody>
+        <tr th:each="item : ${basket}">
+            <td th:text="${item.quantity}"></td>
+            <td th:text="${item.item}"></td>
+            <td th:text="${item.itemPrice}"></td>
+            <td th:text="${item.price}"></td>
+        </tr>
+        </tbody>
     </table>
   </div>
-
 </main>
 
 <footer>

@@ -20,13 +20,13 @@ document.addEventListener("DOMContentLoaded", function() {
 
         cupcakeBottomRadios.forEach(radio => {
             if (radio.checked) {
-                totalPrice += parseFloat(radio.value);
+                totalPrice += parseFloat(radio.getAttribute("data-salesprice"));
             }
         });
 
         cupcakeTopRadios.forEach(radio => {
             if (radio.checked) {
-                totalPrice += parseFloat(radio.value);
+                totalPrice += parseFloat(radio.getAttribute("data-salesprice"));
             }
         });
 
@@ -37,9 +37,27 @@ document.addEventListener("DOMContentLoaded", function() {
     cupcakeTopRadios.forEach(radio => radio.addEventListener('change', updateTotalPrice));
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const subtractButton = document.getElementById("cupcake-subtract");
+    const addButton = document.getElementById("cupcake-addition");
+    const quantityElement = document.getElementById("cupcake-quantity");
+    const quantityInput = document.getElementById("cupcakeQuantity");
 
+    subtractButton.addEventListener("click", function () {
+        let currentAmount = parseInt(quantityElement.textContent, 10);
+        if (currentAmount > 1) {
+            quantityElement.textContent = currentAmount - 1;
+            quantityInput.value = currentAmount - 1;
+        }
+    });
+
+    addButton.addEventListener("click", function () {
+        let currentAmount = parseInt(quantityElement.textContent, 10);
+        quantityElement.textContent = currentAmount + 1;
+        quantityInput.value = currentAmount + 1;
+    });
+});
 
 sessionStorage.setItem("cart", JSON.stringify(cart));
 let cart = JSON.parse(sessionStorage.getItem("cart")) || [];
 
-localStorage.setItem()
