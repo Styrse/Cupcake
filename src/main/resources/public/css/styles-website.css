@@ -22,15 +22,12 @@ main {
 
 footer {
     display: flex;
+    width: 100vw;
     justify-content: space-evenly;
     align-items: center;
     height: fit-content;
     background-color: mediumpurple;
     padding: 15px;
-}
-
-.footer {
-    width: 100%;
 }
 
 #header-img {
@@ -135,9 +132,6 @@ footer {
 
 .product-display {
     width: 100%;
-}
-
-.footer-containers {
 }
 
 #google-map iframe {
@@ -249,6 +243,15 @@ footer {
 .profile-expanded {
     display: none;
     gap: 15px;
+}
+
+.profile-options:hover {
+    border-radius: 25px;
+    background: rebeccapurple;
+}
+
+.profile-options {
+    padding: 5px;
 }
 
 .profile-container {
