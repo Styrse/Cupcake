@@ -24,6 +24,6 @@ public class Cupcake extends Eatable {
 
     @Override
     public String toString() {
-        return cupcakeBottom.getFlavor() + " " + cupcakeTop.getFlavor();
+        return cupcakeBottom.getFlavor() + " base with " + cupcakeTop.getFlavor().toLowerCase() + " top";
     }
 }
