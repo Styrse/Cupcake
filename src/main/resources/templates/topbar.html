@@ -1,25 +1,22 @@
 <div th:fragment="topbar" class="top-bar">
-  <a href="/profile" class="top-nav">
-    <p th:text="|${email}|"></p>
-    <img src="/img/icons/profile.png">
-  </a>
-  
-  <div class="profile-expanded">
-    <a href="/profile">
-      <p th:text="|${email}"></p>
-      <img src="/img/icons/profile.png">
-    </a>
-    
-    <a href="/profile/orders">
-      <img src="/img/icons/orders.png">
-    </a>
-    
-    <a href="/profile/settings">
-      <img src="/img/icons/settings.png">
-    </a>
-  </div>
+    <div class="profile-container">
+        <a href="/profile" class="top-nav" id="profile-collapsed">
+            <p th:text="|${email}|"></p>
+            <img src="/img/icons/profile.png">
+        </a>
 
-  <a href="/basket" class="top-nav">
-    <img src="/img/icons/shopping-basket.png">
-  </a>
+        <div class="profile-expanded">
+            <a href="/profile/orders">
+                <img src="/img/icons/orders.png">
+            </a>
+
+            <a href="/profile/settings">
+                <img src="/img/icons/settings.png">
+            </a>
+        </div>
+    </div>
+
+    <a href="/basket" class="top-nav">
+        <img src="/img/icons/shopping-basket.png">
+    </a>
 </div>
