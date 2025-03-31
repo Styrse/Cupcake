@@ -8,6 +8,7 @@
   <link rel="icon" type="image/x-icon" href="/img/cupcake_logo.png">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="/css/styles-website.css">
+  <link rel="stylesheet" href="/css/style-login.css">
 </head>
 <body>
 <header>
@@ -15,7 +16,7 @@
 </header>
 
 
-<main>
+<main class="login-page">
   <div th:insert="~{topbar :: topbar}"></div>
 
   <div class="wrapper">
@@ -54,6 +55,12 @@
       <h2 class="title animation" style="--i:17; --j:0">Sign Up</h2>
 
       <form action="#">
+
+        <div class="input-box animation" style="--i:18; --j:1">
+          <input type="text" required>
+          <label for="">Username</label>
+          <i class='bx bxs-user'></i>
+        </div>
 
         <div class="input-box animation" style="--i:19; --j:2">
           <input type="email" required>

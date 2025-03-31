@@ -101,15 +101,4 @@ public class CupcakeMapper {
             }
         return cupcakes;
     }
-
-    public static Cupcake getCupcakeId(int bottomId, int topId){
-        Cupcake cupcake = null;
-
-        String sql = "SELECT cupcake_id " +
-                "FROM \"Cupcake\" " +
-                "WHERE bottom_id=? " +
-                "AND top_id=?";
-
-        return cupcake;
-    }
 }
