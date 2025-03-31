@@ -1,8 +1,5 @@
 package app.handler;
 
-import app.entities.BasketItem;
-import app.entities.itemTypes.Item;
-import app.entities.itemTypes.eatables.Cupcake;
 import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
 import app.exceptions.DatabaseException;
