@@ -1,7 +1,9 @@
 package app.entities;
 
 import app.entities.itemTypes.Item;
+import io.javalin.http.Context;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Basket {
@@ -11,6 +13,7 @@ public class Basket {
         this.items = items;
     }
 
+
     public List<Item> getItems() {
         return items;
     }
@@ -19,7 +22,14 @@ public class Basket {
         items.add(item);
     }
 
-    public void removeItem(int itemId){
+    public void removeItem(int itemId) {
         items.removeIf(item -> item.getId() == itemId);
     }
+
+    public void clear() {
+        items.clear();
+    }
+
+
+
 }
