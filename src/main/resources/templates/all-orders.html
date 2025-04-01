@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Olsker Cupcake Orders</title>
+    <link rel="icon" type="image/x-icon" href="/img/cupcake_logo.png">
+    <link rel="stylesheet" href="/css/styles-website.css">
+</head>
+<body>
+<header>
+    <div th:insert="~{header :: header}"></div>
+</header>
+
+
+
+<main>
+    <div th:insert="~{dashboard-topbar :: dashboard-topbar}"></div>
+    <div class="dashboard-main">
+
+        <div id="orders-table">
+            <h1>Orders</h1>
+            <table>
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Customer email</th>
+                    <th>Remove order</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="order, iterStat : ${orders}">
+                    <td th:text="${order.orderId}"></td>
+                    <td th:text="${order.customerEmail}"></td>
+                    <td>
+                        <form action="/orders/remove" method="post">
+                            <input type="hidden" name="index" th:value="${iterStat.index}">
+                            <button type="submit" class="remove-line-button">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div th:insert="~{footer :: footer}"></div>
+</footer>
+
+</body>
+</html>

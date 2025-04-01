@@ -1,11 +1,13 @@
 package app.handler;
 
 import app.entities.BasketItem;
+import app.entities.Order;
 import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
+import app.entities.userRoles.Employee;
+import app.entities.userRoles.User;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
-import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
@@ -46,7 +48,35 @@ public class RouteHandler {
         });
 
         app.get("/dashboard", ctx -> {
-            ctx.render("dashboard.html");
+            User user = ctx.sessionAttribute("user");
+
+            if (user instanceof Employee) {
+                ctx.render("dashboard.html");
+            } else {
+                ctx.redirect("/");
+            }
+        });
+
+        app.get("/all-orders", ctx -> {
+            User user = ctx.sessionAttribute("user");
+
+            if (user instanceof Employee) {
+                List<Order> orders = OrdersHandler.getAllOrders(app);
+                ctx.attribute("orders", orders);
+                ctx.render("all-orders.html");
+            } else {
+                ctx.redirect("/");
+            }
+        });
+
+        app.get("/all-profiles", ctx -> {
+            User user = ctx.sessionAttribute("user");
+
+            if (user instanceof Employee) {
+                ctx.render("all-profiles");
+            } else {
+                ctx.redirect("/");
+            }
         });
     }
 
