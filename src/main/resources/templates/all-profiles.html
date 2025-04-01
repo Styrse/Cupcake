@@ -24,6 +24,7 @@
         <tr>
           <th>Customer email</th>
           <th>Firstname</th>
+          <th>Role</th>
           <th>Balance</th>
           <th>Add funds</th>
           <th>Remove user</th>
@@ -33,6 +34,7 @@
         <tr th:each="user, iterStat : ${users}">
           <td th:text="${user.email}"></td>
           <td th:text="${user.firstname}"></td>
+          <td th:text="${user.role}"></td>
           <td th:text="${user.balance}"></td>
           <td>
             <form action="/profile/add-funds" method="post">

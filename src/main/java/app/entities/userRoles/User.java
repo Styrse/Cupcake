@@ -56,4 +56,8 @@ public abstract class User {
     public float setBalance(float balance) {
         return this.balance = balance;
     }
+
+    public String getRole() {
+        return this.getClass().getSimpleName();
+    }
 }
