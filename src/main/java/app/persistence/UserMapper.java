@@ -1,6 +1,6 @@
 package app.persistence;
 
-import app.entities.itemTypes.eatables.CupcakeTop;
+import app.entities.Order;
 import app.entities.userRoles.Admin;
 import app.entities.userRoles.Customer;
 import app.entities.userRoles.Employee;
@@ -88,11 +88,11 @@ public class UserMapper {
                     if (isEmployee) {
                         if (isAdmin) {
                             users.add(new Admin(email, balance));
-                        } else{
+                        } else {
                             users.add(new Employee(email, balance));
                         }
                     } else {
-                        if (firstname != null){
+                        if (firstname != null) {
                             users.add(new Customer(firstname, email, balance));
                         } else {
                             users.add(new Customer(email, balance));
@@ -105,5 +105,19 @@ public class UserMapper {
             throw new DatabaseException("Error executing query");
         }
         return users;
+    }
+
+    public static void removeUser(ConnectionPool connectionPool, String email) throws DatabaseException {
+        String sql = "DELETE FROM \"User\" WHERE \"user_email\" = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, email);
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DatabaseException("Error executing query");
+        }
     }
 }

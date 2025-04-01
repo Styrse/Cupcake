@@ -47,7 +47,7 @@
 
           <td>
             <form action="/profile/remove" method="post">
-              <input type="hidden" name="profileId" th:value="${user.email}">
+              <input type="hidden" name="email" th:value="${user.email}">
               <button type="submit" class="remove-line-button">Remove</button>
             </form>
           </td>

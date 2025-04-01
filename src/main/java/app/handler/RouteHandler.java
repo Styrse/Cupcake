@@ -1,7 +1,5 @@
 package app.handler;
 
-import app.entities.BasketItem;
-import app.entities.Order;
 import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
 
@@ -9,10 +7,8 @@ import app.entities.userRoles.Employee;
 import app.entities.userRoles.User;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
-import app.persistence.OrderMapper;
 import app.persistence.UserMapper;
 import io.javalin.Javalin;
-import io.javalin.http.Context;
 
 import java.util.HashMap;
 import java.util.List;
@@ -90,6 +86,8 @@ public class RouteHandler {
         OrdersHandler.removeOrder(app);
 
         UserHandler.addFunds(app);
+
+        UserHandler.removeUser(app);
     }
 
     public static void showCupcakes(io.javalin.http.Context ctx) {
