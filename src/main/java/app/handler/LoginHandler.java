@@ -21,9 +21,9 @@ public class LoginHandler {
                 if (user instanceof Employee) {
                     ctx.redirect("/dashboard");
                 }
-            } else {
-                ctx.redirect("/");
             }
+
+            ctx.redirect("/");
         });
     }
 }
