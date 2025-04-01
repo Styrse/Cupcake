@@ -15,6 +15,7 @@ import java.util.List;
 import java.util.Map;
 
 import static app.Main.connectionPool;
+import static app.handler.BasketHandler.basket;
 import static app.persistence.CupcakeMapper.getCupcakeBottoms;
 import static app.persistence.CupcakeMapper.getCupcakeTops;
 
@@ -47,6 +48,11 @@ public class RouteHandler {
 
             if (user == null) {
                 ctx.redirect("/login");
+                return;
+            }
+
+            if (basket.isEmpty()) {
+                ctx.redirect("/");
                 return;
             }
 
