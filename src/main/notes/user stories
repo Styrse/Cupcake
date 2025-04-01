@@ -2,7 +2,7 @@
 
 ✴️ US-2 Som kunde kan jeg oprette en konto/profil for at kunne betale og gemme en en ordre.
 
-🆘 US-3: Som administrator kan jeg indsætte beløb på en kundes konto direkte i Postgres, så en kunde kan betale for sine ordrer.
+✅ US-3: Som administrator kan jeg indsætte beløb på en kundes konto direkte i Postgres, så en kunde kan betale for sine ordrer.
 
 ✅ US-4: Som kunde kan jeg se mine valgte ordrelinier i en indkøbskurv, så jeg kan se den samlede pris.
 
