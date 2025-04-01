@@ -9,15 +9,30 @@ public class Order {
     private int orderID;
     private LocalDateTime orderDate;
     private LocalDateTime pickupDate;
-    private int customerID;
+    private String customerEmail;
     private String status;
     private List<Item> items;
 
-    public Order(int orderID, LocalDateTime orderDate, LocalDateTime pickupDate, int customerID, String status, List<Item> items) {
+    public Order(int orderID, LocalDateTime orderDate, LocalDateTime pickupDate, String customerEmail, String status, List<Item> items) {
         this.orderID = orderID;
         this.orderDate = orderDate;
         this.pickupDate = pickupDate;
-        this.customerID = customerID;
+        this.customerEmail = customerEmail;
+        this.status = status;
+        this.items = items;
+    }
+
+    public Order(int orderID, String customerEmail, String status, List<Item> items, LocalDateTime orderDate) {
+        this.orderID = orderID;
+        this.customerEmail = customerEmail;
+        this.status = status;
+        this.items = items;
+        this.orderDate = orderDate;
+    }
+
+    public Order(int orderID, String customerEmail, String status, List<Item> items) {
+        this.orderID = orderID;
+        this.customerEmail = customerEmail;
         this.status = status;
         this.items = items;
     }
@@ -34,8 +49,8 @@ public class Order {
         return pickupDate;
     }
 
-    public int getCustomerID() {
-        return customerID;
+    public String getCustomerEmail() {
+        return customerEmail;
     }
 
     public String getStatus() {
