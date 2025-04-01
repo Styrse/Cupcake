@@ -41,4 +41,8 @@ public abstract class User {
     public float getBalance() {
         return balance;
     }
+
+    public float setBalance(float balance) {
+        return this.balance = balance;
+    }
 }

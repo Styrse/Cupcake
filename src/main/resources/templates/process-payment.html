@@ -13,8 +13,19 @@
 
 
 <main>
-  <div th:insert="~{topbar :: topbar}"></div>
 
+  <div class="payment-box" th:if="${user}">
+    <h2>Payment Summary</h2>
+
+    <p>Your Balance: <strong>$<span th:text="${user.balance} ?: '0.00'"></span></strong></p>
+    <p>Basket Price: <strong>$<span th:text="${basketTotal} ?: '0.00'"></span></strong></p>
+    <hr>
+    <p>Balance After Payment: <strong>$<span th:text="${user.balance - basketTotal} ?: '0.00'"></span></strong></p>
+
+    <form action="/process-payment" method="post">
+      <button type="submit">Confirm Payment</button>
+    </form>
+  </div>
 
 
 
