@@ -23,7 +23,8 @@ main {
 footer {
     display: flex;
     justify-content: space-evenly;
-    align-items: center;
+    align-items: flex-start;
+    gap: 50px;
     height: fit-content;
     background-color: mediumpurple;
     padding: 15px;

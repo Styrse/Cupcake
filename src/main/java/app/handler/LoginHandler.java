@@ -14,16 +14,18 @@ public class LoginHandler {
 
             User user = UserMapper.getUserByEmail(Main.connectionPool, email, password);
 
-            if (user != null) {
+            if (user == null) {
+                ctx.redirect("/login");
+            } else {
                 ctx.sessionAttribute("user", user);
                 ctx.sessionAttribute("email", email);
                 ctx.sessionAttribute("balance", user.getBalance());
                 if (user instanceof Employee) {
                     ctx.redirect("/dashboard");
-                    return;
+                } else {
+                    ctx.redirect("/");
                 }
             }
-            ctx.redirect("/");
         });
     }
 }

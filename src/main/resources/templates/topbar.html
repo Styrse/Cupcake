@@ -1,9 +1,10 @@
 <div th:fragment="topbar" class="top-bar">
     <div class="profile-container">
+        <p class="top-nav-email" th:text="${session.email}"></p>
         <a th:href="${session.user != null} ? '/settings' : '/login'" class="top-nav" id="profile-collapsed">
-            <p th:text="|${session.email}|"></p>
             <img src="/img/icons/profile.png">
         </a>
+
 
         <div class="profile-expanded" th:if="${session.user != null}">
             <div class="profile-options">

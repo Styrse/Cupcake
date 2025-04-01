@@ -1,13 +1,26 @@
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/styles-website.css">
+    <link rel="stylesheet" href="/css/styles-footer.css">
+</head>
 <footer th:fragment="footer">
-    <div class="footer-containers" id="contact">
+    <div class="footer-container">
         <h2>Contact</h2>
+        <p>Email: support@olskercupcake.com</p>
+        <p>Phone: +45 1234 5678</p>
+        <p>Address: Firskovsvej 18, Denmark</p>
     </div>
 
-    <div class="footer-containers" id="trustpilot">
+    <div class="footer-container">
         <h2>Trustpilot</h2>
+        <p>See our reviews on <a href="https://www.trustpilot.com" target="_blank">Trustpilot</a></p>
     </div>
 
-    <div class="footer-containers" id="google-map">
-        <iframe src="https://maps.google.com/maps?width=100%25&amp;height=250&amp;hl=en&amp;q=Firskovsvej%2018+(Olsker%20Cupcake)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe>
+    <div class="footer-container map-container">
+        <h2>Find Us</h2>
+        <iframe
+                src="https://maps.google.com/maps?width=100%25&amp;height=250&amp;hl=en&amp;q=Firskovsvej%2018+(Olsker%20Cupcake)&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"
+                allowfullscreen>
+        </iframe>
     </div>
 </footer>

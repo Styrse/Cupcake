@@ -1,0 +1,30 @@
+.footer-container {
+    flex: 1;
+    min-width: 250px;
+    padding: 10px;
+}
+
+.footer-container h2 {
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+}
+
+.footer-container p {
+    margin: 5px 0;
+    font-size: 1rem;
+}
+
+.footer-container a {
+    color: white;
+    text-decoration: underline;
+}
+
+.footer-container a:hover {
+    color: lightgray;
+}
+
+.map-container iframe {
+    width: 100%;
+    height: 200px;
+    border: none;
+}
