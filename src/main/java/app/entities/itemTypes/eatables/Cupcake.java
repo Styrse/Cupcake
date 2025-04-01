@@ -29,9 +29,9 @@ public class Cupcake extends Eatable {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj) return true;  // Check if they are the same object
-        if (obj == null || getClass() != obj.getClass()) return false; // Ensure same type
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
         Cupcake cupcake = (Cupcake) obj;
-        return cupcakeBottom.equals(cupcake.cupcakeBottom) && cupcakeTop.equals(cupcake.cupcakeTop); // Compare properties
+        return cupcakeBottom.equals(cupcake.cupcakeBottom) && cupcakeTop.equals(cupcake.cupcakeTop);
     }
 }

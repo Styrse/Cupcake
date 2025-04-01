@@ -30,7 +30,7 @@ public class CupcakeBottom extends Eatable{
         if (this == obj) return true;
         if (obj == null || getClass() != obj.getClass()) return false;
         CupcakeBottom that = (CupcakeBottom) obj;
-        return id == that.id; // Compare by ID
+        return id == that.id;
     }
 
 }

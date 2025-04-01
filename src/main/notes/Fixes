@@ -2,6 +2,5 @@
     - Be aware of text rendering to early issue
 - Text size issue product bar (Do special bar for small device since you dont hover on a phone anyway)
 
-When adding an item which exist already then add to quantity instead of making new item
 Fix firstname not always loading
 Fix signing up
