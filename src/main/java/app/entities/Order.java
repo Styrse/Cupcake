@@ -29,6 +29,12 @@ public class Order {
         this.items = items;
     }
 
+    public Order(String customerEmail, String orderStatus, String paymentType) {
+        this.customerEmail = customerEmail;
+        this.orderStatus = orderStatus;
+        this.paymentType = paymentType;
+    }
+
     public int getOrderID() {
         return orderID;
     }

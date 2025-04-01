@@ -45,7 +45,7 @@
 
                     <td>
                         <form action="/orders/remove" method="post">
-                            <input type="hidden" name="index" th:value="${iterStat.index}">
+                            <input type="hidden" name="orderId" th:value="${order.orderId}">
                             <button type="submit" class="remove-line-button">Remove</button>
                         </form>
                     </td>

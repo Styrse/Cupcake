@@ -9,6 +9,7 @@ import app.entities.userRoles.Employee;
 import app.entities.userRoles.User;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
+import app.persistence.OrderMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
@@ -76,7 +77,7 @@ public class RouteHandler {
             User user = ctx.sessionAttribute("user");
 
             if (user instanceof Employee) {
-                List<Order> orders = OrdersHandler.getAllOrders(app);
+                List<Order> orders = OrderMapper.getAllOrders(connectionPool);
                 ctx.attribute("orders", orders);
                 ctx.render("all-orders.html");
             } else {
