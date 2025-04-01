@@ -47,9 +47,11 @@
         </div>
     </div>
 
-    <a th:href="${session.user != null} ? '/process-payment' : '/login'" id="payment-container">
-        <img src="/img/icons/payment.png" id="payment-icon"> Pay
-    </a>
+    <th:block th:if="${not #lists.isEmpty(session.basket)}">
+        <a th:href="${session.user != null} ? '/process-payment' : '/login'" id="payment-container">
+            <img src="/img/icons/payment.png" id="payment-icon"> Pay
+        </a>
+    </th:block>
 </main>
 
 <footer>

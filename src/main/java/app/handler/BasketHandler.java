@@ -129,7 +129,7 @@ public class BasketHandler {
             totalPrice += item.getPrice();
         }
 
-        ctx.attribute("basket", basket);
+        ctx.sessionAttribute("basket", basket);
         ctx.attribute("totalPrice", totalPrice);
 
         ctx.render("basket.html", model);
