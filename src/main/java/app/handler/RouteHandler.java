@@ -55,6 +55,26 @@ public class RouteHandler {
                 ctx.redirect("/");
             }
         });
+
+        app.get("/all-orders", ctx -> {
+            User user = ctx.sessionAttribute("user");
+
+            if (user instanceof Employee) {
+                ctx.render("all-orders");
+            } else {
+                ctx.redirect("/");
+            }
+        });
+
+        app.get("/all-profiles", ctx -> {
+            User user = ctx.sessionAttribute("user");
+
+            if (user instanceof Employee) {
+                ctx.render("all-orders");
+            } else {
+                ctx.redirect("/");
+            }
+        });
     }
 
     public static void showCupcakes(io.javalin.http.Context ctx) {

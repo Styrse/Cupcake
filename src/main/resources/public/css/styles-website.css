@@ -411,4 +411,7 @@ tbody tr:hover {
     opacity: 1;
 }
 
-
+#orders-table {
+    width: 95%;
+    place-self: center;
+}

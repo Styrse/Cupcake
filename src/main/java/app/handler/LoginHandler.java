@@ -20,9 +20,9 @@ public class LoginHandler {
                 ctx.sessionAttribute("balance", user.getBalance());
                 if (user instanceof Employee) {
                     ctx.redirect("/dashboard");
-                } else {
-                    ctx.redirect("/");
                 }
+            } else {
+                ctx.redirect("/");
             }
         });
     }
