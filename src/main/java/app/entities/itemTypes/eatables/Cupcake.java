@@ -26,4 +26,12 @@ public class Cupcake extends Eatable {
     public String toString() {
         return cupcakeBottom.getFlavor() + " base with " + cupcakeTop.getFlavor().toLowerCase() + " top";
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;  // Check if they are the same object
+        if (obj == null || getClass() != obj.getClass()) return false; // Ensure same type
+        Cupcake cupcake = (Cupcake) obj;
+        return cupcakeBottom.equals(cupcake.cupcakeBottom) && cupcakeTop.equals(cupcake.cupcakeTop); // Compare properties
+    }
 }

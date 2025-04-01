@@ -55,7 +55,27 @@ public class BasketHandler {
                 assert cupcakeBottom != null;
                 assert cupcakeTop != null;
 
-                basket.add(new BasketItem(quantity, new Cupcake(cupcakeBottom, cupcakeTop)));
+                Cupcake cupcake = new Cupcake(cupcakeBottom, cupcakeTop);
+                BasketItem basketItem = new BasketItem(quantity, cupcake);
+
+                if (basket.isEmpty()) {
+                    basket.add(basketItem);
+                } else {
+                    for (BasketItem item : basket) {
+                        if (item.getItem().equals(basketItem.getItem())) {
+                            item.addToBasket(quantity);
+                        } else {
+                            basket.add(basketItem);
+                            break;
+                        }
+                    }
+                }
+
+
+
+
+
+                //basket.add(new BasketItem(quantity, new Cupcake(cupcakeBottom, cupcakeTop)));
 
                 ctx.redirect("/");
 

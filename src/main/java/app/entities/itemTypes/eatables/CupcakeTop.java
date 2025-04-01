@@ -24,4 +24,13 @@ public class CupcakeTop extends Eatable {
     public String getPath() {
         return path;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        CupcakeTop that = (CupcakeTop) obj;
+        return id == that.id; // Compare by ID
+    }
+
 }

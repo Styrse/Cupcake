@@ -30,6 +30,6 @@ public class BasketItem {
     }
 
     public void addToBasket(int quantity) {
-        quantity += quantity;
+        this.quantity += quantity;
     }
 }
