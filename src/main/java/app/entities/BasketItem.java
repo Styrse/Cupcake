@@ -31,5 +31,6 @@ public class BasketItem {
 
     public void addToBasket(int quantity) {
         this.quantity += quantity;
+        this.price = getQuantity() * item.getSalesPrice();
     }
 }

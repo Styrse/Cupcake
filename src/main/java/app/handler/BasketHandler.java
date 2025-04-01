@@ -5,6 +5,7 @@ import app.entities.itemTypes.eatables.Cupcake;
 import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
 import app.entities.userRoles.User;
+import app.exceptions.DatabaseException;
 import app.persistence.CupcakeMapper;
 import app.persistence.OrderMapper;
 import io.javalin.Javalin;
@@ -55,8 +56,7 @@ public class BasketHandler {
                 assert cupcakeBottom != null;
                 assert cupcakeTop != null;
 
-                Cupcake cupcake = new Cupcake(cupcakeBottom, cupcakeTop);
-                BasketItem basketItem = new BasketItem(quantity, cupcake);
+                BasketItem basketItem = new BasketItem(quantity, new Cupcake(cupcakeBottom, cupcakeTop));
 
                 if (basket.isEmpty()) {
                     basket.add(basketItem);
@@ -64,23 +64,16 @@ public class BasketHandler {
                     for (BasketItem item : basket) {
                         if (item.getItem().equals(basketItem.getItem())) {
                             item.addToBasket(quantity);
-                        } else {
-                            basket.add(basketItem);
-                            break;
+                            ctx.redirect("/");
+                            return;
                         }
                     }
+                    basket.add(basketItem);
                 }
-
-
-
-
-
-                //basket.add(new BasketItem(quantity, new Cupcake(cupcakeBottom, cupcakeTop)));
-
+                
                 ctx.redirect("/");
-
-            } catch (NumberFormatException e) {
-                ctx.result("Invalid input! Please ensure both selections are valid numbers.");
+            } catch (DatabaseException e) {
+                throw new RuntimeException(e);
             }
         });
     }
