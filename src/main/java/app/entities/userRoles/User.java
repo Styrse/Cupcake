@@ -5,18 +5,21 @@ public abstract class User {
     private String lastname;
     private String email;
     private String password;
+    private float balance;
 
-    public User(String firstname, String lastname, String email, String password) {
+    public User(String firstname, String lastname, String email, String password, float balance) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
+        this.balance = balance;
     }
 
-    public User(String firstname, String email, String password) {
-        this.firstname = firstname;
+    public User(String email, String password, float balance, String firstname) {
         this.email = email;
         this.password = password;
+        this.balance = balance;
+        this.firstname = firstname;
     }
 
     public String getFirstname() {
@@ -33,5 +36,9 @@ public abstract class User {
 
     public String getPassword() {
         return password;
+    }
+
+    public float getBalance() {
+        return balance;
     }
 }

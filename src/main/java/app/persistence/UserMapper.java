@@ -37,12 +37,12 @@ public class UserMapper {
 
                     if (isEmployee) {
                         if (isAdmin) {
-                            return new Admin(firstname, email, password);
+                            return new Admin(email, password, balance, firstname);
                         } else {
-                            return new Employee(firstname, email, password);
+                            return new Employee(email, password, balance, firstname);
                         }
                     } else {
-                        return new Customer(firstname, email, password, balance);
+                        return new Customer(email, password, balance, firstname);
                     }
                 }
             }
