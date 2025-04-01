@@ -96,8 +96,9 @@ public class UserMapper {
                     } else {
                         if (firstname != null){
                             users.add(new Customer(firstname, email, balance));
+                        } else {
+                            users.add(new Customer(email, balance));
                         }
-                        users.add(new Customer(email, balance));
                     }
                 }
             }

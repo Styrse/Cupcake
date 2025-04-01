@@ -8,3 +8,4 @@
     (This is to know which class to use when construction object)
 
 When adding an item which exist already then add to quantity instead of making new item
+Fix firstname not always loading
