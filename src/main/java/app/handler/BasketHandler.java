@@ -25,7 +25,6 @@ public class BasketHandler {
     public static void addToBasket(Javalin app) {
 
         app.post("/", ctx -> {
-
             //USERS VALG AF BOTTOM OG TOP
             int inputBottomId = Integer.parseInt(ctx.formParam("cupcakeBottom"));
             int inputTopId = Integer.parseInt(ctx.formParam("cupcakeTop"));
@@ -74,7 +73,6 @@ public class BasketHandler {
         }
         return totalPrice;
     }
-
 
     public static void removeFromBasket(Javalin app) {
         app.post("/basket/remove", ctx -> {

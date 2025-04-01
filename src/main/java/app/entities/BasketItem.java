@@ -28,4 +28,8 @@ public class BasketItem {
     public float getItemPrice() {
         return item.getSalesPrice();
     }
+
+    public void addToBasket(int quantity) {
+        quantity += quantity;
+    }
 }

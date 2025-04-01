@@ -1,11 +1,7 @@
 - Make the product category bar ease-in-out .25s
     - Be aware of text rendering to early issue
 - Text size issue product bar (Do special bar for small device since you dont hover on a phone anyway)
-- Correct Customer table in DB
-    - Rename to User
-    - Add boolean "amEmployee"
-    - Add boolean "amAdmin"
-    (This is to know which class to use when construction object)
 
 When adding an item which exist already then add to quantity instead of making new item
 Fix firstname not always loading
+Fix signing up
