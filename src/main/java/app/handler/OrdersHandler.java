@@ -1,19 +1,26 @@
 package app.handler;
 
+import app.Main;
 import app.entities.Order;
+import app.persistence.OrderMapper;
 import io.javalin.Javalin;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import static app.Main.connectionPool;
+
 public class OrdersHandler {
-    public static List<Order> getAllOrders(Javalin app) {
-        List<Order> orders = new ArrayList<>();
+    public static List<Order> orders = new ArrayList<>();
+    //TODO: Check use
 
-            orders.add(new Order(2, "customer@gmail.com", "Paid", new ArrayList<>()));
-            orders.add(new Order(23, "esben@gmail.com", "Unpaid", new ArrayList<>()));
-            orders.add(new Order(87, "styr@gmail.com", "Prepaid", new ArrayList<>()));
+    public static void removeOrder(Javalin app) {
+        app.post("/orders/remove", ctx -> {
+            int orderId = Integer.parseInt(ctx.formParam("orderId"));
 
-        return orders;
+            OrderMapper.removeOrder(connectionPool, orderId);
+
+            ctx.redirect("/all-orders");
+        });
     }
 }
