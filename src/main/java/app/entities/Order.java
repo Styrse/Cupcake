@@ -29,7 +29,8 @@ public class Order {
         this.items = items;
     }
 
-    public Order(String customerEmail, String orderStatus, String paymentType) {
+    public Order(int orderID, String customerEmail, String orderStatus, String paymentType) {
+        this.orderID = orderID;
         this.customerEmail = customerEmail;
         this.orderStatus = orderStatus;
         this.paymentType = paymentType;
