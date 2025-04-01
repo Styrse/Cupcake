@@ -40,6 +40,10 @@ public class RouteHandler {
         });
 
         LoginHandler.login(app);
+
+        app.get("/process-payment", ctx -> {
+            ctx.render("process-payment.html");
+        });
     }
 
     public static void showCupcakes(io.javalin.http.Context ctx) {
