@@ -1,5 +1,6 @@
 package app.persistence;
 
+import app.entities.itemTypes.eatables.CupcakeTop;
 import app.entities.userRoles.Admin;
 import app.entities.userRoles.Customer;
 import app.entities.userRoles.Employee;
@@ -7,8 +8,9 @@ import app.entities.userRoles.User;
 import app.exceptions.DatabaseException;
 
 import java.sql.*;
-import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static app.Main.connectionPool;
 
@@ -65,5 +67,41 @@ public class UserMapper {
             statement.setString(2, user_email);
             statement.executeUpdate();
         }
+    }
+
+    public static List<User> getAllUsers(ConnectionPool connectionPool) throws DatabaseException {
+        List<User> users = new ArrayList<>();
+
+        String sql = "SELECT * FROM \"User\"";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    int userId = rs.getInt("user_id");
+                    String firstname = rs.getString("user_firstname");
+                    String email = rs.getString("user_email");
+                    float balance = rs.getFloat("user_balance");
+                    boolean isEmployee = rs.getBoolean("isEmployee");
+                    boolean isAdmin = rs.getBoolean("isAdmin");
+
+                    if (isEmployee) {
+                        if (isAdmin) {
+                            users.add(new Admin(email, balance));
+                        } else{
+                            users.add(new Employee(email, balance));
+                        }
+                    } else {
+                        users.add(new Customer(email, balance));
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DatabaseException("Error executing query");
+        }
+        return users;
     }
 }

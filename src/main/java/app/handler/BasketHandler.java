@@ -95,18 +95,21 @@ public class BasketHandler {
 
             String paymentType = ctx.formParam("paymentMethod");
 
-            if (currentBalance >= basketTotal) {
-                updateUserBalance(userEmail , currentBalance, basketTotal);
+            if (paymentType.equals("balance")) {
+                if (currentBalance >= basketTotal) {
+                    updateUserBalance(userEmail, currentBalance, basketTotal);
 
-                user.setBalance(currentBalance - basketTotal);
-                ctx.sessionAttribute("user", user);
-                basket.clear();
-                if (paymentType.equals("balance")) {
+                    user.setBalance(currentBalance - basketTotal);
+
                     OrderMapper.addOrder(connectionPool, userEmail, "Confirmed", "Balance");
-                } else if (paymentType.equals("cash")) {
-                    OrderMapper.addOrder(connectionPool, userEmail, "Pending", "Cash");
+                    basket.clear();
                 }
+            } else if (paymentType.equals("cash")) {
+                OrderMapper.addOrder(connectionPool, userEmail, "Pending", "Cash");
+                basket.clear();
             }
+
+            ctx.sessionAttribute("user", user);
             ctx.redirect("/");
         });
     }

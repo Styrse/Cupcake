@@ -17,6 +17,14 @@ public class Employee extends User{
         super(email, password, balance, firstname);
     }
 
+    public Employee(String firstname, String email, float balance) {
+        super(firstname, email, balance);
+    }
+
+    public Employee(String email, float balance) {
+        super(email, balance);
+    }
+
     public int getEmployeeID() {
         return employeeID;
     }

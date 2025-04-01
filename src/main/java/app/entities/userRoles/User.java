@@ -22,6 +22,17 @@ public abstract class User {
         this.firstname = firstname;
     }
 
+    public User(String firstname, String email, float balance) {
+        this.firstname = firstname;
+        this.email = email;
+        this.balance = balance;
+    }
+
+    public User(String email, float balance) {
+        this.email = email;
+        this.balance = balance;
+    }
+
     public String getFirstname() {
         return firstname;
     }

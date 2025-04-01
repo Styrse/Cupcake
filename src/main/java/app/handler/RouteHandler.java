@@ -10,6 +10,7 @@ import app.entities.userRoles.User;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.OrderMapper;
+import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
@@ -89,7 +90,9 @@ public class RouteHandler {
             User user = ctx.sessionAttribute("user");
 
             if (user instanceof Employee) {
-                ctx.render("all-profiles");
+                List<User> users = UserMapper.getAllUsers(connectionPool);
+                ctx.attribute("users", users);
+                ctx.render("all-profiles.html");
             } else {
                 ctx.redirect("/");
             }
@@ -128,6 +131,5 @@ public class RouteHandler {
         ctx.attribute("totalPrice", totalPrice);
 
         ctx.render("basket.html", model);
-
     }
 }

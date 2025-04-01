@@ -9,5 +9,11 @@ public class Admin extends Employee{
         super(email, password, balance, firstname);
     }
 
+    public Admin(String firstname, String email, float balance) {
+        super(firstname, email, balance);
+    }
 
+    public Admin(String email, float balance) {
+        super(email, balance);
+    }
 }
