@@ -61,8 +61,8 @@ public class UserMapper {
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
-            statement.setDouble(1, newBalance);  // Set the new balance
-            statement.setString(2, user_email);         // Set the user ID
+            statement.setDouble(1, newBalance);
+            statement.setString(2, user_email);
             statement.executeUpdate();
         }
     }
@@ -73,12 +73,8 @@ public class UserMapper {
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
 
-            // Set parameters for the prepared statement
-
             statement.setString(1, userEmail);
             statement.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
-
-            // Execute the insert
             statement.executeUpdate();
         }
     }
