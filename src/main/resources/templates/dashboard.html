@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <title>Olsker Cupcake Dashboard</title>
-    <link rel="icon" type="image/x-icon" href="/src/main/resources/img/cupcake_logo.png">
-    <link rel="stylesheet" href="/src/main/resources/public/css/styles-dashboard.css">
+    <link rel="icon" type="image/x-icon" href="/img/cupcake_logo.png">
+    <link rel="stylesheet" href="/css/styles-website.css">
 </head>
 <body>
+<header>
+    <div th:insert="~{header :: header}"></div>
+</header>
+
+
 
 <main>
+
+    <div th:insert="~{dashboard-topbar :: dashboard-topbar}"></div>
     <div>
         <div is="side-bar">
             Dashboard
@@ -41,6 +48,10 @@
         </div>
     </div>
 </main>
+
+<footer>
+    <div th:insert="~{footer :: footer}"></div>
+</footer>
 
 </body>
 </html>
