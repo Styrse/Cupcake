@@ -2,26 +2,32 @@
     <div class="profile-container">
         <p class="top-nav-email" th:text="${session.email}"></p>
         <a th:href="${session.user != null} ? '/settings' : '/login'" class="top-nav" id="profile-collapsed">
-            <img src="/img/icons/profile.png">
+            <img src="/img/icons/profile.png" class="top-bar-img">
         </a>
 
 
         <div class="profile-expanded" th:if="${session.user != null}">
             <div class="profile-options">
                 <a href="/profile/orders">
-                    <img src="/img/icons/orders.png">
+                    <img src="/img/icons/orders.png" class="top-bar-img">
                 </a>
             </div>
 
             <div class="profile-options">
                 <a href="/profile/settings">
-                    <img src="/img/icons/settings.png">
+                    <img src="/img/icons/settings.png" class="top-bar-img">
+                </a>
+            </div>
+
+            <div class="profile-options">
+                <a href="/profile/logout">
+                    <img src="/img/icons/logout.png" class="top-bar-img">
                 </a>
             </div>
         </div>
     </div>
 
     <a href="/basket" class="top-nav">
-        <img src="/img/icons/shopping-basket.png">
+        <img src="/img/icons/shopping-basket.png" class="top-bar-img">
     </a>
 </div>
