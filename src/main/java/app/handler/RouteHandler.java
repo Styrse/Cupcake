@@ -1,6 +1,7 @@
 package app.handler;
 
 import app.entities.BasketItem;
+import app.entities.Order;
 import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
 import app.entities.userRoles.Employee;
@@ -60,7 +61,9 @@ public class RouteHandler {
             User user = ctx.sessionAttribute("user");
 
             if (user instanceof Employee) {
-                ctx.render("all-orders");
+                List<Order> orders = OrdersHandler.getAllOrders(app);
+                ctx.attribute("orders", orders);
+                ctx.render("all-orders.html");
             } else {
                 ctx.redirect("/");
             }
@@ -70,7 +73,7 @@ public class RouteHandler {
             User user = ctx.sessionAttribute("user");
 
             if (user instanceof Employee) {
-                ctx.render("all-orders");
+                ctx.render("all-profiles");
             } else {
                 ctx.redirect("/");
             }
