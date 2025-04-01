@@ -66,17 +66,4 @@ public class UserMapper {
             statement.executeUpdate();
         }
     }
-
-    public static void insertOrder(String userEmail, double basketTotal) throws SQLException {
-        String query = "INSERT INTO Order (user_email, order_date,) VALUES (?,?)";
-
-        try (Connection connection = connectionPool.getConnection();
-             PreparedStatement statement = connection.prepareStatement(query)) {
-
-            statement.setString(1, userEmail);
-            statement.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
-            statement.executeUpdate();
-        }
-    }
-
 }

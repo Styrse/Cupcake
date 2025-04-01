@@ -1,6 +1,5 @@
 package app.handler;
 
-import app.Main;
 import app.entities.Order;
 import app.persistence.OrderMapper;
 import io.javalin.Javalin;

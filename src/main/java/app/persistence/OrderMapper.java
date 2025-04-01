@@ -57,4 +57,22 @@ public class OrderMapper {
             throw new DatabaseException("Error executing query");
         }
     }
+
+    public static void addOrder(ConnectionPool connectionPool, String email, String orderStatus, String paymentType) throws DatabaseException {
+        String sql = "INSERT INTO \"Order\" (user_email, order_status, payment_type) VALUES (?, ?, ?)";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setString(1, email);
+                ps.setString(2, orderStatus);
+                ps.setString(3, paymentType);
+
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DatabaseException("Error executing query");
+        }
+    }
 }

@@ -6,6 +6,7 @@ import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
 import app.entities.userRoles.User;
 import app.persistence.CupcakeMapper;
+import app.persistence.OrderMapper;
 import io.javalin.Javalin;
 
 import java.util.ArrayList;
@@ -92,16 +93,21 @@ public class BasketHandler {
             float basketTotal = (float) getTotalPrice();
             float currentBalance = user.getBalance();
 
+            String paymentType = ctx.formParam("paymentMethod");
+
             if (currentBalance >= basketTotal) {
                 updateUserBalance(userEmail , currentBalance, basketTotal);
 
-                user.setBalance(currentBalance - basketTotal);  // Set the new balance in the user object
+                user.setBalance(currentBalance - basketTotal);
                 ctx.sessionAttribute("user", user);
                 basket.clear();
-                ctx.redirect("/");
-            } else {
-                ctx.result("Insufficient funds! Please check your balance.");
+                if (paymentType.equals("balance")) {
+                    OrderMapper.addOrder(connectionPool, userEmail, "Confirmed", "Balance");
+                } else if (paymentType.equals("cash")) {
+                    OrderMapper.addOrder(connectionPool, userEmail, "Pending", "Cash");
+                }
             }
+            ctx.redirect("/");
         });
     }
 }
