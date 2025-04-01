@@ -10,14 +10,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 public class UserMapper {
-    public static List<User> getUserByEmail(ConnectionPool connectionPool, String inputEmail, String inputPassword) throws DatabaseException {
-        List<User> users = new ArrayList<>();
-
+    public static User getUserByEmail(ConnectionPool connectionPool, String inputEmail, String inputPassword) throws DatabaseException {
         String sql = "SELECT * FROM \"User\" WHERE \"user_email\" = ? AND \"user_password\" = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -41,12 +37,12 @@ public class UserMapper {
 
                     if (isEmployee) {
                         if (isAdmin) {
-                            users.add(new Admin(firstname, email, password));
+                            return new Admin(firstname, email, password);
                         } else {
-                            users.add(new Employee(firstname, email, password));
+                            return new Employee(firstname, email, password);
                         }
                     } else {
-                        users.add(new Customer(firstname, email, password, balance));
+                        return new Customer(firstname, email, password, balance);
                     }
                 }
             }
@@ -54,6 +50,6 @@ public class UserMapper {
             e.printStackTrace();
             throw new DatabaseException("Error executing query");
         }
-        return users;
+        return null;
     }
 }

@@ -5,6 +5,7 @@ import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
+import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
@@ -27,7 +28,7 @@ public class RouteHandler {
         });
 
         app.get("/profile", ctx -> {
-            ctx.render("profile.html");
+            ctx.render("settings.html");
         });
 
         BasketHandler.addToBasket(app);
@@ -37,6 +38,8 @@ public class RouteHandler {
         app.get("/login", ctx -> {
             ctx.render("login.html");
         });
+
+        LoginHandler.login(app);
     }
 
     public static void showCupcakes(io.javalin.http.Context ctx) {

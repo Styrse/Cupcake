@@ -2,10 +2,8 @@ package app;
 
 import app.config.SessionConfig;
 import app.config.ThymeleafConfig;
-import app.exceptions.DatabaseException;
 import app.handler.RouteHandler;
 import app.persistence.ConnectionPool;
-import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 
