@@ -3,6 +3,7 @@ package app.handler;
 import app.entities.BasketItem;
 import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
+import app.entities.userRoles.User;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.UserMapper;
@@ -41,9 +42,24 @@ public class RouteHandler {
 
         LoginHandler.login(app);
 
+
         app.get("/process-payment", ctx -> {
+            User user = ctx.sessionAttribute("user");
+
+            if (user == null) {
+                System.out.println("❌ ERROR: User is NULL! Redirecting to login.");
+                ctx.redirect("/login");
+                return;
+            }
+
+            double totalPrice = BasketHandler.getTotalPrice();
+
+            ctx.attribute("basketTotal", totalPrice);
+            ctx.attribute("user", user);
             ctx.render("process-payment.html");
         });
+
+        BasketHandler.handlePayment(app);
 
         app.get("/dashboard", ctx -> {
             ctx.render("dashboard.html");

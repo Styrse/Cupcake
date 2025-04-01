@@ -6,11 +6,11 @@ import app.entities.userRoles.Employee;
 import app.entities.userRoles.User;
 import app.exceptions.DatabaseException;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.Date;
+
+import static app.Main.connectionPool;
 
 public class UserMapper {
     public static User getUserByEmail(ConnectionPool connectionPool, String inputEmail, String inputPassword) throws DatabaseException {
@@ -52,4 +52,35 @@ public class UserMapper {
         }
         return null;
     }
+
+    public static void updateUserBalance(String user_email, double currentBalance, double basketTotal) throws SQLException {
+        double newBalance = currentBalance - basketTotal;
+
+        String query = "UPDATE \"User\" SET \"user_balance\" = ? WHERE \"user_email\" = ?";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            statement.setDouble(1, newBalance);  // Set the new balance
+            statement.setString(2, user_email);         // Set the user ID
+            statement.executeUpdate();
+        }
+    }
+
+    public static void insertOrder(String userEmail, double basketTotal) throws SQLException {
+        String query = "INSERT INTO Order (user_email, order_date,) VALUES (?,?)";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+
+            // Set parameters for the prepared statement
+
+            statement.setString(1, userEmail);
+            statement.setTimestamp(2, Timestamp.valueOf(LocalDateTime.now()));
+
+            // Execute the insert
+            statement.executeUpdate();
+        }
+    }
+
 }

@@ -4,6 +4,7 @@ import app.entities.BasketItem;
 import app.entities.itemTypes.eatables.Cupcake;
 import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
+import app.entities.userRoles.User;
 import app.persistence.CupcakeMapper;
 import io.javalin.Javalin;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static app.Main.connectionPool;
+import static app.persistence.UserMapper.updateUserBalance;
 
 public class BasketHandler {
 
@@ -60,6 +62,16 @@ public class BasketHandler {
         });
     }
 
+    public static double getTotalPrice() {
+        double totalPrice = 0.0;
+
+        for (BasketItem item : basket) {
+            totalPrice += item.getPrice();
+        }
+        return totalPrice;
+    }
+
+
     public static void removeFromBasket(Javalin app) {
         app.post("/basket/remove", ctx -> {
             int index = Integer.parseInt(ctx.formParam("index"));
@@ -69,6 +81,27 @@ public class BasketHandler {
             }
 
             ctx.redirect("/basket");
+        });
+    }
+
+    public static void handlePayment(Javalin app) {
+        app.post("/process-payment", ctx -> {
+            User user = ctx.sessionAttribute("user");
+            assert user != null;
+            String userEmail = user.getEmail();
+            float basketTotal = (float) getTotalPrice();
+            float currentBalance = user.getBalance();
+
+            if (currentBalance >= basketTotal) {
+                updateUserBalance(userEmail , currentBalance, basketTotal);
+
+                user.setBalance(currentBalance - basketTotal);  // Set the new balance in the user object
+                ctx.sessionAttribute("user", user);
+                basket.clear();
+                ctx.redirect("/");
+            } else {
+                ctx.result("Insufficient funds! Please check your balance.");
+            }
         });
     }
 }
