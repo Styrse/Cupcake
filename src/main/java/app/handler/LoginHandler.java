@@ -16,6 +16,7 @@ public class LoginHandler {
 
             if (user != null) {
                 ctx.sessionAttribute("user", user);
+                ctx.sessionAttribute("email", email);
                 if (user instanceof Employee) {
                     ctx.redirect("/dashboard");
                 } else {

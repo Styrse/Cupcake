@@ -1,7 +1,7 @@
 <div th:fragment="topbar" class="top-bar">
     <div class="profile-container">
         <a th:href="${session.user != null} ? '/settings' : '/login'" class="top-nav" id="profile-collapsed">
-            <p th:text="|${email}|"></p>
+            <p th:text="|${session.email}|"></p>
             <img src="/img/icons/profile.png">
         </a>
 
