@@ -27,26 +27,16 @@ Website
 	- Add/remove(amount)
 - Profile
 - Contact page
-- Google map
 - Google analytics
 - Image
 
 Coupon
 Gift cards
 Instagram
-Trustpilot
 hash password
 Vote for next month special edition cupcake
-
-To-do
-- hover top nav profile/login
-    - If click go to basket site
-- hover top nav basket
-    - If clicked go to profile/login site
 
 When hovering or clicked bigger box with gluten etc info could pop up instead of going to a new page
 Estimated time for cupcake
 Auto send order confirmation to email
-Add remove localstorage and session button in profile settings
-Add pay at pickup
 Logout
