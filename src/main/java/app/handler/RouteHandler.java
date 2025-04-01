@@ -26,7 +26,7 @@ public class RouteHandler {
     public static void routes(Javalin app, ConnectionPool connectionPool){
         app.get("/", ctx -> showCupcakes(ctx));
 
-        app.get("/basket", ctx -> showBasket(ctx));
+        app.get("/basket", ctx -> BasketHandler.showBasket(ctx));
 
         app.get("/index", ctx -> {
             ctx.render("index.html");
@@ -45,7 +45,6 @@ public class RouteHandler {
         });
 
         LoginHandler.login(app);
-
 
         app.get("/process-payment", ctx -> {
             User user = ctx.sessionAttribute("user");
@@ -74,17 +73,7 @@ public class RouteHandler {
             }
         });
 
-        app.get("/all-orders", ctx -> {
-            User user = ctx.sessionAttribute("user");
-
-            if (user instanceof Employee) {
-                List<Order> orders = OrderMapper.getAllOrders(connectionPool);
-                ctx.attribute("orders", orders);
-                ctx.render("all-orders.html");
-            } else {
-                ctx.redirect("/");
-            }
-        });
+        OrdersHandler.showAllOrders(app);
 
         app.get("/all-profiles", ctx -> {
             User user = ctx.sessionAttribute("user");
@@ -99,6 +88,8 @@ public class RouteHandler {
         });
 
         OrdersHandler.removeOrder(app);
+
+        UserHandler.addFunds(app);
     }
 
     public static void showCupcakes(io.javalin.http.Context ctx) {
@@ -116,20 +107,5 @@ public class RouteHandler {
         }
     }
 
-    public static void showBasket(Context ctx) {
-        Map<String, Object> model = new HashMap<>();
-        model.put("basket", BasketHandler.basket);
 
-        List<BasketItem> basket = BasketHandler.basket;
-
-        float totalPrice = 0;
-        for (BasketItem item : basket) {
-            totalPrice += item.getPrice();
-        }
-
-        ctx.attribute("basket", basket);
-        ctx.attribute("totalPrice", totalPrice);
-
-        ctx.render("basket.html", model);
-    }
 }

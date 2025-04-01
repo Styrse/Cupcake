@@ -473,7 +473,7 @@ tbody tr:hover {
     place-self: center;
 }
 
-.see-order {
+.button-1 {
     background-color: mediumpurple;
     color: white;
     font-size: 14px;
@@ -484,12 +484,12 @@ tbody tr:hover {
     transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
-.see-order:hover {
+.button-1:hover {
     background-color: rebeccapurple;
     transform: scale(1.05);
 }
 
-.see-order:active {
+.button-1:active {
     background-color: rebeccapurple;
     transform: scale(0.95);
 }

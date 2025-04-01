@@ -55,9 +55,7 @@ public class UserMapper {
         return null;
     }
 
-    public static void updateUserBalance(String user_email, double currentBalance, double basketTotal) throws SQLException {
-        double newBalance = currentBalance - basketTotal;
-
+    public static void updateUserBalance(String user_email, double newBalance) throws SQLException {
         String query = "UPDATE \"User\" SET \"user_balance\" = ? WHERE \"user_email\" = ?";
 
         try (Connection connection = connectionPool.getConnection();
@@ -72,7 +70,7 @@ public class UserMapper {
     public static List<User> getAllUsers(ConnectionPool connectionPool) throws DatabaseException {
         List<User> users = new ArrayList<>();
 
-        String sql = "SELECT * FROM \"User\"";
+        String sql = "SELECT * FROM \"User\" ORDER BY \"user_email\"";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {

@@ -35,10 +35,11 @@
           <td th:text="${user.firstname}"></td>
           <td th:text="${user.balance}"></td>
           <td>
-            <form>
-              <input type="number" name="add-funds">
-              <button type="submit" class="see-order">Add funds</button>
-<!--              TODO: check class   ^-->
+            <form action="/profile/add-funds" method="post">
+              <input type="hidden" name="email" th:value="${user.email}">
+              <input type="hidden" name="balance" th:value="${user.balance}">
+              <input type="number" name="add-funds" min="0" required>
+              <button type="submit" class="button-1">Add funds</button>
             </form>
           </td>
 

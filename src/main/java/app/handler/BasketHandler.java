@@ -8,9 +8,12 @@ import app.entities.userRoles.User;
 import app.persistence.CupcakeMapper;
 import app.persistence.OrderMapper;
 import io.javalin.Javalin;
+import io.javalin.http.Context;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static app.Main.connectionPool;
 import static app.persistence.UserMapper.updateUserBalance;
@@ -97,7 +100,8 @@ public class BasketHandler {
 
             if (paymentType.equals("balance")) {
                 if (currentBalance >= basketTotal) {
-                    updateUserBalance(userEmail, currentBalance, basketTotal);
+                    double newBalance = currentBalance - basketTotal;
+                    updateUserBalance(userEmail, newBalance);
 
                     user.setBalance(currentBalance - basketTotal);
 
@@ -112,5 +116,22 @@ public class BasketHandler {
             ctx.sessionAttribute("user", user);
             ctx.redirect("/");
         });
+    }
+
+    public static void showBasket(Context ctx) {
+        Map<String, Object> model = new HashMap<>();
+        model.put("basket", BasketHandler.basket);
+
+        List<BasketItem> basket = BasketHandler.basket;
+
+        float totalPrice = 0;
+        for (BasketItem item : basket) {
+            totalPrice += item.getPrice();
+        }
+
+        ctx.attribute("basket", basket);
+        ctx.attribute("totalPrice", totalPrice);
+
+        ctx.render("basket.html", model);
     }
 }
