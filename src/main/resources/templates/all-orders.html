@@ -24,6 +24,9 @@
                 <tr>
                     <th>Order ID</th>
                     <th>Customer email</th>
+                    <th>Status</th>
+                    <th>Payment type</th>
+                    <th>See order</th>
                     <th>Remove order</th>
                 </tr>
                 </thead>
@@ -31,6 +34,15 @@
                 <tr th:each="order, iterStat : ${orders}">
                     <td th:text="${order.orderId}"></td>
                     <td th:text="${order.customerEmail}"></td>
+                    <td th:text="${order.orderStatus}"></td>
+                    <td th:text="${order.paymentType}"></td>
+                    <td>
+                        <form>
+                            <input type="hidden" name="index" th:value="${iterStat.index}">
+                            <button type="submit" class="see-order">See order</button>
+                        </form>
+                    </td>
+
                     <td>
                         <form action="/orders/remove" method="post">
                             <input type="hidden" name="index" th:value="${iterStat.index}">

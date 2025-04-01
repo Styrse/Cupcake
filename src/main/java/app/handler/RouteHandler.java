@@ -49,7 +49,6 @@ public class RouteHandler {
             User user = ctx.sessionAttribute("user");
 
             if (user == null) {
-                System.out.println("❌ ERROR: User is NULL! Redirecting to login.");
                 ctx.redirect("/login");
                 return;
             }
@@ -94,6 +93,8 @@ public class RouteHandler {
                 ctx.redirect("/");
             }
         });
+
+        OrdersHandler.removeOrder(app);
     }
 
     public static void showCupcakes(io.javalin.http.Context ctx) {

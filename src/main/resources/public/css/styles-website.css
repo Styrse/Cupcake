@@ -324,17 +324,24 @@ tbody tr:hover {
 }
 
 .remove-line-button {
-    padding: 5px 10px;
-    background-color: red;
+    background-color: crimson;
     color: white;
+    font-size: 14px;
+    padding: 8px 15px;
     border: none;
-    cursor: pointer;
     border-radius: 5px;
-    transition: background-color 0.1s;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .remove-line-button:hover {
     background-color: darkred;
+    transform: scale(1.05);
+}
+
+.remove-line-button:active {
+    background-color: red;
+    transform: scale(0.95);
 }
 
 #total-price-displayed {
@@ -464,3 +471,25 @@ tbody tr:hover {
     width: 95%;
     place-self: center;
 }
+
+.see-order {
+    background-color: mediumpurple;
+    color: white;
+    font-size: 14px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.see-order:hover {
+    background-color: rebeccapurple;
+    transform: scale(1.05);
+}
+
+.see-order:active {
+    background-color: rebeccapurple;
+    transform: scale(0.95);
+}
+
