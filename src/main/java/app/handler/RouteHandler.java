@@ -44,6 +44,10 @@ public class RouteHandler {
         app.get("/process-payment", ctx -> {
             ctx.render("process-payment.html");
         });
+
+        app.get("/dashboard", ctx -> {
+            ctx.render("dashboard.html");
+        });
     }
 
     public static void showCupcakes(io.javalin.http.Context ctx) {
