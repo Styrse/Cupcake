@@ -9,10 +9,8 @@ import app.entities.itemTypes.eatables.CupcakeTop;
 import app.exceptions.DatabaseException;
 import app.handler.RouteHandler;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,11 +27,12 @@ public class OrderMapper {
 
                 while (rs.next()) {
                     int orderId = rs.getInt("order_id");
+                    Date orderDate = rs.getDate("order_date");
                     String email = rs.getString("user_email");
                     String orderStatus = rs.getString("order_status");
                     String paymentType = rs.getString("payment_type");
 
-                    orders.add(new Order(orderId, email, orderStatus, paymentType));
+                    orders.add(new Order(orderId, orderDate, email, orderStatus, paymentType));
                 }
             }
         } catch (SQLException e) {

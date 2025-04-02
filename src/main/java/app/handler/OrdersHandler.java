@@ -7,6 +7,7 @@ import app.entities.userRoles.User;
 import app.persistence.OrderMapper;
 import io.javalin.Javalin;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,6 +31,7 @@ public class OrdersHandler {
 
             if (user instanceof Employee) {
                 List<Order> orders = OrderMapper.getAllOrders(connectionPool);
+
                 ctx.attribute("orders", orders);
                 ctx.render("all-orders.html");
             } else {
@@ -40,16 +42,14 @@ public class OrdersHandler {
 
     public static void showOrder(Javalin app) {
         app.post("/show-order", ctx -> {
-             int orderId = Integer.parseInt(ctx.formParam("orderId"));
+            int orderId = Integer.parseInt(ctx.formParam("orderId"));
 
             List<BasketItem> items = OrderMapper.getOrderByOrderID(connectionPool, orderId);
-
-            double totalPrice = BasketHandler.getTotalPrice(items);
 
             Map<String, Object> model = new HashMap<>();
             model.put("orderId", orderId);
             model.put("customer_order", items);
-            model.put("totalPrice", totalPrice);
+            model.put("totalPrice", BasketHandler.getTotalPrice(items));
 
             ctx.render("customer-order.html", model);
         });

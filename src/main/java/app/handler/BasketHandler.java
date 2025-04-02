@@ -86,22 +86,33 @@ public class BasketHandler {
             float basketTotal = (float) getTotalPrice(basket);
             float currentBalance = user.getBalance();
 
-            String paymentType = ctx.formParam("paymentMethod");
+            String paymentMethod = ctx.formParam("paymentMethod");
 
-            if (paymentType.equals("balance")) {
-                if (currentBalance >= basketTotal) {
-                    double newBalance = currentBalance - basketTotal;
-                    updateUserBalance(userEmail, newBalance);
+            String orderStatus = "";
+            String paymentType = "";
 
-                    user.setBalance(currentBalance - basketTotal);
+            if (paymentMethod.equals("balance") || paymentMethod.equals("mobilepay")) {
+                orderStatus = "Confirmed";
 
-                    OrderMapper.addOrder(connectionPool, userEmail, "Confirmed", "Balance");
-                    basket.clear();
+                if (paymentMethod.equals("balance")) {
+                    if (currentBalance >= basketTotal) {
+                        paymentType = "Balance";
+
+                        double newBalance = currentBalance - basketTotal;
+                        updateUserBalance(userEmail, newBalance);
+
+                        user.setBalance(currentBalance - basketTotal);
+                    } else if (paymentMethod.equals("mobilepay")) {
+                        paymentType = "MobilePay";
+                    }
+                } else if (paymentMethod.equals("cash")) {
+                    orderStatus = "Pending";
+                    paymentType = "Cash";
                 }
-            } else if (paymentType.equals("cash")) {
-                OrderMapper.addOrder(connectionPool, userEmail, "Pending", "Cash");
-                basket.clear();
             }
+
+            OrderMapper.addOrder(connectionPool, userEmail, orderStatus, paymentType);
+            basket.clear();
 
             ctx.sessionAttribute("user", user);
             ctx.redirect("/");

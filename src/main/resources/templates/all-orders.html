@@ -23,6 +23,7 @@
                 <thead>
                 <tr>
                     <th>Order ID</th>
+                    <th>Order date</th>
                     <th>Customer email</th>
                     <th>Status</th>
                     <th>Payment type</th>
@@ -33,6 +34,7 @@
                 <tbody>
                 <tr th:each="order : ${orders}">
                     <td th:text="${order.orderId}"></td>
+                    <td th:text="${order.orderDate}"></td>
                     <td th:text="${order.customerEmail}"></td>
                     <td th:text="${order.orderStatus}"></td>
                     <td th:text="${order.paymentType}"></td>

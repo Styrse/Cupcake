@@ -2,35 +2,28 @@ package app.entities;
 
 import app.entities.itemTypes.Item;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
 import java.util.List;
 
 public class Order {
     private int orderID;
-//    private LocalDateTime orderDate;
+    private Date orderDate;
 //    private LocalDateTime pickupDate;
     private String customerEmail;
     private String orderStatus;
     private String paymentType;
     private List<Item> items;
 
-    public Order(int orderID, String customerEmail, String orderStatus, String paymentType, List<Item> items) {
-        this.orderID = orderID;
-        this.customerEmail = customerEmail;
-        this.orderStatus = orderStatus;
-        this.paymentType = paymentType;
-        this.items = items;
-    }
-
-    public Order(String customerEmail, String orderStatus, String paymentType, List<Item> items) {
-        this.customerEmail = customerEmail;
-        this.orderStatus = orderStatus;
-        this.paymentType = paymentType;
-        this.items = items;
-    }
-
     public Order(int orderID, String customerEmail, String orderStatus, String paymentType) {
         this.orderID = orderID;
+        this.customerEmail = customerEmail;
+        this.orderStatus = orderStatus;
+        this.paymentType = paymentType;
+    }
+
+    public Order(int orderID, Date orderDate, String customerEmail, String orderStatus, String paymentType) {
+        this.orderID = orderID;
+        this.orderDate = orderDate;
         this.customerEmail = customerEmail;
         this.orderStatus = orderStatus;
         this.paymentType = paymentType;
@@ -54,5 +47,9 @@ public class Order {
 
     public List<Item> getItems() {
         return items;
+    }
+
+    public Date getOrderDate() {
+        return orderDate;
     }
 }
