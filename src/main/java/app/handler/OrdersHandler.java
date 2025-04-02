@@ -44,7 +44,7 @@ public class OrdersHandler {
 
             List<BasketItem> items = OrderMapper.getOrderByOrderID(connectionPool, orderId);
 
-            int totalPrice = 12;
+            double totalPrice = BasketHandler.getTotalPrice(items);
 
             Map<String, Object> model = new HashMap<>();
             model.put("orderId", orderId);

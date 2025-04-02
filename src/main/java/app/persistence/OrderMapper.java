@@ -96,10 +96,6 @@ public class OrderMapper {
 
                 while (rs.next()) {
                     int quantity = rs.getInt("quantity");
-
-
-                    List<CupcakeTop> cupcakeTops = CupcakeMapper.getCupcakeTops(connectionPool);
-
                     int bottomId = rs.getInt("bottom_id");
                     int topId = rs.getInt("top_id");
 

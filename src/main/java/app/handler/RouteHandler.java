@@ -57,7 +57,7 @@ public class RouteHandler {
                 return;
             }
 
-            double totalPrice = BasketHandler.getTotalPrice();
+            double totalPrice = BasketHandler.getTotalPrice(basket);
 
             ctx.attribute("basketTotal", totalPrice);
             ctx.attribute("user", user);

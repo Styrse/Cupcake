@@ -58,10 +58,10 @@ public class BasketHandler {
         });
     }
 
-    public static double getTotalPrice() {
+    public static double getTotalPrice(List<BasketItem> list) {
         double totalPrice = 0.0;
 
-        for (BasketItem item : basket) {
+        for (BasketItem item : list) {
             totalPrice += item.getPrice();
         }
         return totalPrice;
@@ -84,7 +84,7 @@ public class BasketHandler {
             User user = ctx.sessionAttribute("user");
             assert user != null;
             String userEmail = user.getEmail();
-            float basketTotal = (float) getTotalPrice();
+            float basketTotal = (float) getTotalPrice(basket);
             float currentBalance = user.getBalance();
 
             String paymentType = ctx.formParam("paymentMethod");
@@ -114,7 +114,7 @@ public class BasketHandler {
         model.put("basket", BasketHandler.basket);
 
         ctx.sessionAttribute("basket", basket);
-        ctx.attribute("totalPrice", getTotalPrice());
+        ctx.attribute("totalPrice", getTotalPrice(basket));
 
         ctx.render("basket.html", model);
     }
