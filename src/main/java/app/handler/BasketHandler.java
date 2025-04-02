@@ -6,7 +6,6 @@ import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
 import app.entities.userRoles.User;
 import app.exceptions.DatabaseException;
-import app.persistence.CupcakeMapper;
 import app.persistence.OrderMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
