@@ -31,5 +31,7 @@ public class Main {
         }).start(7070);
 
         RouteHandler.routes(app, connectionPool);
+
+
     }
 }

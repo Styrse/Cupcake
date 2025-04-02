@@ -21,6 +21,15 @@ public class OrdersHandler {
         });
     }
 
+    public static void showOrder(Javalin app) {
+        app.post("/show-order", ctx -> {
+            int orderId = Integer.parseInt(ctx.formParam("orderId"));
+
+
+        })
+    }
+
+
     public static void showAllOrders(Javalin app) {
         app.get("/all-orders", ctx -> {
             User user = ctx.sessionAttribute("user");
@@ -34,4 +43,6 @@ public class OrdersHandler {
             }
         });
     }
+
+
 }

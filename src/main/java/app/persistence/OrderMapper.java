@@ -75,4 +75,29 @@ public class OrderMapper {
             throw new DatabaseException("Error executing query");
         }
     }
+
+    public static Order getOrderByOrderID(ConnectionPool connectionPool, int orderId) throws DatabaseException {
+        Order order = null;
+
+        String sql = "SELECT * " +
+                "FROM \"User\" AS users " +
+                "JOIN \"Order\" AS orders USING (user_email) " +
+                "JOIN \"Product\" AS products USING (order_id) " +
+                "JOIN \"Cupcake\" AS cupcake USING (product_id) " +
+                "WHERE order_id=8";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DatabaseException("Error executing query");
+        }
+        return order;
+    }
 }
