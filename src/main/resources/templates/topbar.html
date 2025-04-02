@@ -8,19 +8,22 @@
 
         <div class="profile-expanded" th:if="${session.user != null}">
             <div class="profile-options">
-                <a href="/profile/orders">
-                    <img src="/img/icons/orders.png" class="top-bar-img">
-                </a>
+                <form action="/profile-orders" method="post">
+                    <input type="hidden" name="email" th:value="${session.email}">
+                    <button type="submit" class="profile-button">
+                        <img src="/img/icons/orders.png" class="top-bar-img">
+                    </button>
+                </form>
             </div>
 
             <div class="profile-options">
-                <a href="/profile/settings">
+                <a href="/profile-settings">
                     <img src="/img/icons/settings.png" class="top-bar-img">
                 </a>
             </div>
 
             <div class="profile-options">
-                <a href="/profile/logout">
+                <a href="/profile-logout">
                     <img src="/img/icons/logout.png" class="top-bar-img">
                 </a>
             </div>

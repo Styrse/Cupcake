@@ -97,6 +97,8 @@ public class RouteHandler {
         UserHandler.removeUser(app);
 
         OrdersHandler.showOrder(app);
+
+        OrdersHandler.showCustomerOrders(app);
     }
 
     public static void showCupcakes(io.javalin.http.Context ctx) {

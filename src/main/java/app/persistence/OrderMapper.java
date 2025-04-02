@@ -2,7 +2,6 @@ package app.persistence;
 
 import app.entities.BasketItem;
 import app.entities.Order;
-import app.entities.itemTypes.Item;
 import app.entities.itemTypes.eatables.Cupcake;
 import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
@@ -10,7 +9,6 @@ import app.exceptions.DatabaseException;
 import app.handler.RouteHandler;
 
 import java.sql.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -110,5 +108,36 @@ public class OrderMapper {
             throw new DatabaseException("Error executing query");
         }
         return items;
+    }
+
+    public static List<Order> getUserOrders(ConnectionPool connectionPool, String customerEmail) throws DatabaseException {
+        List<Order> orders = new ArrayList<>();
+
+        String sql = "SELECT * " +
+                "FROM \"Order\" " +
+                "WHERE user_email LIKE ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setString(1, customerEmail);
+
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    int orderId = rs.getInt("order_id");
+                    Date orderDate = rs.getDate("order_date");
+                    String email = rs.getString("user_email");
+                    String orderStatus = rs.getString("order_status");
+                    String paymentType = rs.getString("payment_type");
+
+                    orders.add(new Order(orderId, orderDate, email, orderStatus, paymentType));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DatabaseException("Error executing query");
+        }
+        return orders;
     }
 }

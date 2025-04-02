@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Olsker Cupcake User Orders</title>
+    <link rel="icon" type="image/x-icon" href="/img/cupcake_logo.png">
+    <link rel="stylesheet" href="/css/styles-website.css">
+</head>
+<body>
+<header>
+    <div th:insert="~{header :: header}"></div>
+</header>
+
+
+
+<main>
+    <div th:insert="~{dashboard-topbar :: dashboard-topbar}"></div>
+    <div class="dashboard-main">
+
+        <div id="orders-table">
+            <h1>User orders</h1>
+            <table>
+                <thead>
+                <tr>
+                    <th>Order ID</th>
+                    <th>Order date</th>
+                    <th>Customer email</th>
+                    <th>Status</th>
+                    <th>Payment type</th>
+                    <th>See order</th>
+                    <th>Remove order</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="order : ${userOrders}">
+                    <td th:text="${order.orderId}"></td>
+                    <td th:text="${order.orderDate}"></td>
+                    <td th:text="${order.customerEmail}"></td>
+                    <td th:text="${order.orderStatus}"></td>
+                    <td th:text="${order.paymentType}"></td>
+                    <td>
+                        <form action="/show-order" method="post">
+                            <input type="hidden" name="orderId" th:value="${order.orderId}">
+                            <button type="submit" class="button-1">See order</button>
+                        </form>
+                    </td>
+
+                    <td>
+                        <form action="/orders/remove" method="post">
+                            <input type="hidden" name="orderId" th:value="${order.orderId}">
+                            <button type="submit" class="remove-line-button">Remove</button>
+                        </form>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div th:insert="~{footer :: footer}"></div>
+</footer>
+
+</body>
+</html>

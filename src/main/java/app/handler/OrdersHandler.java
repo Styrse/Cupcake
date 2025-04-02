@@ -7,7 +7,6 @@ import app.entities.userRoles.User;
 import app.persistence.OrderMapper;
 import io.javalin.Javalin;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +51,17 @@ public class OrdersHandler {
             model.put("totalPrice", BasketHandler.getTotalPrice(items));
 
             ctx.render("customer-order.html", model);
+        });
+    }
+
+    public static void showCustomerOrders(Javalin app) {
+        app.post("/profile-orders", ctx -> {
+            String customerEmail = ctx.formParam("email");
+
+            List<Order> userOrders = OrderMapper.getUserOrders(connectionPool, customerEmail);
+
+            ctx.attribute("userOrders", userOrders);
+            ctx.render("user-orders.html");
         });
     }
 }
