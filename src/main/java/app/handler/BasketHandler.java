@@ -113,15 +113,8 @@ public class BasketHandler {
         Map<String, Object> model = new HashMap<>();
         model.put("basket", BasketHandler.basket);
 
-        List<BasketItem> basket = BasketHandler.basket;
-
-        float totalPrice = 0;
-        for (BasketItem item : basket) {
-            totalPrice += item.getPrice();
-        }
-
         ctx.sessionAttribute("basket", basket);
-        ctx.attribute("totalPrice", totalPrice);
+        ctx.attribute("totalPrice", getTotalPrice());
 
         ctx.render("basket.html", model);
     }
