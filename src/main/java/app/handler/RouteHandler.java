@@ -7,6 +7,7 @@ import app.entities.userRoles.Employee;
 import app.entities.userRoles.User;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
+import app.persistence.CupcakeMapper;
 import app.persistence.UserMapper;
 import io.javalin.Javalin;
 
@@ -20,7 +21,7 @@ import static app.persistence.CupcakeMapper.getCupcakeBottoms;
 import static app.persistence.CupcakeMapper.getCupcakeTops;
 
 public class RouteHandler {
-    public static void routes(Javalin app, ConnectionPool connectionPool){
+    public static void routes(Javalin app, ConnectionPool connectionPool) {
         app.get("/", ctx -> showCupcakes(ctx));
 
         app.get("/basket", ctx -> BasketHandler.showBasket(ctx));
@@ -94,6 +95,8 @@ public class RouteHandler {
         UserHandler.addFunds(app);
 
         UserHandler.removeUser(app);
+
+        OrdersHandler.showOrder(app);
     }
 
     public static void showCupcakes(io.javalin.http.Context ctx) {
@@ -111,5 +114,31 @@ public class RouteHandler {
         }
     }
 
+    public static CupcakeBottom getCupcakeBottomById(int bottomId) throws DatabaseException {
+        List<CupcakeBottom> cupcakeBottoms = CupcakeMapper.getCupcakeBottoms(connectionPool);
 
+        CupcakeBottom cupcakeBottom = null;
+
+        for (CupcakeBottom bottom : cupcakeBottoms) {
+            if (bottom.getId() == bottomId) {
+                cupcakeBottom = bottom;
+                break;
+            }
+        }
+        return cupcakeBottom;
+    }
+
+    public static CupcakeTop getCupcakeTopById(int inputTopId) throws DatabaseException {
+        List<CupcakeTop> cupcakeTops = CupcakeMapper.getCupcakeTops(connectionPool);
+
+        CupcakeTop cupcakeTop = null;
+
+        for (CupcakeTop top : cupcakeTops) {
+            if (top.getId() == inputTopId) {
+                cupcakeTop = top;
+                break;
+            }
+        }
+        return cupcakeTop;
+    }
 }

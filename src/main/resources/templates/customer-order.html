@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Olsker Cupcake Customer Order</title>
+  <link rel="icon" type="image/x-icon" href="/img/cupcake_logo.png">
+  <link rel="stylesheet" href="/css/styles-website.css">
+</head>
+<body>
+<header>
+  <div th:insert="~{header :: header}"></div>
+</header>
+
+
+<main>
+  <div th:insert="~{topbar :: topbar}"></div>
+
+  <div id="item-table">
+    <h1>Order ID: <span th:text="${orderId}"></span></h1>
+    <table>
+      <thead>
+      <tr>
+        <th>Item</th>
+        <th>Quantity</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="item, iterStat : ${customer_order}">
+        <td th:text="${item.item}"></td>
+        <td th:text="${item.quantity}"></td>
+      </tr>
+      </tbody>
+    </table>
+    <div>
+      <h3 id="total-price-displayed">Total Price: <span th:text="${totalPrice}"></span></h3>
+    </div>
+  </div>
+
+
+<!--  <div id="basket-table">-->
+<!--    <h1>Order ID: <span th:text="${orderId}"></span></h1>-->
+<!--    <table>-->
+<!--      <thead>-->
+<!--      <tr>-->
+<!--        <th>Item</th>-->
+<!--        <th>Quantity</th>-->
+<!--        <th>Item price</th>-->
+<!--        <th>Total price</th>-->
+<!--      </tr>-->
+<!--      </thead>-->
+<!--      <tbody>-->
+<!--      <tr th:each="item, iterStat : ${order}">-->
+<!--        <td th:text="${item.item}"></td>-->
+<!--        <td th:text="${item.quantity}"></td>-->
+<!--        <td th:text="${item.itemPrice}"></td>-->
+<!--        <td th:text="${item.price}"></td>-->
+<!--      </tr>-->
+<!--      </tbody>-->
+<!--    </table>-->
+<!--    <div>-->
+<!--      <h3 id="total-price-displayed">Total Price: <span th:text="${totalPrice}"></span></h3>-->
+<!--    </div>-->
+<!--  </div>-->
+
+  <th:block th:if="${not #lists.isEmpty(session.basket)}">
+    <a th:href="${session.user != null} ? '/process-payment' : '/login'" id="payment-container">
+      <img src="/img/icons/payment.png" id="payment-icon"> Pay
+    </a>
+  </th:block>
+</main>
+
+<footer>
+  <div th:insert="~{footer :: footer}"></div>
+</footer>
+
+<script src="/js/scripts.js"></script>
+
+</body>
+</html>

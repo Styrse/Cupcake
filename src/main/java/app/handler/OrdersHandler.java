@@ -1,12 +1,15 @@
 package app.handler;
 
+import app.entities.BasketItem;
 import app.entities.Order;
 import app.entities.userRoles.Employee;
 import app.entities.userRoles.User;
 import app.persistence.OrderMapper;
 import io.javalin.Javalin;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import static app.Main.connectionPool;
 
@@ -35,5 +38,20 @@ public class OrdersHandler {
         });
     }
 
+    public static void showOrder(Javalin app) {
+        app.post("/show-order", ctx -> {
+             int orderId = Integer.parseInt(ctx.formParam("orderId"));
 
+            List<BasketItem> items = OrderMapper.getOrderByOrderID(connectionPool, orderId);
+
+            int totalPrice = 12;
+
+            Map<String, Object> model = new HashMap<>();
+            model.put("orderId", orderId);
+            model.put("customer_order", items);
+            model.put("totalPrice", totalPrice);
+
+            ctx.render("customer-order.html", model);
+        });
+    }
 }

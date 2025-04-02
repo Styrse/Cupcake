@@ -1,18 +1,19 @@
 package app.persistence;
 
+import app.entities.BasketItem;
 import app.entities.Order;
+import app.entities.itemTypes.Item;
+import app.entities.itemTypes.eatables.Cupcake;
+import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
-import app.entities.userRoles.Admin;
-import app.entities.userRoles.Customer;
-import app.entities.userRoles.Employee;
 import app.exceptions.DatabaseException;
+import app.handler.RouteHandler;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 public class OrderMapper {
@@ -76,28 +77,43 @@ public class OrderMapper {
         }
     }
 
-    public static Order getOrderByOrderID(ConnectionPool connectionPool, int orderId) throws DatabaseException {
-        Order order = null;
+    public static List<BasketItem> getOrderByOrderID(ConnectionPool connectionPool, int orderId) throws DatabaseException {
+        List<BasketItem> items = new ArrayList<>();
 
         String sql = "SELECT * " +
                 "FROM \"User\" AS users " +
                 "JOIN \"Order\" AS orders USING (user_email) " +
                 "JOIN \"Product\" AS products USING (order_id) " +
                 "JOIN \"Cupcake\" AS cupcake USING (product_id) " +
-                "WHERE order_id=8";
+                "WHERE order_id=?";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
 
+                ps.setInt(1, orderId);
+
                 ResultSet rs = ps.executeQuery();
 
                 while (rs.next()) {
+                    int quantity = rs.getInt("quantity");
+
+
+                    List<CupcakeTop> cupcakeTops = CupcakeMapper.getCupcakeTops(connectionPool);
+
+                    int bottomId = rs.getInt("bottom_id");
+                    int topId = rs.getInt("top_id");
+
+                    CupcakeBottom cupcakeBottom = RouteHandler.getCupcakeBottomById(bottomId);
+                    CupcakeTop cupcakeTop = RouteHandler.getCupcakeTopById(topId);
+                    Cupcake cupcake = new Cupcake(cupcakeBottom,cupcakeTop);
+
+                    items.add(new BasketItem(quantity, cupcake));
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new DatabaseException("Error executing query");
         }
-        return order;
+        return items;
     }
 }

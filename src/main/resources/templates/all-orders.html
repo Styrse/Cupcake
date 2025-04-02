@@ -31,14 +31,14 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="order, iterStat : ${orders}">
+                <tr th:each="order : ${orders}">
                     <td th:text="${order.orderId}"></td>
                     <td th:text="${order.customerEmail}"></td>
                     <td th:text="${order.orderStatus}"></td>
                     <td th:text="${order.paymentType}"></td>
                     <td>
                         <form action="/show-order" method="post">
-                            <input type="hidden" name="index" th:value="${iterStat.index}">
+                            <input type="hidden" name="orderId" th:value="${order.orderId}">
                             <button type="submit" class="button-1">See order</button>
                         </form>
                     </td>

@@ -33,28 +33,8 @@ public class BasketHandler {
 
             try {
                 // ALLE BOTTOMS OG TOPS FRA DB
-                List<CupcakeBottom> bottoms = CupcakeMapper.getCupcakeBottoms(connectionPool);
-                List<CupcakeTop> tops = CupcakeMapper.getCupcakeTops(connectionPool);
-
-                CupcakeBottom cupcakeBottom = null;
-
-                for (CupcakeBottom bottom : bottoms) {
-                    if (bottom.getId() == inputBottomId) {
-                        cupcakeBottom = bottom;
-                        break;
-                    }
-                }
-
-                CupcakeTop cupcakeTop = null;
-                for (CupcakeTop top : tops) {
-                    if (top.getId() == inputTopId) {
-                        cupcakeTop = top;
-                        break;
-                    }
-                }
-
-                assert cupcakeBottom != null;
-                assert cupcakeTop != null;
+                CupcakeBottom cupcakeBottom = RouteHandler.getCupcakeBottomById(inputBottomId);
+                CupcakeTop cupcakeTop = RouteHandler.getCupcakeTopById(inputTopId);
 
                 BasketItem basketItem = new BasketItem(quantity, new Cupcake(cupcakeBottom, cupcakeTop));
 
