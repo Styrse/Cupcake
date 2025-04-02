@@ -37,7 +37,7 @@
                     <td th:text="${order.orderStatus}"></td>
                     <td th:text="${order.paymentType}"></td>
                     <td>
-                        <form>
+                        <form action="/show-order" method="post">
                             <input type="hidden" name="index" th:value="${iterStat.index}">
                             <button type="submit" class="button-1">See order</button>
                         </form>
