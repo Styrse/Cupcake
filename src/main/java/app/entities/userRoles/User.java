@@ -33,6 +33,13 @@ public abstract class User {
         this.balance = balance;
     }
 
+    public User(String firstname, String email, String password) {
+        this.firstname = firstname;
+        this.email = email;
+        this.password = password;
+        this.balance = 0;
+    }
+
     public String getFirstname() {
         return firstname;
     }

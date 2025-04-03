@@ -37,6 +37,11 @@ public class Customer extends User {
         this.orders = new ArrayList<>();
     }
 
+    public Customer(String firstname, String email, String password) {
+        super(firstname, email, password);
+        this.orders = new ArrayList<>();
+    }
+
     public List<Order> getOrders() {
         return orders;
     }

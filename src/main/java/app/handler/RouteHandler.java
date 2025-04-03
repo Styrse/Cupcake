@@ -42,7 +42,9 @@ public class RouteHandler {
             ctx.render("login.html");
         });
 
-        LoginHandler.login(app);
+        LoginRegisterHandler.login(app);
+
+        LoginRegisterHandler.register(app);
 
         app.get("/process-payment", ctx -> {
             User user = ctx.sessionAttribute("user");

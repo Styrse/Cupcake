@@ -1,6 +1,6 @@
 package app.persistence;
 
-import app.entities.Order;
+import app.entities.BasketItem;
 import app.entities.userRoles.Admin;
 import app.entities.userRoles.Customer;
 import app.entities.userRoles.Employee;
@@ -113,6 +113,24 @@ public class UserMapper {
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
                 ps.setString(1, email);
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DatabaseException("Error executing query");
+        }
+    }
+
+    public static void addUser(User user) throws DatabaseException {
+        String sql = "INSERT INTO \"User\" (user_firstname, user_email, user_password) VALUES (?, ?, ?)";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setString(1, user.getFirstname());
+                ps.setString(2, user.getEmail());
+                ps.setString(3, user.getPassword());
+
                 ps.executeUpdate();
             }
         } catch (SQLException e) {
