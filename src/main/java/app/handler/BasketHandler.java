@@ -61,7 +61,7 @@ public class BasketHandler {
         double totalPrice = 0.0;
 
         for (BasketItem item : list) {
-            totalPrice += item.getPrice();
+            totalPrice += item.getTotalPrice();
         }
         return totalPrice;
     }
@@ -102,16 +102,16 @@ public class BasketHandler {
                         updateUserBalance(userEmail, newBalance);
 
                         user.setBalance(currentBalance - basketTotal);
-                    } else if (paymentMethod.equals("mobilepay")) {
-                        paymentType = "MobilePay";
                     }
-                } else if (paymentMethod.equals("cash")) {
-                    orderStatus = "Pending";
-                    paymentType = "Cash";
+                } else if (paymentMethod.equals("mobilepay")) {
+                    paymentType = "MobilePay";
                 }
+            } else if (paymentMethod.equals("cash")) {
+                orderStatus = "Pending";
+                paymentType = "Cash";
             }
 
-            OrderMapper.addOrder(connectionPool, userEmail, orderStatus, paymentType);
+            OrderMapper.addOrder(connectionPool, userEmail, orderStatus, paymentType, basket);
             basket.clear();
 
             ctx.sessionAttribute("user", user);

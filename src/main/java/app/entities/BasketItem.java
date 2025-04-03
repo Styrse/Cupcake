@@ -5,12 +5,12 @@ import app.entities.itemTypes.Item;
 public class BasketItem {
     private int quantity;
     private Item item;
-    private float price;
+    private float totalPrice;
 
     public BasketItem(int quantity, Item item) {
         this.quantity = quantity;
         this.item = item;
-        this.price = quantity * item.getSalesPrice();
+        this.totalPrice = quantity * item.getSalesPrice();
     }
 
     public int getQuantity() {
@@ -21,8 +21,8 @@ public class BasketItem {
         return item;
     }
 
-    public float getPrice() {
-        return price;
+    public float getTotalPrice() {
+        return totalPrice;
     }
 
     public float getItemPrice() {
@@ -31,6 +31,6 @@ public class BasketItem {
 
     public void addToBasket(int quantity) {
         this.quantity += quantity;
-        this.price = getQuantity() * item.getSalesPrice();
+        this.totalPrice = getQuantity() * item.getSalesPrice();
     }
 }

@@ -25,11 +25,15 @@
     <p>Balance After Payment: <strong>$<span th:text="${user.balance - basketTotal} ?: '0.00'"></span></strong></p>
 
     <form action="/process-payment" method="post">
-      <button type="submit" name="paymentMethod" value="cash">Pay cash at pickup</button>
+      <button type="submit" name="paymentMethod" value="cash">Cash</button>
     </form>
 
     <form action="/process-payment" method="post">
-      <button type="submit" name="paymentMethod" value="balance">Pay now with your balance</button>
+      <button type="submit" name="paymentMethod" value="mobilepay">MobilePay</button>
+    </form>
+
+    <form action="/process-payment" method="post">
+      <button type="submit" name="paymentMethod" value="balance">Balance</button>
     </form>
   </div>
 

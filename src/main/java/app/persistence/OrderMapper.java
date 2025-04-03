@@ -56,17 +56,41 @@ public class OrderMapper {
         }
     }
 
-    public static void addOrder(ConnectionPool connectionPool, String email, String orderStatus, String paymentType) throws DatabaseException {
-        String sql = "INSERT INTO \"Order\" (user_email, order_status, payment_type) VALUES (?, ?, ?)";
+    public static void addOrder(ConnectionPool connectionPool, String email, String orderStatus, String paymentType, List<BasketItem> items) throws DatabaseException {
+        String orderSQL = "INSERT INTO \"Order\" (order_date, user_email, order_status, payment_type) VALUES (?, ?, ?, ?) RETURNING order_id";
+        String productSQL = "INSERT INTO \"Product\" (order_id, product_id, quantity) VALUES (?, ?, ?)";
+
 
         try (Connection connection = connectionPool.getConnection()) {
-            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            try (PreparedStatement psOrder = connection.prepareStatement(orderSQL)) {
 
-                ps.setString(1, email);
-                ps.setString(2, orderStatus);
-                ps.setString(3, paymentType);
+                Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                timestamp.setNanos(0);
 
-                ps.executeUpdate();
+                psOrder.setTimestamp(1, timestamp);
+                psOrder.setString(2, email);
+                psOrder.setString(3, orderStatus);
+                psOrder.setString(4, paymentType);
+
+                ResultSet rs = psOrder.executeQuery();
+
+                int orderId = 0;
+                if (rs.next()) {
+                    orderId = rs.getInt("order_id");
+                }
+
+                for (BasketItem item : items) {
+                    try (PreparedStatement psItem = connection.prepareStatement(productSQL)) {
+
+                        int productId = item.getItem().getId();
+                        int quantity = item.getQuantity();
+
+                        psItem.setInt(1, orderId);
+                        psItem.setInt(2, 34); //TODO
+                        psItem.setInt(3, quantity);
+                        psItem.executeUpdate();
+                    }
+                }
             }
         } catch (SQLException e) {
             e.printStackTrace();

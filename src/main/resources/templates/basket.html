@@ -32,7 +32,7 @@
                 <td th:text="${item.item}"></td>
                 <td th:text="${item.quantity}"></td>
                 <td th:text="${item.itemPrice}"></td>
-                <td th:text="${item.price}"></td>
+                <td th:text="${item.totalPrice}"></td>
                 <td>
                     <form action="/basket/remove" method="post">
                         <input type="hidden" name="index" th:value="${iterStat.index}">
