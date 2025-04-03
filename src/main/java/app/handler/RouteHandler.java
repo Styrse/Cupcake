@@ -94,9 +94,12 @@ public class RouteHandler {
 
         OrdersHandler.removeOrder(app);
 
-        UserHandler.addFunds(app);
+//        UserHandler.addFunds(app);
 
+        UserHandler.userReroutes(app);
         UserHandler.removeUser(app);
+
+        UserHandler.logout(app);
 
         OrdersHandler.showOrder(app);
 
