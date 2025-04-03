@@ -7,13 +7,15 @@ import app.entities.userRoles.User;
 import app.persistence.UserMapper;
 import io.javalin.Javalin;
 
+import static app.Main.connectionPool;
+
 public class LoginRegisterHandler {
     public static void login(Javalin app) {
         app.post("/login", ctx -> {
             String email = ctx.formParam("email");
             String password = ctx.formParam("password");
 
-            User user = UserMapper.getUserByEmail(Main.connectionPool, email, password);
+            User user = UserMapper.getUserByEmail(connectionPool, email, password);
 
             if (user == null) {
                 ctx.redirect("/login");
@@ -36,9 +38,16 @@ public class LoginRegisterHandler {
             String email = ctx.formParam("email");
             String password = ctx.formParam("password");
 
-            User user = new Customer(firstname, email, password);
+            User newUser = new Customer(firstname, email, password);
 
-            UserMapper.addUser(user);
+            for (User user : UserMapper.getAllUsers(connectionPool)) {
+                if (user.getEmail().equals(email)) {
+                    ctx.redirect("/");
+                    return;
+                }
+            }
+
+            UserMapper.addUser(newUser);
 
             ctx.redirect("/");
         });
