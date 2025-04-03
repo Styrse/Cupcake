@@ -19,10 +19,10 @@
   <div class="payment-box" th:if="${user}">
     <h2>Payment Summary</h2>
 
-    <p>Your Balance: <strong>$<span th:text="${user.balance} ?: '0.00'"></span></strong></p>
-    <p>Basket Price: <strong>$<span th:text="${basketTotal} ?: '0.00'"></span></strong></p>
+    <p>Your Balance: <strong><span th:text="${user.balance} ?: '0.00'"></span> DKK</strong></p>
+    <p>Basket Price: <strong><span th:text="${basketTotal} ?: '0.00'"></span> DKK</strong></p>
     <hr>
-    <p>Balance After Payment: <strong>$<span th:text="${user.balance - basketTotal} ?: '0.00'"></span></strong></p>
+    <p>Balance After Payment: <strong><span th:text="${user.balance - basketTotal} ?: '0.00'"></span> DKK</strong></p>
 
     <form action="/process-payment" method="post">
       <button type="submit" name="paymentMethod" value="cash">Cash</button>
