@@ -9,8 +9,10 @@ public class UserHandler {
 
     public static void userReroutes(Javalin app) {
         addFunds(app);
+        removeUser(app);
+        logout(app);
     }
-    public static void addFunds(Javalin app) {
+    private static void addFunds(Javalin app) {
         app.post("/profile/add-funds", ctx -> {
 
             float addedAmount = Float.parseFloat(ctx.formParam("add-funds"));
@@ -25,7 +27,7 @@ public class UserHandler {
         });
     }
 
-    public static void removeUser(Javalin app) {
+    private static void removeUser(Javalin app) {
         app.post("/profile/remove", ctx -> {
             String email  = ctx.formParam("email");
 
@@ -35,8 +37,8 @@ public class UserHandler {
         });
     }
 
-    public static void logout(Javalin app) {
-
+    private static void logout(Javalin app) {
+        //TODO: Logout
     }
 }
 

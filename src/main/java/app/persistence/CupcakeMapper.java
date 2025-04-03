@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
 
+import static app.Main.connectionPool;
+
 public class CupcakeMapper {
     public static List<CupcakeBottom> getCupcakeBottoms(ConnectionPool connectionPool) throws DatabaseException {
         List<CupcakeBottom> bottoms = new ArrayList<>();
@@ -100,5 +102,33 @@ public class CupcakeMapper {
                 }
             }
         return cupcakes;
+    }
+
+    public static CupcakeBottom getCupcakeBottomById(int bottomId) throws DatabaseException {
+        List<CupcakeBottom> cupcakeBottoms = CupcakeMapper.getCupcakeBottoms(connectionPool);
+
+        CupcakeBottom cupcakeBottom = null;
+
+        for (CupcakeBottom bottom : cupcakeBottoms) {
+            if (bottom.getId() == bottomId) {
+                cupcakeBottom = bottom;
+                break;
+            }
+        }
+        return cupcakeBottom;
+    }
+
+    public static CupcakeTop getCupcakeTopById(int inputTopId) throws DatabaseException {
+        List<CupcakeTop> cupcakeTops = CupcakeMapper.getCupcakeTops(connectionPool);
+
+        CupcakeTop cupcakeTop = null;
+
+        for (CupcakeTop top : cupcakeTops) {
+            if (top.getId() == inputTopId) {
+                cupcakeTop = top;
+                break;
+            }
+        }
+        return cupcakeTop;
     }
 }

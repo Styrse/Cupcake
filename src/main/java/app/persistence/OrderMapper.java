@@ -6,7 +6,6 @@ import app.entities.itemTypes.eatables.Cupcake;
 import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
 import app.exceptions.DatabaseException;
-import app.handler.RouteHandler;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -59,7 +58,6 @@ public class OrderMapper {
     public static void addOrder(ConnectionPool connectionPool, String email, String orderStatus, String paymentType, List<BasketItem> items) throws DatabaseException {
         String orderSQL = "INSERT INTO \"Order\" (order_date, user_email, order_status, payment_type) VALUES (?, ?, ?, ?) RETURNING order_id";
         String productSQL = "INSERT INTO \"Product\" (order_id, product_id, quantity) VALUES (?, ?, ?)";
-
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement psOrder = connection.prepareStatement(orderSQL)) {
@@ -120,8 +118,8 @@ public class OrderMapper {
                     int bottomId = rs.getInt("bottom_id");
                     int topId = rs.getInt("top_id");
 
-                    CupcakeBottom cupcakeBottom = RouteHandler.getCupcakeBottomById(bottomId);
-                    CupcakeTop cupcakeTop = RouteHandler.getCupcakeTopById(topId);
+                    CupcakeBottom cupcakeBottom = CupcakeMapper.getCupcakeBottomById(bottomId);
+                    CupcakeTop cupcakeTop = CupcakeMapper.getCupcakeTopById(topId);
                     Cupcake cupcake = new Cupcake(cupcakeBottom,cupcakeTop);
 
                     items.add(new BasketItem(quantity, cupcake));

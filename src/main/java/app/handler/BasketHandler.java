@@ -6,9 +6,10 @@ import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
 import app.entities.userRoles.User;
 import app.exceptions.DatabaseException;
+import app.persistence.CupcakeMapper;
 import app.persistence.OrderMapper;
+import app.utils.BasketUtils;
 import io.javalin.Javalin;
-import io.javalin.http.Context;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -22,8 +23,14 @@ public class BasketHandler {
 
     public static List<BasketItem> basket = new ArrayList<>();
 
-    public static void addToBasket(Javalin app) {
+    public static void basketReroutes(Javalin app) {
+        addToBasket(app);
+        removeFromBasket(app);
+        handlePayment(app);
+        showBasket(app);
+    }
 
+    private static void addToBasket(Javalin app) {
         app.post("/", ctx -> {
             //USERS VALG AF BOTTOM OG TOP
             int inputBottomId = Integer.parseInt(ctx.formParam("cupcakeBottom"));
@@ -32,8 +39,8 @@ public class BasketHandler {
 
             try {
                 // ALLE BOTTOMS OG TOPS FRA DB
-                CupcakeBottom cupcakeBottom = RouteHandler.getCupcakeBottomById(inputBottomId);
-                CupcakeTop cupcakeTop = RouteHandler.getCupcakeTopById(inputTopId);
+                CupcakeBottom cupcakeBottom = CupcakeMapper.getCupcakeBottomById(inputBottomId);
+                CupcakeTop cupcakeTop = CupcakeMapper.getCupcakeTopById(inputTopId);
 
                 BasketItem basketItem = new BasketItem(quantity, new Cupcake(cupcakeBottom, cupcakeTop));
 
@@ -49,7 +56,7 @@ public class BasketHandler {
                     }
                     basket.add(basketItem);
                 }
-                
+
                 ctx.redirect("/");
             } catch (DatabaseException e) {
                 throw new RuntimeException(e);
@@ -57,16 +64,7 @@ public class BasketHandler {
         });
     }
 
-    public static double getTotalPrice(List<BasketItem> list) {
-        double totalPrice = 0.0;
-
-        for (BasketItem item : list) {
-            totalPrice += item.getTotalPrice();
-        }
-        return totalPrice;
-    }
-
-    public static void removeFromBasket(Javalin app) {
+    private static void removeFromBasket(Javalin app) {
         app.post("/basket/remove", ctx -> {
             int index = Integer.parseInt(ctx.formParam("index"));
 
@@ -78,12 +76,12 @@ public class BasketHandler {
         });
     }
 
-    public static void handlePayment(Javalin app) {
+    private static void handlePayment(Javalin app) {
         app.post("/process-payment", ctx -> {
             User user = ctx.sessionAttribute("user");
             assert user != null;
             String userEmail = user.getEmail();
-            float basketTotal = (float) getTotalPrice(basket);
+            float basketTotal = (float) BasketUtils.getTotalPrice(basket);
             float currentBalance = user.getBalance();
 
             String paymentMethod = ctx.formParam("paymentMethod");
@@ -119,13 +117,15 @@ public class BasketHandler {
         });
     }
 
-    public static void showBasket(Context ctx) {
-        Map<String, Object> model = new HashMap<>();
-        model.put("basket", BasketHandler.basket);
+    private static void showBasket(Javalin app) {
+        app.get("/basket", ctx -> {
+            Map<String, Object> model = new HashMap<>();
+            model.put("basket", BasketHandler.basket);
 
-        ctx.sessionAttribute("basket", basket);
-        ctx.attribute("totalPrice", getTotalPrice(basket));
+            ctx.sessionAttribute("basket", basket);
+            ctx.attribute("totalPrice", BasketUtils.getTotalPrice(basket));
 
-        ctx.render("basket.html", model);
+            ctx.render("basket.html", model);
+        });
     }
 }

@@ -1,6 +1,5 @@
 package app.handler;
 
-import app.Main;
 import app.entities.userRoles.Customer;
 import app.entities.userRoles.Employee;
 import app.entities.userRoles.User;
@@ -10,7 +9,12 @@ import io.javalin.Javalin;
 import static app.Main.connectionPool;
 
 public class LoginRegisterHandler {
-    public static void login(Javalin app) {
+    public static void loginRegisterReroutes(Javalin app) {
+        login(app);
+        register(app);
+    }
+
+    private static void login(Javalin app) {
         app.post("/login", ctx -> {
             String email = ctx.formParam("email");
             String password = ctx.formParam("password");
@@ -32,7 +36,7 @@ public class LoginRegisterHandler {
         });
     }
 
-    public static void register(Javalin app) {
+    private static void register(Javalin app) {
         app.post("/register", ctx -> {
             String firstname = ctx.formParam("firstname");
             String email = ctx.formParam("email");
