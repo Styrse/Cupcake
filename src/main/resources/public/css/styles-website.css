@@ -283,12 +283,6 @@ footer {
     gap: 15px;
 }
 
-.profile-options:hover {
-    border-radius: 15px;
-    border: 5px solid rebeccapurple;
-    background: rebeccapurple;
-}
-
 .profile-options {
     padding: 5px;
 }
@@ -526,4 +520,12 @@ tbody tr:hover {
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.icon:hover,
+.profile-options:hover,
+.top-nav:hover {
+    background-color: rebeccapurple;
+    border-radius: 10px;
+    border: 5px solid rebeccapurple;
 }

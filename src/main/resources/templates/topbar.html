@@ -1,15 +1,15 @@
 <div th:fragment="topbar" class="topbar-container">
-    <div id="logo">
+    <a href="/" id="logo">
         <img src="/img/cupcake_logo_removedbg.png">
-    </div>
+    </a>
 
     <div th:if="${session.isEmployee}" class="dashboard-top-bar">
-        <a href="/all-orders">
+        <a href="/all-orders" class="icon">
             <img src="/img/icons/all-orders.png">
             <p>All orders</p>
         </a>
 
-        <a href="/all-profiles">
+        <a href="/all-profiles" class="icon">
             <img src="/img/icons/all-profiles.png">
             <p>All profiles</p>
         </a>
