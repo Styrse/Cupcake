@@ -20,8 +20,6 @@ public class Main {
     public static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);
 
     public static void main(String[] args) {
-
-
         // Initializing Javalin and Jetty webserver
 
         Javalin app = Javalin.create(config -> {
@@ -30,8 +28,6 @@ public class Main {
             config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine()));
         }).start(7070);
 
-        RouteHandler.routes(app, connectionPool);
-
-
+        RouteHandler.routes(app);
     }
 }

@@ -22,11 +22,13 @@ public class LoginRegisterHandler {
             User user = UserMapper.getUserByEmail(connectionPool, email, password);
 
             if (user == null) {
+                ctx.sessionAttribute("loginError", "Invalid email or password.");
                 ctx.redirect("/login");
             } else {
                 ctx.sessionAttribute("user", user);
                 ctx.sessionAttribute("email", email);
-                ctx.sessionAttribute("balance", user.getBalance());
+                ctx.sessionAttribute("isEmployee", user instanceof Employee);
+
                 if (user instanceof Employee) {
                     ctx.redirect("/dashboard");
                 } else {
@@ -35,6 +37,7 @@ public class LoginRegisterHandler {
             }
         });
     }
+
 
     private static void register(Javalin app) {
         app.post("/register", ctx -> {
@@ -55,5 +58,9 @@ public class LoginRegisterHandler {
 
             ctx.redirect("/");
         });
+    }
+
+    private static void logout(Javalin app) {
+//        app.post();
     }
 }

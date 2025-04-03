@@ -494,3 +494,8 @@ tbody tr:hover {
     transform: scale(0.95);
 }
 
+.topbar-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}

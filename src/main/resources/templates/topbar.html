@@ -1,36 +1,51 @@
-<div th:fragment="topbar" class="top-bar">
-    <div class="profile-container">
-        <p class="top-nav-email" th:text="${session.email}"></p>
-        <a th:href="${session.user != null} ? '/settings' : '/login'" class="top-nav" id="profile-collapsed">
-            <img src="/img/icons/profile.png" class="top-bar-img">
+<div th:fragment="topbar" class="topbar-container">
+    <!-- Dashboard Top Bar (Only for Employees) -->
+    <div th:if="${session.isEmployee}" class="dashboard-top-bar">
+        <a href="/all-orders">
+            <img src="/img/icons/all-orders.png">
+            <p>All orders</p>
         </a>
 
-
-        <div class="profile-expanded" th:if="${session.user != null}">
-            <div class="profile-options">
-                <form action="/profile-orders" method="post">
-                    <input type="hidden" name="email" th:value="${session.email}">
-                    <button type="submit" class="profile-button">
-                        <img src="/img/icons/orders.png" class="top-bar-img">
-                    </button>
-                </form>
-            </div>
-
-            <div class="profile-options">
-                <a href="/profile-settings">
-                    <img src="/img/icons/settings.png" class="top-bar-img">
-                </a>
-            </div>
-
-            <div class="profile-options">
-                <a href="/logout">
-                    <img src="/img/icons/logout.png" class="top-bar-img">
-                </a>
-            </div>
-        </div>
+        <a href="/all-profiles">
+            <img src="/img/icons/all-profiles.png">
+            <p>All profiles</p>
+        </a>
     </div>
 
-    <a href="/basket" class="top-nav">
-        <img src="/img/icons/shopping-basket.png" class="top-bar-img">
-    </a>
+    <!-- Main Top Bar -->
+    <div class="top-bar">
+        <div class="profile-container">
+            <p class="top-nav-email" th:text="${session.email}"></p>
+            <a th:href="${session.user != null} ? '/settings' : '/login'" class="top-nav" id="profile-collapsed">
+                <img src="/img/icons/profile.png" class="top-bar-img">
+            </a>
+
+            <div class="profile-expanded" th:if="${session.user != null}">
+                <div class="profile-options">
+                    <form action="/profile-orders" method="post">
+                        <input type="hidden" name="email" th:value="${session.email}">
+                        <button type="submit" class="profile-button">
+                            <img src="/img/icons/orders.png" class="top-bar-img">
+                        </button>
+                    </form>
+                </div>
+
+                <div class="profile-options">
+                    <a href="/profile-settings">
+                        <img src="/img/icons/settings.png" class="top-bar-img">
+                    </a>
+                </div>
+
+                <div class="profile-options">
+                    <a href="/logout">
+                        <img src="/img/icons/logout.png" class="top-bar-img">
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <a href="/basket" class="top-nav">
+            <img src="/img/icons/shopping-basket.png" class="top-bar-img">
+        </a>
+    </div>
 </div>
