@@ -37,7 +37,7 @@ footer {
 
 .top-bar {
     width: 100%;
-    height: 7.5vh;
+    height: 10vh;
     background-color: mediumpurple;
     display: flex;
     justify-content: right;
@@ -45,6 +45,17 @@ footer {
     position: sticky;
     top: 0;
     z-index: +1;
+}
+
+#logo {
+    height: 90%;
+    display: flex;
+    align-items: center;
+}
+
+#logo img {
+    height: 100%;
+    object-fit: contain;
 }
 
 .top-nav {
@@ -61,18 +72,29 @@ footer {
 
 .dashboard-top-bar {
     width: 100%;
-    height: 7.5vh;
+    height: 10vh;
     background-color: mediumpurple;
     display: flex;
-    justify-content: right;
+    justify-content: center;
+    gap: 15px;
+}
+
+.dashboard-top-bar a {
+    display: flex;
     gap: 10px;
-    position: sticky;
-    top: 0;
-    z-index: +1;
+    place-self: center;
+    text-decoration: none;
+    color: inherit;
 }
 
 .dashboard-top-bar img{
     height: 4vh;
+}
+
+#logo img {
+    height: 10vh;
+    position: relative;
+    background: mediumpurple;
 }
 
 .product-container {
@@ -262,7 +284,8 @@ footer {
 }
 
 .profile-options:hover {
-    border-radius: 25px;
+    border-radius: 15px;
+    border: 5px solid rebeccapurple;
     background: rebeccapurple;
 }
 
@@ -274,6 +297,11 @@ footer {
     display: flex;
     justify-items: center;
     align-items: center;
+}
+
+.profile-container a {
+    text-decoration: none;
+    color: inherit;
 }
 
 .profile-container:hover .profile-expanded {
