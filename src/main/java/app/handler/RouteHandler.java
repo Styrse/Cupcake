@@ -4,7 +4,7 @@ import io.javalin.Javalin;
 
 public class RouteHandler {
     public static void routes(Javalin app) {
-        indexHandler.indexReroutes(app);
+        IndexHandler.indexReroutes(app);
         BasketHandler.basketReroutes(app);
         OrdersHandler.ordersReroutes(app);
         LoginRegisterHandler.loginRegisterReroutes(app);

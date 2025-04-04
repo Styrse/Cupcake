@@ -11,7 +11,7 @@ import java.util.Map;
 import static app.persistence.CupcakeMapper.getCupcakeBottoms;
 import static app.persistence.CupcakeMapper.getCupcakeTops;
 
-public class indexHandler {
+public class IndexHandler {
     public static void indexReroutes(Javalin app) {
         showCupcakes(app);
         showIndex(app);

@@ -1,5 +1,6 @@
 package app.handler;
 
+import app.entities.userRoles.Admin;
 import app.entities.userRoles.Employee;
 import app.entities.userRoles.User;
 import app.persistence.UserMapper;
@@ -17,7 +18,7 @@ public class DashboardHandler {
         app.get("/dashboard", ctx -> {
             User user = ctx.sessionAttribute("user");
 
-            if (user instanceof Employee) {
+            if (user instanceof Admin) {
                 ctx.render("dashboard.html");
             } else {
                 ctx.redirect("/");
