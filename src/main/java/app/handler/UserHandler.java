@@ -12,6 +12,7 @@ public class UserHandler {
         removeUser(app);
         settings(app);
         updateEmail(app);
+        updatePassword(app);
     }
 
     private static void addFunds(Javalin app) {
@@ -66,10 +67,36 @@ public class UserHandler {
             String oldEmail = user.getEmail();
             user.setEmail(newEmail);
 
-            UserMapper.updateUser(user, oldEmail);
+            UserMapper.updateUserEmail(user, oldEmail);
 
-            ctx.sessionAttribute("email", newEmail);
+            ctx.sessionAttribute("email", user.getEmail());
 
+            ctx.redirect("/");
+        });
+    }
+
+    private static void updatePassword(Javalin app) {
+        app.post("/update-password", ctx -> {
+            String currentPassword = ctx.formParam("currentPassword");
+            String newPassword = ctx.formParam("newPassword");
+            String confirmPassword = ctx.formParam("confirmPassword");
+
+            User user = ctx.sessionAttribute("user");
+
+            if (currentPassword.equals(user.getPassword())) {
+
+                ctx.sessionAttribute("email", user.getEmail());
+
+                if (newPassword.equals(confirmPassword)) {
+                    user.setPassword(newPassword);
+                    UserMapper.updateUserPassword(user, newPassword);
+                    ctx.redirect("/");
+                    return;
+                }
+                ctx.redirect("/");
+            } else {
+                ctx.redirect("/settings");
+            }
             ctx.redirect("/");
         });
     }
