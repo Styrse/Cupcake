@@ -88,10 +88,12 @@ public class UserHandler {
                 ctx.sessionAttribute("email", user.getEmail());
 
                 if (newPassword.equals(confirmPassword)) {
-                    user.setPassword(newPassword);
-                    UserMapper.updateUserPassword(user, newPassword);
-                    ctx.redirect("/");
-                    return;
+                    if (!currentPassword.equals(newPassword)) {
+                        user.setPassword(newPassword);
+                        UserMapper.updateUserPassword(user, newPassword);
+                        ctx.redirect("/");
+                        return;
+                    }
                 }
                 ctx.redirect("/");
             } else {
