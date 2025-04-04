@@ -15,31 +15,33 @@
 <main>
     <div th:insert="~{topbar :: topbar}"></div>
 
-    <div class="product-container">
-        <div class="product-menu">
-            <div class="menu-collapsed">
-                <img src="/img/icons/cupcake.png">
-                <img src="/img/icons/drink.png">
-                <img src="/img/icons/gift-card.png">
-            </div>
+<!--                Menu is prepared for new product categories-->
+<!--    <div class="product-container">-->
 
-            <div class="menu-expanded">
-                <div id="menu-cupcake" class="menu">
-                    <img src="/img/icons/cupcake.png" href="cupcake">
-                    <a>Cupcake</a>
-                </div>
+<!--        <div class="product-menu">-->
+<!--            <div class="menu-collapsed">-->
+<!--                <img src="/img/icons/cupcake.png">-->
+<!--                <img src="/img/icons/drink.png">-->
+<!--                <img src="/img/icons/gift-card.png">-->
+<!--            </div>-->
 
-                <div id="menu-drinks" class="menu">
-                    <img src="/img/icons/drink.png" href="drinks">
-                    <a>Drinks</a>
-                </div>
+<!--            <div class="menu-expanded">-->
+<!--                <div id="menu-cupcake" class="menu">-->
+<!--                    <img src="/img/icons/cupcake.png" href="cupcake">-->
+<!--                    <a>Cupcake</a>-->
+<!--                </div>-->
 
-                <div id="menu-misc" class="menu">
-                    <img src="/img/icons/gift-card.png" href="misc">
-                    <a>Miscellaneous</a>
-                </div>
-            </div>
-        </div>
+<!--                <div id="menu-drinks" class="menu">-->
+<!--                    <img src="/img/icons/drink.png" href="drinks">-->
+<!--                    <a>Drinks</a>-->
+<!--                </div>-->
+
+<!--                <div id="menu-misc" class="menu">-->
+<!--                    <img src="/img/icons/gift-card.png" href="misc">-->
+<!--                    <a>Miscellaneous</a>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--        </div>-->
 
         <div class="product-display">
             <div class="product-boxes" id="cupcake">
@@ -101,14 +103,14 @@
                 </form>
             </div>
 
+<!--            Prepared for new product categories-->
+<!--            <div class="product-boxes" id="drinks">-->
+<!--                <h2 class="product-menu-title">Drinks</h2>-->
+<!--            </div>-->
 
-            <div class="product-boxes" id="drinks">
-                <h2 class="product-menu-title">Drinks</h2>
-            </div>
-
-            <div class="product-boxes" id="misc">
-                <h2 class="product-menu-title">Gift card</h2>
-            </div>
+<!--            <div class="product-boxes" id="misc">-->
+<!--                <h2 class="product-menu-title">Gift card</h2>-->
+<!--            </div>-->
         </div>
     </div>
 </main>
