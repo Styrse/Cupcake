@@ -211,8 +211,6 @@ footer {
     padding: 5px;
 }
 
-
-
 #cupcake-subtract {
     background: red;
 }
@@ -226,6 +224,10 @@ footer {
     width: 100%;
     height: auto;
     margin-bottom: 1rem;
+}
+
+#cupcake-preview-img {
+    transform: translateX(37px);
 }
 
 .products {
@@ -292,6 +294,18 @@ footer {
 .profile-expanded {
     display: none;
     gap: 15px;
+}
+
+.profile-options:hover {
+    cursor: pointer;
+}
+
+.profile-options button {
+    cursor: pointer;
+}
+
+.profile-options img {
+    cursor: pointer;
 }
 
 .profile-options {
@@ -540,16 +554,18 @@ tbody tr:hover {
     justify-content: space-between;
 }
 
+.icon {
+    align-items: center;
+    justify-items: center;
+}
+
 .icon:hover,
 .profile-options:hover,
 .top-nav:hover {
     background-color: rebeccapurple;
     border-radius: 10px;
-    border: 5px solid rebeccapurple;
-}
-
-.profile-options img {
-    background-color: mediumpurple;
+    border-left: 5px solid rebeccapurple;
+    border-right: 5px solid rebeccapurple;
 }
 
 .settings-container {
@@ -605,7 +621,7 @@ tbody tr:hover {
 }
 
 .dashboard-box:hover {
-    transform: scale(1.02);
+    background: lightgrey;
     cursor: pointer;
 }
 
@@ -631,3 +647,10 @@ tbody tr:hover {
     font-style: italic;
     color: #999;
 }
+
+.profile-options button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}
+

@@ -4,6 +4,11 @@
     </a>
 
     <div th:if="${session.isEmployee}" class="dashboard-top-bar">
+        <a href="/dashboard" class="icon">
+            <img src="/img/icons/dashboard.png">
+            <p>Dashboard</p>
+        </a>
+
         <a href="/all-orders" class="icon">
             <img src="/img/icons/all-orders.png">
             <p>All orders</p>
@@ -50,10 +55,12 @@
                     </form>
                 </div>
             </div>
+
+            <a href="/basket" class="top-nav">
+                <img src="/img/icons/shopping-basket.png" class="top-bar-img">
+            </a>
         </div>
 
-        <a href="/basket" class="top-nav">
-            <img src="/img/icons/shopping-basket.png" class="top-bar-img">
-        </a>
+
     </div>
 </div>
