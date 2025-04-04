@@ -432,47 +432,6 @@ tbody tr:hover {
     margin-right: 10px;
 }
 
-.add-to-basket {
-    background-color: #ff66b2;
-    color: white;
-    border: none;
-    padding: 12px 24px;
-    font-size: 18px;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: background-color 0.3s ease-in-out, transform 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    position: relative;
-    overflow: hidden;
-}
-
-.add-to-basket i {
-    font-size: 20px;
-}
-
-.add-to-basket:hover {
-    background-color: #e60073;
-    transform: scale(1.05);
-}
-
-.add-to-basket:active {
-    transform: scale(0.95);
-}
-
-.icon-heart {
-    position: absolute;
-    right: -30px;
-    opacity: 0;
-    transition: right 0.3s ease-in-out, opacity 0.3s ease-in-out;
-}
-
-.add-to-basket:hover .icon-heart {
-    right: 10px;
-    opacity: 1;
-}
-
 .payment-box {
     width: 350px;
     padding: 20px;
@@ -482,25 +441,6 @@ tbody tr:hover {
     text-align: center;
     position: relative;
     margin: 0 auto;
-}
-
-.payment-box h2 {
-    margin-bottom: 15px;
-    font-size: 24px;
-    color: #333;
-}
-
-.payment-box p {
-    font-size: 18px;
-    margin: 8px 0;
-    color: #555;
-}
-
-.payment-box hr {
-    margin: 15px 0;
-    border: 0;
-    height: 1px;
-    background-color: #ddd;
 }
 
 .payment-box button {
