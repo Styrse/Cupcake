@@ -1,6 +1,5 @@
 package app.persistence;
 
-import app.entities.BasketItem;
 import app.entities.userRoles.Admin;
 import app.entities.userRoles.Customer;
 import app.entities.userRoles.Employee;
@@ -15,7 +14,7 @@ import java.util.List;
 import static app.Main.connectionPool;
 
 public class UserMapper {
-    public static User getUserByEmail(ConnectionPool connectionPool, String inputEmail, String inputPassword) throws DatabaseException {
+    public static User verifyUser(String inputEmail, String inputPassword) throws DatabaseException {
         String sql = "SELECT * FROM \"User\" WHERE \"user_email\" = ? AND \"user_password\" = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -67,7 +66,7 @@ public class UserMapper {
         }
     }
 
-    public static List<User> getAllUsers(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<User> getAllUsers() throws DatabaseException {
         List<User> users = new ArrayList<>();
 
         String sql = "SELECT * FROM \"User\" ORDER BY \"user_email\"";
@@ -107,7 +106,7 @@ public class UserMapper {
         return users;
     }
 
-    public static void removeUser(ConnectionPool connectionPool, String email) throws DatabaseException {
+    public static void removeUser(String email) throws DatabaseException {
         String sql = "DELETE FROM \"User\" WHERE \"user_email\" = ?";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -137,5 +136,44 @@ public class UserMapper {
             e.printStackTrace();
             throw new DatabaseException("Error executing query");
         }
+    }
+
+    public static User getUserByEmail(String inputEmail) throws DatabaseException {
+        String sql = "SELECT * FROM \"User\" WHERE \"user_email\" = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setString(1, inputEmail);
+
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    int userId = rs.getInt("user_id");
+                    String firstname = rs.getString("user_firstname");
+                    String lastname = rs.getString("user_lastname");
+                    String email = rs.getString("user_email");
+                    Date birthday = rs.getDate("user_birthday");
+                    String password = rs.getString("user_password");
+                    float balance = rs.getFloat("user_balance");
+                    boolean isEmployee = rs.getBoolean("isEmployee");
+                    boolean isAdmin = rs.getBoolean("isAdmin");
+
+                    if (isEmployee) {
+                        if (isAdmin) {
+                            return new Admin(email, password, balance, firstname);
+                        } else {
+                            return new Employee(email, password, balance, firstname);
+                        }
+                    } else {
+                        return new Customer(email, password, balance, firstname);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DatabaseException("Error executing query");
+        }
+        return null;
     }
 }

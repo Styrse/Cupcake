@@ -1,5 +1,6 @@
 package app.handler;
 
+import app.entities.userRoles.User;
 import app.persistence.UserMapper;
 import io.javalin.Javalin;
 
@@ -10,7 +11,7 @@ public class UserHandler {
     public static void userReroutes(Javalin app) {
         addFunds(app);
         removeUser(app);
-        logout(app);
+        settings(app);
     }
     private static void addFunds(Javalin app) {
         app.post("/profile/add-funds", ctx -> {
@@ -31,14 +32,24 @@ public class UserHandler {
         app.post("/profile/remove", ctx -> {
             String email  = ctx.formParam("email");
 
-            UserMapper.removeUser(connectionPool, email);
+            UserMapper.removeUser(email);
 
             ctx.redirect("/all-profiles");
         });
     }
 
-    private static void logout(Javalin app) {
-        //TODO: Logout
+    private static void settings(Javalin app) {
+        app.post("/settings", ctx -> {
+            String email = ctx.formParam("email");
+
+            User user = UserMapper.getUserByEmail(email);
+
+            if (user == null) {
+                ctx.redirect("/");
+            } else {
+                ctx.render("/settings");
+            }
+        });
     }
 }
 

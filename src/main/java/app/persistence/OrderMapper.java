@@ -11,11 +11,13 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import static app.Main.connectionPool;
+
 public class OrderMapper {
-    public static List<Order> getAllOrders(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<Order> getAllOrders() throws DatabaseException {
         List<Order> orders = new ArrayList<>();
 
-        String sql = "SELECT * FROM \"Order\"";
+        String sql = "SELECT * FROM \"Order\" ORDER BY order_id DESC";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -39,7 +41,7 @@ public class OrderMapper {
         return orders;
     }
 
-    public static void removeOrder(ConnectionPool connectionPool, int orderId) throws DatabaseException {
+    public static void removeOrder(int orderId) throws DatabaseException {
         String sql = "DELETE FROM \"Order\" WHERE order_id=?;";
 
         try (Connection connection = connectionPool.getConnection()) {
@@ -55,7 +57,7 @@ public class OrderMapper {
         }
     }
 
-    public static void addOrder(ConnectionPool connectionPool, String email, String orderStatus, String paymentType, List<BasketItem> items) throws DatabaseException {
+    public static void addOrder(String email, String orderStatus, String paymentType, List<BasketItem> items) throws DatabaseException {
         String orderSQL = "INSERT INTO \"Order\" (order_date, user_email, order_status, payment_type) VALUES (?, ?, ?, ?) RETURNING order_id";
         String productSQL = "INSERT INTO \"Product\" (order_id, product_id, quantity) VALUES (?, ?, ?)";
 
@@ -80,11 +82,15 @@ public class OrderMapper {
                 for (BasketItem item : items) {
                     try (PreparedStatement psItem = connection.prepareStatement(productSQL)) {
 
-                        int productId = item.getItem().getId();
+                        int productId = -1;
                         int quantity = item.getQuantity();
 
+                        if (item.getItem() instanceof Cupcake) {
+                            productId = CupcakeMapper.getCupcakeId(((Cupcake) item.getItem()).getCupcakeBottom().getId(), ((Cupcake) item.getItem()).getCupcakeTop().getId());
+                        }
+
                         psItem.setInt(1, orderId);
-                        psItem.setInt(2, 34); //TODO
+                        psItem.setInt(2, productId);
                         psItem.setInt(3, quantity);
                         psItem.executeUpdate();
                     }
@@ -96,7 +102,7 @@ public class OrderMapper {
         }
     }
 
-    public static List<BasketItem> getOrderByOrderID(ConnectionPool connectionPool, int orderId) throws DatabaseException {
+    public static List<BasketItem> getOrderByOrderID(int orderId) throws DatabaseException {
         List<BasketItem> items = new ArrayList<>();
 
         String sql = "SELECT * " +
@@ -132,7 +138,7 @@ public class OrderMapper {
         return items;
     }
 
-    public static List<Order> getUserOrders(ConnectionPool connectionPool, String customerEmail) throws DatabaseException {
+    public static List<Order> getUserOrders(String customerEmail) throws DatabaseException {
         List<Order> orders = new ArrayList<>();
 
         String sql = "SELECT * " +

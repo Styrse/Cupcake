@@ -3,6 +3,9 @@ package app.persistence;
 import app.entities.itemTypes.eatables.Cupcake;
 import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
+import app.entities.userRoles.Admin;
+import app.entities.userRoles.Customer;
+import app.entities.userRoles.Employee;
 import app.exceptions.DatabaseException;
 
 import java.sql.Connection;
@@ -14,7 +17,7 @@ import java.util.*;
 import static app.Main.connectionPool;
 
 public class CupcakeMapper {
-    public static List<CupcakeBottom> getCupcakeBottoms(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<CupcakeBottom> getCupcakeBottoms() throws DatabaseException {
         List<CupcakeBottom> bottoms = new ArrayList<>();
 
         String sqlBottom = "SELECT * FROM \"Cupcake_bottom\"";
@@ -53,7 +56,7 @@ public class CupcakeMapper {
         return bottoms;
     }
 
-    public static List<CupcakeTop> getCupcakeTops(ConnectionPool connectionPool) throws DatabaseException {
+    public static List<CupcakeTop> getCupcakeTops() throws DatabaseException {
         List<CupcakeTop> tops = new ArrayList<>();
 
         String sqlTop = "SELECT * FROM \"Cupcake_top\"";
@@ -93,11 +96,37 @@ public class CupcakeMapper {
         return tops;
     }
 
-    public static List<Cupcake> cupcakeBuilder(ConnectionPool connectionPool) throws DatabaseException{
+    public static int getCupcakeId(int bottomId, int topId) throws DatabaseException {
+        String sql = "SELECT * FROM \"Cupcake\" WHERE \"bottom_id\" = ? and \"top_id\" = ?";
+
+        int cupcakeId = 0;
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+
+                ps.setInt(1, bottomId);
+                ps.setInt(2, topId);
+
+                ResultSet rs = ps.executeQuery();
+
+                while (rs.next()) {
+                    cupcakeId = rs.getInt("product_id");
+
+                    return cupcakeId;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DatabaseException("Error executing query");
+        }
+        return cupcakeId;
+    }
+
+    public static List<Cupcake> cupcakeBuilder() throws DatabaseException{
         List<Cupcake> cupcakes = new ArrayList<>();
 
-            for (CupcakeBottom bottom : getCupcakeBottoms(connectionPool)) {
-                for (CupcakeTop top : getCupcakeTops(connectionPool)) {
+            for (CupcakeBottom bottom : getCupcakeBottoms()) {
+                for (CupcakeTop top : getCupcakeTops()) {
                     cupcakes.add(new Cupcake(bottom, top));
                 }
             }
@@ -105,7 +134,7 @@ public class CupcakeMapper {
     }
 
     public static CupcakeBottom getCupcakeBottomById(int bottomId) throws DatabaseException {
-        List<CupcakeBottom> cupcakeBottoms = CupcakeMapper.getCupcakeBottoms(connectionPool);
+        List<CupcakeBottom> cupcakeBottoms = CupcakeMapper.getCupcakeBottoms();
 
         CupcakeBottom cupcakeBottom = null;
 
@@ -119,7 +148,7 @@ public class CupcakeMapper {
     }
 
     public static CupcakeTop getCupcakeTopById(int inputTopId) throws DatabaseException {
-        List<CupcakeTop> cupcakeTops = CupcakeMapper.getCupcakeTops(connectionPool);
+        List<CupcakeTop> cupcakeTops = CupcakeMapper.getCupcakeTops();
 
         CupcakeTop cupcakeTop = null;
 

@@ -12,6 +12,7 @@ public class LoginRegisterHandler {
     public static void loginRegisterReroutes(Javalin app) {
         login(app);
         register(app);
+        logout(app);
     }
 
     private static void login(Javalin app) {
@@ -19,7 +20,7 @@ public class LoginRegisterHandler {
             String email = ctx.formParam("email");
             String password = ctx.formParam("password");
 
-            User user = UserMapper.getUserByEmail(connectionPool, email, password);
+            User user = UserMapper.verifyUser(email, password);
 
             if (user == null) {
                 ctx.sessionAttribute("loginError", "Invalid email or password.");
@@ -47,7 +48,7 @@ public class LoginRegisterHandler {
 
             User newUser = new Customer(firstname, email, password);
 
-            for (User user : UserMapper.getAllUsers(connectionPool)) {
+            for (User user : UserMapper.getAllUsers()) {
                 if (user.getEmail().equals(email)) {
                     ctx.redirect("/");
                     return;
@@ -61,6 +62,9 @@ public class LoginRegisterHandler {
     }
 
     private static void logout(Javalin app) {
-//        app.post();
+        app.post("/logout", ctx -> {
+            ctx.req().getSession().invalidate();
+            ctx.redirect("/");
+        });
     }
 }

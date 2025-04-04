@@ -109,7 +109,7 @@ public class BasketHandler {
                 paymentType = "Cash";
             }
 
-            OrderMapper.addOrder(connectionPool, userEmail, orderStatus, paymentType, basket);
+            OrderMapper.addOrder(userEmail, orderStatus, paymentType, basket);
             basket.clear();
 
             ctx.sessionAttribute("user", user);

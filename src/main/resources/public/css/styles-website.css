@@ -529,3 +529,46 @@ tbody tr:hover {
     border-radius: 10px;
     border: 5px solid rebeccapurple;
 }
+
+.profile-options img {
+    background-color: mediumpurple;
+}
+
+.settings-container {
+    max-width: 400px;
+    margin: auto;
+    padding: 20px;
+    background: #f4f4f4;
+    border-radius: 10px;
+}
+
+.settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.settings-form label {
+    font-weight: bold;
+}
+
+.settings-form input {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.settings-form button {
+    padding: 10px;
+    background: mediumpurple;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.settings-form button:hover {
+    background: rebeccapurple;
+}
+

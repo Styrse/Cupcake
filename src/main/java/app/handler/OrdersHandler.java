@@ -28,7 +28,7 @@ public class OrdersHandler {
         app.post("/orders/remove", ctx -> {
             int orderId = Integer.parseInt(ctx.formParam("orderId"));
 
-            OrderMapper.removeOrder(connectionPool, orderId);
+            OrderMapper.removeOrder(orderId);
 
             ctx.redirect("/all-orders");
         });
@@ -39,7 +39,7 @@ public class OrdersHandler {
             User user = ctx.sessionAttribute("user");
 
             if (user instanceof Employee) {
-                List<Order> orders = OrderMapper.getAllOrders(connectionPool);
+                List<Order> orders = OrderMapper.getAllOrders();
 
                 ctx.attribute("orders", orders);
                 ctx.render("all-orders.html");
@@ -53,7 +53,7 @@ public class OrdersHandler {
         app.post("/show-order", ctx -> {
             int orderId = Integer.parseInt(ctx.formParam("orderId"));
 
-            List<BasketItem> items = OrderMapper.getOrderByOrderID(connectionPool, orderId);
+            List<BasketItem> items = OrderMapper.getOrderByOrderID(orderId);
 
             Map<String, Object> model = new HashMap<>();
             model.put("orderId", orderId);
@@ -68,7 +68,7 @@ public class OrdersHandler {
         app.post("/profile-orders", ctx -> {
             String customerEmail = ctx.formParam("email");
 
-            List<Order> userOrders = OrderMapper.getUserOrders(connectionPool, customerEmail);
+            List<Order> userOrders = OrderMapper.getUserOrders(customerEmail);
 
             ctx.attribute("userOrders", userOrders);
             ctx.render("user-orders.html");

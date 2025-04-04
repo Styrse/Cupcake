@@ -16,7 +16,29 @@
 <main>
     <div th:insert="~{topbar :: topbar}"></div>
 
-    Login
+    <div class="settings-container">
+        <h2>Account Settings</h2>
+
+        <form action="/update-email" method="post" class="settings-form">
+            <label for="email">New Email:</label>
+            <input type="email" id="email" name="email" required>
+            <button type="submit">Update Email</button>
+        </form>
+
+        <form action="/update-password" method="post" class="settings-form">
+            <label for="current-password">Current Password:</label>
+            <input type="password" id="current-password" name="currentPassword" required>
+
+            <label for="new-password">New Password:</label>
+            <input type="password" id="new-password" name="newPassword" required>
+
+            <label for="confirm-password">Confirm New Password:</label>
+            <input type="password" id="confirm-password" name="confirmPassword" required>
+
+            <button type="submit">Update Password</button>
+        </form>
+    </div>
+
 
 </main>
 

@@ -22,8 +22,8 @@ public class indexHandler {
 
     private static void showCupcakes(Javalin app) {
         app.get("/", ctx -> {
-                List<CupcakeBottom> cupcakeBottomList = getCupcakeBottoms(connectionPool);
-                List<CupcakeTop> cupcakeTopList = getCupcakeTops(connectionPool);
+                List<CupcakeBottom> cupcakeBottomList = getCupcakeBottoms();
+                List<CupcakeTop> cupcakeTopList = getCupcakeTops();
 
                 Map<String, Object> model = new HashMap<>();
                 model.put("cupcakeBottomList", cupcakeBottomList);

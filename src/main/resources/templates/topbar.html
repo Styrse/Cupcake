@@ -17,7 +17,7 @@
 
     <div class="top-bar">
         <div class="profile-container">
-            <a th:href="${session.user != null} ? '/settings' : '/login'" class="top-nav" id="profile-collapsed">
+            <a th:href="${session.user != null} ? '/' : '/login'" class="top-nav" id="profile-collapsed">
                 <p class="top-nav-email" th:text="${session.email}"></p>
                 <img src="/img/icons/profile.png" class="top-bar-img">
             </a>
@@ -26,22 +26,28 @@
                 <div class="profile-options">
                     <form action="/profile-orders" method="post">
                         <input type="hidden" name="email" th:value="${session.email}">
-                        <button type="submit" class="profile-button">
+                        <button type="submit">
                             <img src="/img/icons/orders.png" class="top-bar-img">
                         </button>
                     </form>
                 </div>
 
                 <div class="profile-options">
-                    <a href="/profile-settings">
-                        <img src="/img/icons/settings.png" class="top-bar-img">
-                    </a>
+                    <form action="/settings" method="post">
+                        <input type="hidden" name="email" th:value="${session.email}">
+                        <button type="submit">
+                            <img src="/img/icons/settings.png" class="top-bar-img">
+                        </button>
+
+                    </form>
                 </div>
 
                 <div class="profile-options">
-                    <a href="/logout">
-                        <img src="/img/icons/logout.png" class="top-bar-img">
-                    </a>
+                    <form action="/logout" method="post">
+                        <button type="submit" class="logout-button">
+                            <img src="/img/icons/logout.png" class="top-bar-img" alt="Logout">
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>

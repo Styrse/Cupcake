@@ -32,7 +32,7 @@ public class DashboardHandler {
             User user = ctx.sessionAttribute("user");
 
             if (user instanceof Employee) {
-                List<User> users = UserMapper.getAllUsers(connectionPool);
+                List<User> users = UserMapper.getAllUsers();
                 ctx.attribute("users", users);
                 ctx.render("all-profiles.html");
             } else {
