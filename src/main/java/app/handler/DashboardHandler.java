@@ -7,8 +7,6 @@ import io.javalin.Javalin;
 
 import java.util.List;
 
-import static app.Main.connectionPool;
-
 public class DashboardHandler {
     public static void dashboardReroutes(Javalin app) {
         showDashboard(app);

@@ -176,4 +176,21 @@ public class UserMapper {
         }
         return null;
     }
+
+    public static void updateUser(User user, String oldEmail) throws DatabaseException {
+        String sql = "UPDATE \"User\" SET user_email = ?, user_password = ? WHERE user_email = ?";
+
+        try (Connection connection = connectionPool.getConnection()) {
+            try (PreparedStatement ps = connection.prepareStatement(sql)) {
+                ps.setString(1, user.getEmail());
+                ps.setString(2, user.getPassword());
+                ps.setString(3, oldEmail);
+
+                ps.executeUpdate();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new DatabaseException("Error executing query");
+        }
+    }
 }

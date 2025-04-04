@@ -2,9 +2,8 @@ package app.handler;
 
 import app.entities.userRoles.User;
 import app.persistence.UserMapper;
+import app.utils.EmailUtils;
 import io.javalin.Javalin;
-
-import static app.Main.connectionPool;
 
 public class UserHandler {
 
@@ -12,7 +11,9 @@ public class UserHandler {
         addFunds(app);
         removeUser(app);
         settings(app);
+        updateEmail(app);
     }
+
     private static void addFunds(Javalin app) {
         app.post("/profile/add-funds", ctx -> {
 
@@ -24,13 +25,13 @@ public class UserHandler {
 
             UserMapper.updateUserBalance(email, newBalance);
 
-           ctx.redirect("/all-profiles");
+            ctx.redirect("/all-profiles");
         });
     }
 
     private static void removeUser(Javalin app) {
         app.post("/profile/remove", ctx -> {
-            String email  = ctx.formParam("email");
+            String email = ctx.formParam("email");
 
             UserMapper.removeUser(email);
 
@@ -51,5 +52,27 @@ public class UserHandler {
             }
         });
     }
+
+    private static void updateEmail(Javalin app) {
+        app.post("/update-email", ctx -> {
+            String newEmail = ctx.formParam("email");
+
+            if (EmailUtils.checkDuplicateEmail(newEmail)) {
+                ctx.redirect("/settings");
+            }
+
+            User user = ctx.sessionAttribute("user");
+
+            String oldEmail = user.getEmail();
+            user.setEmail(newEmail);
+
+            UserMapper.updateUser(user, oldEmail);
+
+            ctx.sessionAttribute("email", newEmail);
+
+            ctx.redirect("/");
+        });
+    }
 }
+
 

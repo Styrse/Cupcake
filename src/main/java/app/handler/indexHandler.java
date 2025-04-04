@@ -8,7 +8,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static app.Main.connectionPool;
 import static app.persistence.CupcakeMapper.getCupcakeBottoms;
 import static app.persistence.CupcakeMapper.getCupcakeTops;
 

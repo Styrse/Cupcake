@@ -67,4 +67,8 @@ public abstract class User {
     public String getRole() {
         return this.getClass().getSimpleName();
     }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
 }

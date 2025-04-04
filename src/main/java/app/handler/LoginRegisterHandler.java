@@ -4,9 +4,8 @@ import app.entities.userRoles.Customer;
 import app.entities.userRoles.Employee;
 import app.entities.userRoles.User;
 import app.persistence.UserMapper;
+import app.utils.EmailUtils;
 import io.javalin.Javalin;
-
-import static app.Main.connectionPool;
 
 public class LoginRegisterHandler {
     public static void loginRegisterReroutes(Javalin app) {
@@ -48,11 +47,9 @@ public class LoginRegisterHandler {
 
             User newUser = new Customer(firstname, email, password);
 
-            for (User user : UserMapper.getAllUsers()) {
-                if (user.getEmail().equals(email)) {
-                    ctx.redirect("/");
-                    return;
-                }
+
+            if (EmailUtils.checkDuplicateEmail(email)) {
+                ctx.redirect("/");
             }
 
             UserMapper.addUser(newUser);

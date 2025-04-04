@@ -12,7 +12,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import static app.Main.connectionPool;
 import static app.handler.BasketHandler.basket;
 
 public class OrdersHandler {
