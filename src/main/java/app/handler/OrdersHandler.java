@@ -29,7 +29,13 @@ public class OrdersHandler {
 
             OrderMapper.removeOrder(orderId);
 
-            ctx.redirect("/all-orders");
+            User user = ctx.sessionAttribute("user");
+
+            if (user instanceof User) {
+                ctx.redirect("/");
+            } else if (user instanceof Employee) {
+                ctx.redirect("/all-orders");
+            }
         });
     }
 
