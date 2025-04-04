@@ -174,8 +174,10 @@ footer {
 
 #quantity-box {
     display: flex;
-    height: fit-content;
-    gap: 15px;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+    gap: 10px;
 }
 
 #cupcake-quantity {
@@ -209,12 +211,21 @@ footer {
     padding: 5px;
 }
 
+
+
 #cupcake-subtract {
     background: red;
 }
 
 #cupcake-addition {
     background: green;
+}
+
+.cupcake img {
+    max-width: 300px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
 }
 
 .products {
@@ -344,6 +355,13 @@ tbody tr:hover {
 
 #addToBasket:hover {
     background-color: rebeccapurple;
+}
+
+#cupcake-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .remove-line-button {

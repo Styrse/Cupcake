@@ -48,7 +48,9 @@
                     <div class="cupcake-choice">
                         <h3>Pick cupcake bottom</h3>
                         <label class="products" th:each="cupcakeBottom : ${cupcakeBottomList}">
-                            <input type="radio" name="cupcakeBottom" th:value="${cupcakeBottom.id}" th:attr="data-salesprice=${cupcakeBottom.salesPrice}" class="cupcakeBottomRadio" required>
+                            <input type="radio" name="cupcakeBottom" th:value="${cupcakeBottom.id}"
+                                   th:attr="data-salesprice=${cupcakeBottom.salesPrice}" class="cupcakeBottomRadio"
+                                   required>
 
                             <div class="product-info">
                                 <p class="flavor-info" th:text="${cupcakeBottom.flavor}"></p>
@@ -56,7 +58,8 @@
                             </div>
 
                             <div class="product-img">
-                                <img th:src="@{'/img/icons/cupcakeBuilder/' + ${cupcakeBottom.path}}" alt="Cupcake Image">
+                                <img th:src="@{'/img/icons/cupcakeBuilder/' + ${cupcakeBottom.path}}"
+                                     alt="Cupcake Image">
                             </div>
                         </label>
                     </div>
@@ -64,7 +67,8 @@
                     <div class="cupcake-choice">
                         <h3>Pick cupcake top</h3>
                         <label class="products" th:each="cupcakeTop : ${cupcakeTopList}">
-                            <input type="radio" name="cupcakeTop" th:value="${cupcakeTop.id}" th:attr="data-salesprice=${cupcakeTop.salesPrice}" class="cupcakeTopRadio" required>
+                            <input type="radio" name="cupcakeTop" th:value="${cupcakeTop.id}"
+                                   th:attr="data-salesprice=${cupcakeTop.salesPrice}" class="cupcakeTopRadio" required>
 
                             <div class="product-info">
                                 <p class="flavor-info" th:text="${cupcakeTop.flavor}"></p>
@@ -78,14 +82,8 @@
                     </div>
 
                     <div id="cupcake-display">
-                        <div>
-                            <div id="cupcake-bottom-img" class="cupcake">
-                                <!-- TODO: Bottom img -->
-                            </div>
-                            
-                            <div id="cupcake-top-img" class="cupcake">
-                                <!-- TODO: Top img -->
-                            </div>
+                        <div id="cupcake-bottom-img" class="cupcake">
+                            <img id="cupcake-preview-img" src="/img/icons/cupcakes/0.png">
                         </div>
 
                         <div id="quantity-box">
