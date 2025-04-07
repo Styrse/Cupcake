@@ -8,7 +8,6 @@ import java.util.List;
 public class Order {
     private int orderID;
     private Date orderDate;
-//    private LocalDateTime pickupDate;
     private String customerEmail;
     private String orderStatus;
     private String paymentType;

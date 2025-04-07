@@ -119,17 +119,6 @@ public class CupcakeMapper {
         return cupcakeId;
     }
 
-    public static List<Cupcake> cupcakeBuilder() throws DatabaseException{
-        List<Cupcake> cupcakes = new ArrayList<>();
-
-            for (CupcakeBottom bottom : getCupcakeBottoms()) {
-                for (CupcakeTop top : getCupcakeTops()) {
-                    cupcakes.add(new Cupcake(bottom, top));
-                }
-            }
-        return cupcakes;
-    }
-
     public static CupcakeBottom getCupcakeBottomById(int bottomId) throws DatabaseException {
         List<CupcakeBottom> cupcakeBottoms = CupcakeMapper.getCupcakeBottoms();
 
