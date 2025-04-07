@@ -119,7 +119,7 @@ public class BasketHandler {
     private static void showBasket(Javalin app) {
         app.get("/basket", ctx -> {
             Map<String, Object> model = new HashMap<>();
-            model.put("basket", BasketHandler.basket);
+            model.put("basket", basket);
 
             ctx.sessionAttribute("basket", basket);
             ctx.attribute("totalPrice", BasketUtils.getTotalPrice(basket));

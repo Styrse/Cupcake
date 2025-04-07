@@ -3,9 +3,6 @@ package app.persistence;
 import app.entities.itemTypes.eatables.Cupcake;
 import app.entities.itemTypes.eatables.CupcakeBottom;
 import app.entities.itemTypes.eatables.CupcakeTop;
-import app.entities.userRoles.Admin;
-import app.entities.userRoles.Customer;
-import app.entities.userRoles.Employee;
 import app.exceptions.DatabaseException;
 
 import java.sql.Connection;
