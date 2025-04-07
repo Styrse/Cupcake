@@ -143,7 +143,8 @@ public class OrderMapper {
 
         String sql = "SELECT * " +
                 "FROM \"Order\" " +
-                "WHERE user_email LIKE ?";
+                "WHERE user_email LIKE ? " +
+                "ORDER BY order_date DESC";
 
         try (Connection connection = connectionPool.getConnection()) {
             try (PreparedStatement ps = connection.prepareStatement(sql)) {
