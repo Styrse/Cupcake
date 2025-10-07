@@ -12,10 +12,19 @@ import java.util.logging.Logger;
 public class Main {
     private static final Logger LOGGER = Logger.getLogger(Main.class.getName());
 
-    private static final String USER = "postgres";
-    private static final String PASSWORD = "postgres";
-    private static final String URL = "jdbc:postgresql://localhost:5432/%s?currentSchema=public";
-    private static final String DB = "Cupcake";
+    private static final String USER =
+            System.getenv().getOrDefault("JDBC_USER", "postgres");
+
+    private static final String PASSWORD =
+            System.getenv().getOrDefault("JDBC_PASSWORD", "postgres");
+
+    private static final String URL =
+            System.getenv().getOrDefault("JDBC_CONNECTION_STRING",
+                    "jdbc:postgresql://db:5432/%s?currentSchema=public");
+
+    private static final String DB =
+            System.getenv().getOrDefault("JDBC_DB", "cupcake");
+
 
     public static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);
 
